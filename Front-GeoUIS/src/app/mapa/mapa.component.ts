@@ -9,7 +9,9 @@ import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import { fromLonLat, transform } from 'ol/proj';
 import OSM from 'ol/source/OSM';
+import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
+import TileWMS from 'ol/source/TileWMS';
 import {Circle, Fill, Stroke, Style} from 'ol/style';
 import * as olEasing from 'ol/easing';
 
@@ -79,18 +81,74 @@ export class MapaComponent implements OnInit {
     
 
     // Capas
+    // Capa OSM
     const osm = new TileLayer({
       title: 'OSM',
       type: 'base',
       visible: true,
       source: new OSM()
     } as BaseLayerOptions);
-    
+
+    // Capa Bing
+    const streetMap = new TileLayer({
+      title: 'StreetMap',
+      visible: false,
+      source: new BingMaps({
+        key: 'ApjzTmyuFM7e9XTkQdK-tCIjI1Z4FVnMHd8DzejybZAoxFox0FAkzOK8IbWqmRV_',
+        imagerySet: 'AerialWithLabelsOnDemand'
+      }),
+    } as BaseLayerOptions);
+
+    // Capas Geoserver
+    const layerMunicipios = new TileLayer({
+      title: 'Municipios',
+      visible: false,
+      source: new TileWMS({
+        url: 'http://localhost:8080/geoserver/GeoUIS/wms',
+        params: {'LAYERS': 'GeoUIS:limite_municipal_poligono', 'TILED': true},
+        serverType: 'geoserver'
+      }),
+    } as BaseLayerOptions);
+
+    const layerRiosGrandes = new TileLayer({
+      title: 'Rios Grandes',
+      visible: false,
+      source: new TileWMS({
+        url: 'http://localhost:8080/geoserver/GeoUIS/wms',
+        params: {'LAYERS': 'GeoUIS:drenaje_doble', 'TILED': true},
+        serverType: 'geoserver'
+      }),
+    } as BaseLayerOptions);
+
+    const layerRios = new TileLayer({
+      title: 'Rios',
+      visible: false,
+      source: new TileWMS({
+        url: 'http://localhost:8080/geoserver/GeoUIS/wms',
+        params: {'LAYERS': 'GeoUIS:drenaje_sencillo', 'TILED': true},
+        serverType: 'geoserver'
+      }),
+    } as BaseLayerOptions);
+
+    const layerVias = new TileLayer({
+      title: 'Vias',
+      visible: false,
+      source: new TileWMS({
+        url: 'http://localhost:8080/geoserver/GeoUIS/wms',
+        params: {'LAYERS': 'GeoUIS:via', 'TILED': true},
+        serverType: 'geoserver'
+      }),
+    } as BaseLayerOptions);
 
     //Grupos de capas
     const baseMaps = new LayerGroup({
       title: 'Base maps', 
       layers: [osm, vectorLayer]
+    } as GroupLayerOptions);
+
+    const capasMaps = new LayerGroup({
+      title: 'Capas',
+      layers: [streetMap,layerMunicipios, layerRiosGrandes, layerRios, layerVias]
     } as GroupLayerOptions);
 
     //Creamos el mapa
@@ -99,7 +157,7 @@ export class MapaComponent implements OnInit {
         center: [-8292281.51444346,684409.30384363],
         zoom: 5, 
       }),
-      layers: [baseMaps],
+      layers: [baseMaps, capasMaps],
       target: 'ol-map'
     });
 
