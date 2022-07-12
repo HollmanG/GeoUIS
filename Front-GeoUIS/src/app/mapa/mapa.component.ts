@@ -57,9 +57,11 @@ export class MapaComponent implements OnInit {
       features: [markerFeature],
     });
 
-    const vectorLayer = new VectorLayer({
+    const features = new VectorLayer({
+      title: 'Features',
+      visible: false,
       source: vectorSource,
-    });
+    } as BaseLayerOptions);
 
     //Elementos HTML para el popup
     let container = document.getElementById('popup'),
@@ -139,16 +141,18 @@ export class MapaComponent implements OnInit {
         serverType: 'geoserver'
       }),
     } as BaseLayerOptions);
+    
+    
 
     //Grupos de capas
     const baseMaps = new LayerGroup({
       title: 'Base maps', 
-      layers: [osm, vectorLayer]
+      layers: [osm]
     } as GroupLayerOptions);
 
     const capasMaps = new LayerGroup({
       title: 'Capas',
-      layers: [streetMap,layerMunicipios, layerRiosGrandes, layerRios, layerVias]
+      layers: [streetMap,layerMunicipios, layerRiosGrandes, layerRios, layerVias, features]
     } as GroupLayerOptions);
 
     //Creamos el mapa
@@ -161,8 +165,6 @@ export class MapaComponent implements OnInit {
       target: 'ol-map'
     });
 
-    //Añadimos el popup
-    this.map.addOverlay(overlay);
 
     //Se crea el layerSwitcher
     const layerSwitcher = new LayerSwitcher({
@@ -223,6 +225,9 @@ export class MapaComponent implements OnInit {
 			}
 		});
     this.map.addControl(search);
+
+    //Añadimos el popup
+    this.map.addOverlay(overlay);
 
     // Center when click on the reference index
     search.on('select', (e: any) =>
