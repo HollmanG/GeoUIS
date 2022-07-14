@@ -1,0 +1,15 @@
+.self-footer {
+    border-top-left-radius: 4ch; 
+    border-top-right-radius: 4ch;
+    background-size: cover;
+    background-color: black;
+}
+.text-titulo {
+    color: aquamarine
+}
+.separador{
+    border-width: 2px;
+    border-top-style: solid;
+    border-top-color: aquamarine;
+    padding: 0%;
+}
