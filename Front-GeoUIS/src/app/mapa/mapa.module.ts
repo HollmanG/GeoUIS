@@ -12,9 +12,6 @@ import { MapaComponent } from './mapa.component';
   imports: [
     CommonModule,
     MapaRoutingModule
-  ],
-  exports: [
-    MapaComponent
   ]
 })
 export class MapaModule { }

@@ -1,0 +1,2 @@
+¿Cosas relevantes en el footer (redes sociales, links de interés, información de contacto, acerca de, etc..)?
+¿Qué atributos debe tener la base de datos? Coord, nombre, tipo
