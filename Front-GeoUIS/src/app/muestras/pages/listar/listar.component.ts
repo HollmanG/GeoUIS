@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Muestra } from '../../interfaces/muestra.interface';
 import { MuestrasService } from '../../services/muestras.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { MuestrasService } from '../../services/muestras.service';
 })
 export class ListarComponent implements OnInit {
 
+  muestras: Muestra[] = [];
+
   constructor(private muestrasService: MuestrasService) { }
 
   ngOnInit(): void {
 
     this.muestrasService.getMuestras()
-      .subscribe(resp => console.log(resp));
+      .subscribe(muestras => { this.muestras = muestras });
 
   }
 
