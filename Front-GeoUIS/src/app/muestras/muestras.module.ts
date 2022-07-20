@@ -10,6 +10,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { MuestrasRoutingModule } from './muestras-routing.module';
 import { MaterialModule } from '../material/material.module';
+import { MuestraTarjetaComponentComponent } from './components/muestra-tarjeta-component/muestra-tarjeta-component.component';
+import { ImagenPipe } from './pipes/imagen.pipe';
 
 
 
@@ -19,7 +21,9 @@ import { MaterialModule } from '../material/material.module';
     BuscarComponent,
     MuestraComponent,
     HomeComponent,
-    ListarComponent
+    ListarComponent,
+    MuestraTarjetaComponentComponent,
+    ImagenPipe
   ],
   imports: [
     CommonModule,

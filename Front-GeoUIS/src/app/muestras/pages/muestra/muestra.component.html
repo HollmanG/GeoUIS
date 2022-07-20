@@ -1,1 +1,21 @@
-<p>muestra works!</p>
+<mat-grid-list cols="1" *ngIf="!muestra; else divMuestra">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divMuestra>
+    <div fxLayout="row"
+         fxFlex.gt-xs="column"
+         fxLayoutGap="30px">
+        <div fxFlex="50">
+            <h1>{{muestra.superhero}}</h1>
+            <hr>
+            <br>
+            <img [src]="muestra | imagen">
+        </div>
+        <div fxFlex="50">
+            2
+        </div>    
+    </div>
+</ng-template>

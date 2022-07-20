@@ -5,26 +5,7 @@
      fxLayoutAlign="center"
      fxLayoutGap="20px">
     <div fxFlex="30" *ngFor="let muestra of muestras" fxFlex.lg = "15" fxFlex.sm = "30">
-        <mat-card>
-            <mat-card-header>
-                <div></div>
-                <mat-card-title>{{muestra.superhero}}</mat-card-title>
-                <mat-card-subtitle>{{muestra.alter_ego}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="assets/heroes/{{muestra.id}}.jpg">
-            <mat-card-content>
-                <h3>{{muestra.publisher}}</h3>
-                <p>
-                    <strong>Primera aparición: </strong>{{muestra.first_appearance}}
-                    <br>
-                    <strong>Personajes: </strong> {{muestra.characters}}
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button color="accent">Ver más</button>
-                <button mat-button color="warn">Editar</button>
-            </mat-card-actions>
-        </mat-card>
+        <app-muestra-tarjeta-component [muestra]="muestra"></app-muestra-tarjeta-component>
     </div>
 
 </div>

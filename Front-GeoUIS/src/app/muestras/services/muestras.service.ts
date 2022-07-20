@@ -14,4 +14,8 @@ export class MuestrasService {
     return this.http.get<Muestra[]>('http://localhost:3000/muestras')
   }
 
+  getMuestraPorId(id:string) : Observable<Muestra> {
+    return this.http.get<Muestra>(`http://localhost:3000/muestras/${id}`)
+  }
+
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { switchMap } from 'rxjs';
+import { Muestra } from '../../interfaces/muestra.interface';
+import { MuestrasService } from '../../services/muestras.service';
 
 @Component({
   selector: 'app-muestra',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MuestraComponent implements OnInit {
 
-  constructor() { }
+  muestra!: Muestra;
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private muestraService: MuestrasService) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+    .pipe(
+      switchMap(({id})=> this.muestraService.getMuestraPorId(id))
+    )
+    .subscribe(muestra=>this.muestra = muestra)
+
   }
 
 }
