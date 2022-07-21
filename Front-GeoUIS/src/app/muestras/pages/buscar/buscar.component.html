@@ -1,1 +1,44 @@
-<p>buscar works!</p>
+<div fxLayout="column">
+    <div>
+        <h1>Buscar muestras</h1>
+        <hr>
+    </div>
+    <div>
+        <h3>Buscador</h3>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Number</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [(ngModel)]="termino"
+                   [matAutocomplete]="auto"
+                   (input)="buscando()">
+            <mat-autocomplete autoActiveFirstOption 
+                              #auto="matAutocomplete"
+                              (optionSelected)="opcionSeleccionada($event)">
+              <mat-option *ngFor="let muestra of muestras" [value]="muestra">
+                <div flexLayout="row"
+                     fxLayoutGap="5px">
+                    <div fxFlex="50">
+                        <img aria-hidden [src]="muestra | imagen">
+                    </div>
+                    <div fxFlex="50">
+                        <div flexLayout="column">
+                            <div class="letra">{{muestra.superhero}}</div>
+                            <div class="letra">Alter Ego: {{muestra.alter_ego}}</div>
+                            <div class="letra">Publisher: {{muestra.publisher}}</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    </div>
+</div>
+
+<div>{{muestraSeleccionada | json}}</div>

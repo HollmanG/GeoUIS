@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Muestra } from '../interfaces/muestra.interface';
 
 @Injectable({
@@ -8,14 +9,16 @@ import { Muestra } from '../interfaces/muestra.interface';
 })
 export class MuestrasService {
 
+  private baseUrl: string = environment.apiEndPoint;
+
   constructor(private http: HttpClient) { }
 
   getMuestras() : Observable<Muestra[]> {
-    return this.http.get<Muestra[]>('http://localhost:3000/muestras')
+    return this.http.get<Muestra[]>(`${this.baseUrl}/muestras`)
   }
 
   getMuestraPorId(id:string) : Observable<Muestra> {
-    return this.http.get<Muestra>(`http://localhost:3000/muestras/${id}`)
+    return this.http.get<Muestra>(`${this.baseUrl}/muestras/${id}`)
   }
 
 }

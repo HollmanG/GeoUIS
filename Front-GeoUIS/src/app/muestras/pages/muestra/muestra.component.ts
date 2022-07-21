@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { switchMap } from 'rxjs';
 import { Muestra } from '../../interfaces/muestra.interface';
 import { MuestrasService } from '../../services/muestras.service';
@@ -14,7 +14,8 @@ export class MuestraComponent implements OnInit {
   muestra!: Muestra;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private muestraService: MuestrasService) { }
+              private muestraService: MuestrasService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -23,6 +24,10 @@ export class MuestraComponent implements OnInit {
     )
     .subscribe(muestra=>this.muestra = muestra)
 
+  }
+
+  regresar() {
+    this.router.navigate(['/muestra/listar']);
   }
 
 }

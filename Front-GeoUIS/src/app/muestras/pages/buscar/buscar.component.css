@@ -1,0 +1,20 @@
+mat-option {
+    height: fit-content;
+}
+img {
+    float: left;
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.letra {
+    font-size: 2vh;
+    height: 3vh;
+}
+
+mat-autocomplete-panel {
+    height: fit-content;
+}

@@ -15,7 +15,16 @@
             <img [src]="muestra | imagen">
         </div>
         <div fxFlex="50">
-            2
+            <h1>{{muestra.publisher}}</h1>
+            <hr>
+            <mat-list>
+                <mat-list-item>{{muestra.first_appearance}}</mat-list-item>
+                <mat-list-item>{{muestra.characters}}</mat-list-item>
+                <mat-list-item>{{muestra.publisher}}</mat-list-item>
+                <mat-list-item>{{muestra.alter_ego}}</mat-list-item>
+            </mat-list>
+            <br>
+            <button mat-button color="warn" (click)="regresar()">Regresar</button>
         </div>    
     </div>
 </ng-template>
