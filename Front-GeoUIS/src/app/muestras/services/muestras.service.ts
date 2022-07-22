@@ -21,4 +21,8 @@ export class MuestrasService {
     return this.http.get<Muestra>(`${this.baseUrl}/muestras/${id}`)
   }
 
+  getSugerencias(termino:string) : Observable<Muestra[]> {
+    return this.http.get<Muestra[]>(`${this.baseUrl}/muestras?q=${termino}&_limit=6`)
+  }
+
 }

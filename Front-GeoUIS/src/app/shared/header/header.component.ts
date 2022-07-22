@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Muestra } from 'src/app/muestras/interfaces/muestra.interface';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  muestra!: Muestra;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setMuestra(muestra: Muestra) {
+    this.muestra = muestra
+    console.log(muestra);
+    
   }
 
 }

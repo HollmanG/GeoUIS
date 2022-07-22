@@ -16,10 +16,7 @@
             <a class="nav-link active" routerLink="/muestra">Muestras</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar muestra" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
+        <app-buscador (muestraOut)="setMuestra($event)"></app-buscador>
       </div>
     </div>
   </nav>

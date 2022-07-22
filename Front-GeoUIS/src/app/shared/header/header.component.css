@@ -1,3 +1,7 @@
 .navposition {
     z-index: 950;
 }
+
+app-buscador {
+    width: 20vw;
+}
