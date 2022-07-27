@@ -1,0 +1,13 @@
+.hover-color:hover {
+    background-color: rgba(0, 128, 0, 0.5);
+    color: white;
+}
+
+.letra-color {
+    color: green;
+}
+
+.boton-color {
+    background-color: green;
+    color: white;
+}
