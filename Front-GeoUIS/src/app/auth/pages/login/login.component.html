@@ -1,41 +1,33 @@
 <!-- Pills content -->
-  <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-    <form>
-     <!-- Email input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="loginName">Correo</label>
-        <input type="email" id="loginName" class="form-control">
-      </div>
+<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+  <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="login()">
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="correo">Correo</label>
+      <input type="email" formControlName="correo" id="correo" class="form-control">
+    </div>
 
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="loginPassword">Contraseña</label>
-        <input type="password" id="loginPassword" class="form-control">
-      </div>
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="password">Contraseña</label>
+      <input type="password" formControlName="password" id="password" class="form-control">
+    </div>
 
-      <!-- 2 column grid layout -->
-      <div class="row mb-4">
-        <div class="col-md-6 d-flex justify-content-center">
-          <!-- Checkbox -->
-          <div class="form-check mb-3 mb-md-0">
-            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-            <label class="form-check-label" for="loginCheck"> Recuerdame </label>
-          </div>
-        </div>
+    <!-- 2 column grid layout -->
+    <div class="row mb-4">
+      <a class="text-center" href="#!">¿Olvidaste tu contraseña?</a>
+    </div>
 
-        <div class="col-md-6 d-flex justify-content-center">
-          <!-- Simple link -->
-          <a href="#!">¿Olvidaste tu contraseña?</a>
-        </div>
-      </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="miFormulario.invalid">Iniciar
+        sesión</button>
+    </div>
+    <!-- Submit button -->
 
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar sesión</button>
 
-      <!-- Register buttons -->
-      <div class="text-center">
-        <p>¿No estás registrado? <a routerLink="/auth/register">Regístrate</a></p>
-      </div>
-    </form>
-  </div>
-  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>¿No estás registrado? <a routerLink="/auth/register">Regístrate</a></p>
+    </div>
+  </form>
+</div>

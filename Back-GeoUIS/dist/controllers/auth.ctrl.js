@@ -20,6 +20,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { correo, password } = req.body;
     if (!correo) {
         return res.status(400).json({
+            ok: false,
             msg: 'No existe el correo'
         });
     }
@@ -28,12 +29,14 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const usuario = yield usuario_mdl_1.default.findOne({ where: { correo } });
         if (!usuario) {
             return res.status(400).json({
+                ok: false,
                 msg: 'El correo ingresado no es correcto'
             });
         }
         //Verificar si el usuario está activo
         if (usuario.estado == 0) {
             return res.status(400).json({
+                ok: false,
                 msg: 'El usuario se encuentra inactivo'
             });
         }
@@ -41,12 +44,15 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const validarPassword = bcryptjs_1.default.compareSync(password, usuario.password);
         if (!validarPassword) {
             return res.status(400).json({
+                ok: false,
                 msg: 'La contraseña es incorrecta'
             });
         }
         //Generar el JWT
         const token = yield (0, generarJWT_1.generarJWT)(usuario.id);
         return res.status(200).json({
+            ok: true,
+            id: usuario.id,
             msg: 'login',
             correo,
             token
@@ -55,6 +61,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         console.log(error);
         return res.status(500).json({
+            ok: false,
             msg: 'Comuniquese con el admin'
         });
     }

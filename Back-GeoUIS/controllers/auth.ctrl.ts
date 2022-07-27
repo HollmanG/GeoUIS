@@ -5,10 +5,11 @@ import { generarJWT } from "../helpers/generarJWT";
 
 export const login = async(req: Request, res: Response) => {
 
-    const {correo , password} = req.body;
+    const {correo, password} = req.body;
 
     if(!correo) {
         return res.status(400).json({
+            ok: false,
             msg: 'No existe el correo'
         });
     }
@@ -20,6 +21,7 @@ export const login = async(req: Request, res: Response) => {
         
         if(!usuario) {
             return res.status(400).json({
+                ok: false,
                 msg: 'El correo ingresado no es correcto'
             });
         }
@@ -28,6 +30,7 @@ export const login = async(req: Request, res: Response) => {
         //Verificar si el usuario está activo
         if(usuario.estado == 0){
             return res.status(400).json({
+                ok: false,
                 msg: 'El usuario se encuentra inactivo'
             });
         }
@@ -36,6 +39,7 @@ export const login = async(req: Request, res: Response) => {
         const validarPassword = bcryptjs.compareSync(password, usuario.password)
         if(!validarPassword){
             return res.status(400).json({
+                ok: false,
                 msg: 'La contraseña es incorrecta'
             });
         }
@@ -45,6 +49,8 @@ export const login = async(req: Request, res: Response) => {
 
 
         return res.status(200).json({
+            ok: true,
+            id: usuario.id,
             msg: 'login',
             correo,
             token
@@ -52,6 +58,7 @@ export const login = async(req: Request, res: Response) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({
+            ok: false,
             msg: 'Comuniquese con el admin'
         })
     }
