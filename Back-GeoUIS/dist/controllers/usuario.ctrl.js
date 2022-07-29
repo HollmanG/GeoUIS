@@ -85,11 +85,12 @@ const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.putUsuario = putUsuario;
 const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.id;
+    const { id } = req.params;
+    const idAdmin = req.usuario.id;
     try {
         const usuario = yield usuario_mdl_1.default.findByPk(id);
         yield (usuario === null || usuario === void 0 ? void 0 : usuario.update({ estado: 0 }));
-        return res.status(200).json({ usuario, id });
+        return res.status(200).json({ usuario, idAdmin });
     }
     catch (error) {
         console.log(error);

@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import Usuario from "../models/usuario.mdl";
+import Usuario from '../models/usuario.mdl';
 import bcryptjs from 'bcryptjs';
 import { generarJWT } from "../helpers/generarJWT";
+import { Req } from '../helpers/interfaces';
 
 export const login = async(req: Request, res: Response) => {
 
@@ -62,5 +63,23 @@ export const login = async(req: Request, res: Response) => {
             msg: 'Comuniquese con el admin'
         })
     }
+
+}
+
+export const revalidarToken = async(req: Req, res: Response) => {
+
+    const { usuario } = req;
+
+    //Generar el JWT
+    const token = await generarJWT(usuario?.id!);
+
+    
+    return res.json({
+        ok: true,
+        msg: "Renew",
+        id: usuario?.id,
+        nombre: usuario?.nombre,
+        token
+    })
 
 }

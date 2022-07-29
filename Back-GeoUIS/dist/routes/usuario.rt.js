@@ -5,6 +5,7 @@ const express_validator_1 = require("express-validator");
 const usuario_ctrl_1 = require("../controllers/usuario.ctrl");
 const dbValidators_1 = require("../helpers/dbValidators");
 const putPassword_1 = require("../middlewares/putPassword");
+const validar_roles_1 = require("../middlewares/validar-roles");
 const validarCampos_1 = require("../middlewares/validarCampos");
 const validarJWT_1 = require("../middlewares/validarJWT");
 const router = (0, express_1.Router)();
@@ -29,6 +30,7 @@ router.put('/:id', [
 ], usuario_ctrl_1.putUsuario);
 router.delete('/:id', [
     validarJWT_1.validarJWT,
+    validar_roles_1.esAdmin,
     (0, express_validator_1.check)('id').custom(dbValidators_1.existeUsuarioPorID),
     validarCampos_1.validarCampos
 ], usuario_ctrl_1.deleteUsuario);
