@@ -7,3 +7,9 @@ export interface AuthResponse {
     correo?: string;
     token?: string;
 }
+
+export interface Usuario {
+    id: number;
+    correo: string;
+
+}
