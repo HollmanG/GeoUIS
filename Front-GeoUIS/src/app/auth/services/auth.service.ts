@@ -27,6 +27,7 @@ export class AuthService {
     .pipe(
       tap( resp => {
         if( resp.ok ){
+          localStorage.setItem('token', resp.token!);
           this._usuario = {
             correo: resp.correo!,
             id: resp.id!

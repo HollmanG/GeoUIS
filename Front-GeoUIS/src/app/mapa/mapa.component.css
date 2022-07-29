@@ -9,6 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mapa {
     height: 100%;
     width: 100%;
+    color: black;
 } 
 .ol-popup {
     position: absolute;
