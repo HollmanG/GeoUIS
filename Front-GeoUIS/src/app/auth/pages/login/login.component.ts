@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,11 +27,10 @@ export class LoginComponent {
 
     this.authService.login(correo, password)
     .subscribe(ok=>{
-      // console.log(resp);
-      if(ok) {
+      if(ok === true) {
         this.router.navigateByUrl('/inicio'); 
       } else {
-        // mensaje de error
+        Swal.fire('Error', ok, 'error')
       }
     })
     
