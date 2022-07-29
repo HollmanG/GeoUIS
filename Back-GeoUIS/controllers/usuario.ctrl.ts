@@ -84,7 +84,8 @@ export const putUsuario = async(req: Request, res: Response) => {
 
 export const deleteUsuario = async(req: Req, res: Response) => {
     
-    const id = req.id;
+    const { id } = req.params!;
+    const idAdmin = req.usuario!.id;
 
     try {
 
@@ -92,7 +93,7 @@ export const deleteUsuario = async(req: Req, res: Response) => {
 
         await usuario?.update({estado: 0})
 
-        return res.status(200).json({usuario, id});
+        return res.status(200).json({usuario, idAdmin});
         
     } catch (error) {
         console.log(error);
