@@ -1,0 +1,22 @@
+import { Response } from "express";
+import { Req } from "../helpers/interfaces";
+
+export const esAdmin = (req: Req, res: Response, next: any) => {
+
+    if(!req.usuario) {
+        return res.status(500).json({
+            msg: 'Se quiere validar el rol sin verificar antes el token'
+        });
+    }
+
+    const {rol, nombre} = req.usuario;
+
+    if(rol !== 2 && rol !== 4) {
+        return res.status(401).json({
+            msg: `${nombre} no es administrador - No puede realizar esta acción`
+        });
+    }
+
+    next();
+
+}

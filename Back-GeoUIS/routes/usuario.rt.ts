@@ -3,6 +3,7 @@ import { check } from "express-validator";
 import { deleteUsuario, getUsuario, getUsuarios, postUsuario, putUsuario } from "../controllers/usuario.ctrl";
 import { validarCorreoExiste, validarRol, existeUsuarioPorID } from '../helpers/dbValidators';
 import { putPassword } from "../middlewares/putPassword";
+import { esAdmin } from "../middlewares/validar-roles";
 import { validarCampos } from '../middlewares/validarCampos';
 import { validarJWT } from "../middlewares/validarJWT";
 
@@ -29,6 +30,7 @@ router.put('/:id', [
 ], putUsuario);
 router.delete('/:id', [
     validarJWT,
+    esAdmin,
     check('id').custom(existeUsuarioPorID),
     validarCampos
 ], deleteUsuario);
