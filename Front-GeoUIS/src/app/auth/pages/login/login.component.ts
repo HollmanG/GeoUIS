@@ -22,6 +22,9 @@ export class LoginComponent {
               private authService: AuthService) { }
 
   login() {
+
+    // this.authService.validarToken()
+    // .subscribe( resp => console.log (resp))
     console.log(this.miFormulario.value);   
     const {correo, password} = this.miFormulario.value;
 
@@ -32,7 +35,7 @@ export class LoginComponent {
       } else {
         Swal.fire('Error', ok, 'error')
       }
-    })
+    });
     
   }
 
