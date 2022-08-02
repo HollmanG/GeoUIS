@@ -17,7 +17,8 @@ export class AgregarComponent {
               private authService: AuthService) { }
 
   logOut(){
-    this.router.navigateByUrl('/auth')
+    this.router.navigateByUrl('/auth');
+    this.authService.logOut();
   }
 
 }

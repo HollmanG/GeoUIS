@@ -18,6 +18,29 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  register(nombre:string, correo: string, password: string){
+
+    const url = `${this.baseURL}/usuarios`;
+
+    const rol = 1; // Rol por default
+    const body = { nombre, correo, password, rol };
+
+    return this.http.post<AuthResponse>(url, body)
+      .pipe(
+        tap(resp => {
+          if (resp.ok) {
+            localStorage.setItem('token', resp.token!);
+            this._usuario = {
+              correo: resp.correo!,
+              id: resp.id!
+            }
+          }
+        }),
+        map(resp => resp.ok),
+        catchError(err => of(err.error.msg))
+      )
+  }
+
   login(correo: string, password: string) {
 
     const url = `${this.baseURL}/auth/login`;
@@ -58,6 +81,10 @@ export class AuthService {
         }),
         catchError(err => of(false))
       )
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
   }
 
 }
