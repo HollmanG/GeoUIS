@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUsuario = exports.putUsuario = exports.postUsuario = exports.getUsuario = exports.getUsuarios = void 0;
 const usuario_mdl_1 = __importDefault(require("../models/usuario.mdl"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const generarJWT_1 = require("../helpers/generarJWT");
 const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const usuarios = yield usuario_mdl_1.default.findAll();
     return res.json({
@@ -51,8 +52,17 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const usuario = usuario_mdl_1.default.build({ correo, nombre, password: criptPass, rol });
         yield usuario.save();
+        //Generar el JWT
+        const token = yield (0, generarJWT_1.generarJWT)(usuario.id);
         const { password, nombre: nombre1, correo: correo1 } = usuario;
-        return res.status(200).json({ nombre1, correo1 });
+        return res.status(200).json({
+            ok: true,
+            msg: 'register',
+            id: usuario.id,
+            nombre1,
+            correo1,
+            token
+        });
     }
     catch (error) {
         console.log(error);
