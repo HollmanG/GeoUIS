@@ -19,6 +19,7 @@ const getDepartamentos = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const departamentos = yield departamento_mdl_1.default.findAll();
     return res.status(200).json({
         ok: true,
+        msg: 'getDepartamentos',
         departamentos
     });
 });
@@ -27,6 +28,7 @@ const getMunicipios = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const municipios = yield municipio_mdl_1.default.findAll();
     return res.status(200).json({
         ok: true,
+        msg: 'getMunicipios',
         municipios
     });
 });
@@ -53,6 +55,7 @@ const getMunicipiosPorDpto = (req, res) => __awaiter(void 0, void 0, void 0, fun
     });
     return res.status(200).json({
         ok: true,
+        msg: 'getMunicipiosPorDpto',
         municipios
     });
 });

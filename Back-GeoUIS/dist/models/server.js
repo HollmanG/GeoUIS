@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const usuario_rt_1 = __importDefault(require("../routes/usuario.rt"));
 const auth_rt_1 = __importDefault(require("../routes/auth.rt"));
 const departamento_municipio_rt_1 = __importDefault(require("../routes/departamento_municipio.rt"));
+const muestra_rt_1 = __importDefault(require("../routes/muestra.rt"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
@@ -23,7 +24,8 @@ class Server {
         this.apiPaths = {
             usuarios: '/api/usuarios',
             auth: '/api/auth',
-            departamentos_municipios: '/api/depMun'
+            departamentos_municipios: '/api/depMun',
+            muestras: '/api/muestras'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -57,6 +59,7 @@ class Server {
         this.app.use(this.apiPaths.usuarios, usuario_rt_1.default);
         this.app.use(this.apiPaths.auth, auth_rt_1.default);
         this.app.use(this.apiPaths.departamentos_municipios, departamento_municipio_rt_1.default);
+        this.app.use(this.apiPaths.muestras, muestra_rt_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

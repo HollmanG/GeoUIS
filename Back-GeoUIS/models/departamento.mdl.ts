@@ -3,12 +3,12 @@ import db from "../db/connection";
 
 export interface DepartamentoInterface {
     id_departamento: number,
-    nombre: String
+    nombre: string
 }
 
 class Departamento extends Model<DepartamentoInterface> implements DepartamentoInterface {
     id_departamento!: number;
-    nombre!: String;
+    nombre!: string;
 }
 
 Departamento.init({
