@@ -4,17 +4,21 @@ import { AgregarComponent } from './pages/agregar/agregar.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { MuestraComponent } from './pages/muestra/muestra.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ValidarTokenGuard } from '../auth/guards/validar-token.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
-      {path: 'listar', component: ListarComponent},
-      {path: 'agregar', component: AgregarComponent},
-      {path: 'editar/:id', component: AgregarComponent},
-      {path: ':id', component: MuestraComponent},
-      {path: '**', redirectTo: 'listar'},
+      { path: 'listar', component: ListarComponent },
+      { path: 'agregar', component: AgregarComponent },
+      {
+        path: 'editar/:id', component: AgregarComponent,
+        canActivate: [ValidarTokenGuard]
+      },
+      { path: ':id', component: MuestraComponent },
+      { path: '**', redirectTo: 'listar' },
     ]
   },
 
