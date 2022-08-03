@@ -15,13 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const usuario_rt_1 = __importDefault(require("../routes/usuario.rt"));
 const auth_rt_1 = __importDefault(require("../routes/auth.rt"));
+const departamento_municipio_rt_1 = __importDefault(require("../routes/departamento_municipio.rt"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
             usuarios: '/api/usuarios',
-            auth: '/api/auth'
+            auth: '/api/auth',
+            departamentos_municipios: '/api/depMun'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -54,6 +56,7 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.usuarios, usuario_rt_1.default);
         this.app.use(this.apiPaths.auth, auth_rt_1.default);
+        this.app.use(this.apiPaths.departamentos_municipios, departamento_municipio_rt_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
