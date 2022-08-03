@@ -30,6 +30,7 @@ const generarJWT_1 = require("../helpers/generarJWT");
 const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const usuarios = yield usuario_mdl_1.default.findAll();
     return res.json({
+        ok: true,
         msg: 'getUsuarios',
         usuarios
     });
@@ -67,6 +68,7 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     catch (error) {
         console.log(error);
         return res.status(500).json({
+            ok: false,
             msg: 'Hable con el administrador'
         });
     }
@@ -84,11 +86,16 @@ const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const usuario = yield usuario_mdl_1.default.findByPk(id);
         yield (usuario === null || usuario === void 0 ? void 0 : usuario.update(resto));
         const { correo, nombre } = usuario;
-        return res.status(200).json({ correo, nombre });
+        return res.status(200).json({
+            ok: true,
+            correo,
+            nombre
+        });
     }
     catch (error) {
         console.log(error);
         return res.status(500).json({
+            ok: false,
             msg: 'Hable con el administrador'
         });
     }
@@ -100,11 +107,16 @@ const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const usuario = yield usuario_mdl_1.default.findByPk(id);
         yield (usuario === null || usuario === void 0 ? void 0 : usuario.update({ estado: 0 }));
-        return res.status(200).json({ usuario, idAdmin });
+        return res.status(200).json({
+            ok: true,
+            usuario,
+            idAdmin
+        });
     }
     catch (error) {
         console.log(error);
         return res.status(500).json({
+            ok: false,
             msg: 'Hable con el administrador'
         });
     }

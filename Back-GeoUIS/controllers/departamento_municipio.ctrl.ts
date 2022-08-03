@@ -5,14 +5,20 @@ import Municipio from "../models/municipio.mdl";
 export const getDepartamentos = async(req: Request, res: Response) => {
     
     const departamentos = await Departamento.findAll();
-    return res.status(200).json(departamentos);
+    return res.status(200).json({
+        ok: true,
+        departamentos
+    });
 
 }
 
 export const getMunicipios = async(req: Request, res: Response) => {
     
     const municipios = await Municipio.findAll();
-    return res.status(200).json(municipios);
+    return res.status(200).json({
+        ok: true,
+        municipios
+    });
 
 }
 
@@ -39,6 +45,9 @@ export const getMunicipiosPorDpto = async(req: Request, res: Response) => {
     const municipios = await Municipio.findAll({
         where: {id_departamento},
     });
-    return res.status(200).json(municipios);
+    return res.status(200).json({
+        ok: true,
+        municipios
+    });
 
 }

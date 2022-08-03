@@ -17,12 +17,18 @@ const departamento_mdl_1 = __importDefault(require("../models/departamento.mdl")
 const municipio_mdl_1 = __importDefault(require("../models/municipio.mdl"));
 const getDepartamentos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const departamentos = yield departamento_mdl_1.default.findAll();
-    return res.status(200).json(departamentos);
+    return res.status(200).json({
+        ok: true,
+        departamentos
+    });
 });
 exports.getDepartamentos = getDepartamentos;
 const getMunicipios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const municipios = yield municipio_mdl_1.default.findAll();
-    return res.status(200).json(municipios);
+    return res.status(200).json({
+        ok: true,
+        municipios
+    });
 });
 exports.getMunicipios = getMunicipios;
 const getMunicipiosPorDpto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,7 +51,10 @@ const getMunicipiosPorDpto = (req, res) => __awaiter(void 0, void 0, void 0, fun
     const municipios = yield municipio_mdl_1.default.findAll({
         where: { id_departamento },
     });
-    return res.status(200).json(municipios);
+    return res.status(200).json({
+        ok: true,
+        municipios
+    });
 });
 exports.getMunicipiosPorDpto = getMunicipiosPorDpto;
 //# sourceMappingURL=departamento_municipio.ctrl.js.map
