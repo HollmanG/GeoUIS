@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import Usuario from "../models/usuario.mdl";
 import bcryptjs from "bcryptjs";
-import {  } from "express-validator";
 import { Req } from "../helpers/interfaces";
 
 export const getUsuarios = async(req: Request, res: Response) => {

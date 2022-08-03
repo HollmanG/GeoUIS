@@ -3,12 +3,12 @@ import db from "../db/connection";
 
 export interface RolInterface {
     id_rol: number,
-    nombre_rol: String
+    nombre_rol: string
 }
 
 class Rol extends Model<RolInterface> implements RolInterface {
     id_rol!: number;
-    nombre_rol!: String;
+    nombre_rol!: string;
 }
 
 Rol.init({
