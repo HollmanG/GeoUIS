@@ -78,6 +78,7 @@ export const revalidarToken = async(req: Req, res: Response) => {
         msg: "Renew",
         id: usuario?.id,
         nombre: usuario?.nombre,
+        correo: usuario?.correo,
         token
     })
 

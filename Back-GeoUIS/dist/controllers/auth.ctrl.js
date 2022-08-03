@@ -76,6 +76,7 @@ const revalidarToken = (req, res) => __awaiter(void 0, void 0, void 0, function*
         msg: "Renew",
         id: usuario === null || usuario === void 0 ? void 0 : usuario.id,
         nombre: usuario === null || usuario === void 0 ? void 0 : usuario.nombre,
+        correo: usuario === null || usuario === void 0 ? void 0 : usuario.correo,
         token
     });
 });

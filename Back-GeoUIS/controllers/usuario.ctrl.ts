@@ -82,6 +82,7 @@ export const putUsuario = async(req: Request, res: Response) => {
         const {correo, nombre} = usuario!;
         return res.status(200).json({
             ok: true,
+            msg: 'putUsuario',
             correo, 
             nombre
         });
@@ -109,6 +110,7 @@ export const deleteUsuario = async(req: Req, res: Response) => {
 
         return res.status(200).json({
             ok: true,
+            msg: 'deleteUsuario', 
             usuario, 
             idAdmin
         });

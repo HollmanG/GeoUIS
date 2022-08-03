@@ -88,6 +88,7 @@ const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const { correo, nombre } = usuario;
         return res.status(200).json({
             ok: true,
+            msg: 'putUsuario',
             correo,
             nombre
         });
@@ -109,6 +110,7 @@ const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         yield (usuario === null || usuario === void 0 ? void 0 : usuario.update({ estado: 0 }));
         return res.status(200).json({
             ok: true,
+            msg: 'deleteUsuario',
             usuario,
             idAdmin
         });

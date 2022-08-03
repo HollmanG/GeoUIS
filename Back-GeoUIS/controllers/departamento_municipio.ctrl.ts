@@ -7,6 +7,7 @@ export const getDepartamentos = async(req: Request, res: Response) => {
     const departamentos = await Departamento.findAll();
     return res.status(200).json({
         ok: true,
+        msg: 'getDepartamentos',
         departamentos
     });
 
@@ -17,6 +18,7 @@ export const getMunicipios = async(req: Request, res: Response) => {
     const municipios = await Municipio.findAll();
     return res.status(200).json({
         ok: true,
+        msg: 'getMunicipios',
         municipios
     });
 
@@ -47,6 +49,7 @@ export const getMunicipiosPorDpto = async(req: Request, res: Response) => {
     });
     return res.status(200).json({
         ok: true,
+        msg: 'getMunicipiosPorDpto',
         municipios
     });
 
