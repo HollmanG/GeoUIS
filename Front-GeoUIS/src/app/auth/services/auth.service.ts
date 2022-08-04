@@ -33,7 +33,7 @@ export class AuthService {
           }
         }),
         map(resp => resp.ok),
-        catchError(err => of(err.error.msg))
+        catchError(err => of(err.error.msg.errors[0].msg))
       )
   }
 
@@ -67,7 +67,8 @@ export class AuthService {
           localStorage.setItem('token', resp.token!);
             this._usuario = {
               correo: resp.correo!,
-              id: resp.id!
+              id: resp.id!,
+              nombre: resp.nombre!
             }
           return resp.ok;
         }),
