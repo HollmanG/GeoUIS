@@ -25,4 +25,16 @@ export class MuestrasService {
     return this.http.get<Muestra[]>(`${this.baseUrl}/muestras?q=${termino}&_limit=6`)
   }
 
+  agregarMuestra(muestra : Muestra): Observable<Muestra>{
+    return this.http.post<Muestra>(`${this.baseUrl}/muestras`,muestra)
+  }
+
+  actualizarMuestra (muestra: Muestra): Observable<Muestra>{
+    return this.http.put<Muestra>(`${this.baseUrl}/muestras/${ muestra.id }`,muestra)
+  }
+
+  borrarMuestra (id: string): Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}/muestras/${ id }`)
+  }
+
 }

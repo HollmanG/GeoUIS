@@ -14,8 +14,8 @@ const routes: Routes = [
       { path: 'listar', component: ListarComponent },
       { path: 'agregar', component: AgregarComponent },
       {
-        path: 'editar/:id', component: AgregarComponent,
-        canActivate: [ValidarTokenGuard]
+        path: 'editar/:id', component: AgregarComponent
+        // canActivate: [ValidarTokenGuard]
       },
       { path: ':id', component: MuestraComponent },
       { path: '**', redirectTo: 'listar' },
