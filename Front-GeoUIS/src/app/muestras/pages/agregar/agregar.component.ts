@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Muestra, Publisher } from '../../interfaces/muestra.interface';
 import { switchMap } from 'rxjs/operators';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './agregar.component.html',
   styleUrls: ['./agregar.component.css']
 })
-export class AgregarComponent {
+
+export class AgregarComponent implements OnInit{
 
   get usuario() {
     return this.authService.usuario
@@ -71,7 +73,7 @@ export class AgregarComponent {
     } else {
       //crear
       this.muestraService.agregarMuestra(this.muestra).subscribe(muestra => {
-        this.router.navigate(['/muestras/editar', muestra.id]);
+        this.router.navigate(['/muestras/editar/', muestra.id]);
         this.mostrarSnackBar('Registro Creado');
       })
 

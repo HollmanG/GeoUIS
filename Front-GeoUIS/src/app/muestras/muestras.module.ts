@@ -13,6 +13,7 @@ import { MaterialModule } from '../material/material.module';
 import { MuestraTarjetaComponentComponent } from './components/muestra-tarjeta-component/muestra-tarjeta-component.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { BuscadorComponent } from './components/buscador/buscador.component';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 
 
@@ -24,7 +25,8 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
     ListarComponent,
     MuestraTarjetaComponentComponent,
     ImagenPipe,
-    BuscadorComponent
+    BuscadorComponent,
+    ConfirmarComponent
   ],
   imports: [
     CommonModule,
