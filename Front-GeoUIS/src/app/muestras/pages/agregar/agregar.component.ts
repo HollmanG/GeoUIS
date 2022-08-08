@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MuestrasService } from '../../services/muestras.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar} from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Muestra, Publisher } from '../../interfaces/muestra.interface';
 import { switchMap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
   styleUrls: ['./agregar.component.css']
 })
 
-export class AgregarComponent implements OnInit{
+export class AgregarComponent implements OnInit {
 
   get usuario() {
     return this.authService.usuario
