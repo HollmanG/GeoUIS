@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { where } from "sequelize/types";
 import { Req } from "../helpers/interfaces";
 import Foto from "../models/foto.mdl";
 import Muestra from '../models/muestra.mdl';
@@ -42,7 +43,7 @@ export const crearMuestra = async (req: Req, res: Response) => {
 
     const { nombre, id_tipo_muestra, codigo, caracteristicas_fisicas,
         fecha_recoleccion, fecha_ingreso, id_ubicacion, id_localizacion,
-        edad, mineralogia, formacion, fotos } = req.body;
+        edad, mineralogia, formacion} = req.body;
 
     //Verficamos los parámetros obligatorios
     if (!nombre || !id_tipo_muestra || !codigo) {
@@ -68,14 +69,6 @@ export const crearMuestra = async (req: Req, res: Response) => {
         });
     }
 
-    if (!Array.isArray(fotos)) {
-        return res.status(200).json({
-            status: 400,
-            message: 'El parámetro fotos debe ser un arreglo de objetos',
-            body: null
-        });
-    }
-
     try {
         //Se crea la muestra
         const muestra: Muestra = Muestra.build({
@@ -91,17 +84,6 @@ export const crearMuestra = async (req: Req, res: Response) => {
         });
 
         await muestra.save();
-
-        fotos.forEach(async (obj) => {
-            if (obj.foto) {
-                let foto = Foto.build({
-                    id_muestra: muestra.id_muestra,
-                    foto: obj.foto,
-                    descripcion: obj.descripcion
-                });
-                await foto.save();
-            }
-        })
 
         return res.status(200).json({
             ok: true,
@@ -124,7 +106,7 @@ export const editarMuestra = async (req: Req, res: Response) => {
 
     const { id } = req.params;
 
-    const { fotos, ...body } = req.body;
+    const body = req.body;
 
     //Verficamos los parámetros obligatorios
     if (!body.nombre || !body.id_tipo_muestra || !body.codigo) {
@@ -150,14 +132,6 @@ export const editarMuestra = async (req: Req, res: Response) => {
         });
     }
 
-    // if (!Array.isArray(fotos)) {
-    //     return res.status(200).json({
-    //         status: 400,
-    //         message: 'El parámetro fotos debe ser un arreglo de objetos',
-    //         body: null
-    //     });
-    // }
-
     try {
         //Se edita la muestra
         const muestra = await Muestra.findByPk(id);
@@ -171,21 +145,151 @@ export const editarMuestra = async (req: Req, res: Response) => {
 
         await muestra?.update(body);
 
-        // fotos.forEach(async (obj) => {
-        //     if (obj.foto) {
-        //         let foto = Foto.build({
-        //             id_muestra: muestra!.id_muestra,
-        //             foto: obj.foto,
-        //             descripcion: obj.descripcion
-        //         });
-        //         await foto.save();
-        //     }
-        // })
-
         return res.status(200).json({
             ok: true,
             msg: 'Muestra creada',
             muestra
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
+
+export const eliminarMuestra = async (req: Req, res: Response) => {
+
+    const { id } = req.params;
+
+    if(!id) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'El id es obligatorio'
+        });
+    }
+
+    const muestraExiste = await Muestra.findByPk(id);
+    
+    if(!muestraExiste) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'No existe la muestra'
+        });
+    }
+
+    try {
+        
+        await Muestra.destroy({where:{id_muestra:id}});
+
+        return res.status(200).json({
+            ok: true,
+            msg: 'Muestra Eliminada'
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
+
+export const getFotos = async (req: Req, res: Response) => {
+
+    const { id } = req.params;
+    const fotos = await Foto.findAll(
+        {
+            where: {
+                id_muestra: id
+            }
+        });
+
+    return res.status(200).json({
+        ok: true,
+        msg: 'getFotos',
+        fotos
+    });
+}
+
+export const agregarFoto = async (req: Req, res: Response) => {
+
+    const { id_muestra, foto, descripcion } = req.body;
+
+    if(!id_muestra || !foto || !descripcion) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'Los parámetros id_muestra, foto y descripcion son obligatorios'
+        });
+    }
+
+    const muestraExiste = await Muestra.findByPk(id_muestra);
+    
+    if(!muestraExiste) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'No existe la muestra'
+        });
+    }
+
+    try {
+        
+        const fotoCreada: Foto =  Foto.build({
+            id_muestra,
+            foto,
+            descripcion 
+        });
+
+        await fotoCreada.save();
+
+        return res.status(200).json({
+            ok: true,
+            msg: 'agregarFoto',
+            fotoCreada
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
+
+export const eliminarFoto = async (req: Req, res: Response) => {
+
+    const { id_muestra, id_foto } = req.body;
+
+    if(!id_muestra || !id_foto) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'Los parámetros id_muestra y id_foto son obligatorios'
+        });
+    }
+
+    const fotoExiste = await Foto.findByPk(id_foto);
+    
+    if(!fotoExiste) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'No existe la foto'
+        });
+    }
+
+    try {
+        
+        await Foto.destroy({where:{id_foto, id_muestra}});
+
+        return res.status(200).json({
+            ok: true,
+            msg: 'Foto Eliminada'
         });
 
     } catch (error) {
