@@ -29,7 +29,7 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const generarJWT_1 = require("../helpers/generarJWT");
 const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const usuarios = yield usuario_mdl_1.default.findAll();
-    return res.json({
+    return res.status(200).json({
         ok: true,
         msg: 'getUsuarios',
         usuarios
@@ -39,7 +39,14 @@ exports.getUsuarios = getUsuarios;
 const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const usuario = yield usuario_mdl_1.default.findByPk(id);
-    return res.json({
+    if (!usuario) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'No se encontró el usuario con el id proporcionado'
+        });
+    }
+    return res.status(200).json({
+        ok: true,
         msg: 'getUsuario',
         usuario
     });

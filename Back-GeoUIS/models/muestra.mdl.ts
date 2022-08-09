@@ -3,80 +3,85 @@ import db from "../db/connection";
 
 export interface MuestraInterface {
     id_muestra?: number,
-    foto: string,
-    lon: number,
-    lat: number,
-    descripcion: string,
-    fecha_recoleccion: Date,
-    fecha_ingreso: Date,
-    id_municipio: string,
-    id_departamento: number,
-    id_ubicacion: number
+    caracteristicas_fisicas?: string,
+    fecha_recoleccion?: Date,
+    fecha_ingreso?: Date,
+    id_ubicacion?: number,
+    nombre?: string,
+    id_localizacion?: number,
+    id_tipo_muestra?: number,
+    edad?: number,
+    mineralogia?: string,
+    codigo?: string,
+    formacion?: string
 }
 
 class Muestra extends Model<MuestraInterface> implements MuestraInterface {
     id_muestra?: number;
-    foto!: string;
-    lon!: number;
-    lat!: number;
-    descripcion!: string;
-    fecha_recoleccion!: Date;
-    fecha_ingreso!: Date;
-    id_municipio!: string;
-    id_departamento!: number;
-    id_ubicacion!: number;
+    caracteristicas_fisicas?: string;
+    fecha_recoleccion?: Date;
+    fecha_ingreso?: Date;
+    id_ubicacion?: number;
+    nombre?: string;
+    id_localizacion?: number;
+    id_tipo_muestra?: number;
+    edad?: number;
+    mineralogia?: string;
+    codigo?: string;
+    formacion?: string;
 }
 
 Muestra.init({
     id_muestra: {
         primaryKey: true,
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false
-    },   
-    foto: {
+    },
+    caracteristicas_fisicas : {
         type: DataTypes.STRING,
         allowNull: true
     }, 
-    lon: {
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    lat: {
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    descripcion: {
-        primaryKey: true,
+    fecha_recoleccion : {
+        type: DataTypes.DATE,
+        allowNull: true
+    }, 
+    fecha_ingreso : {
+        type: DataTypes.DATE,
+        allowNull: true
+    }, 
+    id_ubicacion : {
+        type: DataTypes.NUMBER,
+        allowNull: true
+    }, 
+    nombre : {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    fecha_recoleccion: {
-        primaryKey: true,
-        type: DataTypes.DATE,
+    }, 
+    id_localizacion : {
+        type: DataTypes.NUMBER,
+        allowNull: true
+    }, 
+    id_tipo_muestra : {
+        type: DataTypes.NUMBER,
         allowNull: false
-    },
-    fecha_ingreso: {
-        primaryKey: true,
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    id_municipio: {
-        primaryKey: true,
+    }, 
+    edad : {
+        type: DataTypes.NUMBER,
+        allowNull: true
+    }, 
+    mineralogia : {
+        type: DataTypes.STRING,
+        allowNull: true
+    }, 
+    codigo : {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    id_departamento: {
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    id_ubicacion: {
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    }, 
+    formacion : {
+        type: DataTypes.STRING,
+        allowNull: true
+    },    
 }, {
     timestamps: false,
     sequelize: db,

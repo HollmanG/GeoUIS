@@ -11,52 +11,53 @@ Muestra.init({
     id_muestra: {
         primaryKey: true,
         type: sequelize_1.DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false
     },
-    foto: {
+    caracteristicas_fisicas: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true
     },
-    lon: {
-        primaryKey: true,
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
-    },
-    lat: {
-        primaryKey: true,
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
-    },
-    descripcion: {
-        primaryKey: true,
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
-    },
     fecha_recoleccion: {
-        primaryKey: true,
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false
+        allowNull: true
     },
     fecha_ingreso: {
-        primaryKey: true,
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false
+        allowNull: true
     },
-    id_municipio: {
-        primaryKey: true,
+    id_ubicacion: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: true
+    },
+    nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    id_departamento: {
-        primaryKey: true,
-        type: sequelize_1.DataTypes.INTEGER,
+    id_localizacion: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: true
+    },
+    id_tipo_muestra: {
+        type: sequelize_1.DataTypes.NUMBER,
         allowNull: false
     },
-    id_ubicacion: {
-        primaryKey: true,
-        type: sequelize_1.DataTypes.INTEGER,
+    edad: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: true
+    },
+    mineralogia: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    codigo: {
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false
-    }
+    },
+    formacion: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
 }, {
     timestamps: false,
     sequelize: connection_1.default,
