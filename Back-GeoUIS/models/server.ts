@@ -1,7 +1,7 @@
 import express, {Application} from "express";
 import userRoutes from "../routes/usuario.rt";
 import authRoutes from "../routes/auth.rt";
-import depMunRoutes from "../routes/departamento_municipio.rt";
+import depMunRoutes from "../routes/municipio.rt";
 import muestrasRoutes from "../routes/muestra.rt";
 import cors from "cors";
 import db from "../db/connection";
@@ -13,7 +13,7 @@ class Server {
     private apiPaths = {
         usuarios: '/api/usuarios',
         auth: '/api/auth',
-        departamentos_municipios: '/api/depMun',
+        municipios: '/api/municipios',
         muestras: '/api/muestras'
     }
 
@@ -59,7 +59,7 @@ class Server {
 
         this.app.use(this.apiPaths.usuarios, userRoutes);
         this.app.use(this.apiPaths.auth, authRoutes);
-        this.app.use(this.apiPaths.departamentos_municipios, depMunRoutes);
+        this.app.use(this.apiPaths.municipios, depMunRoutes);
         this.app.use(this.apiPaths.muestras, muestrasRoutes);
 
     }
