@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,20 +21,27 @@ export class MuestrasService {
     return this.http.get<Muestra>(`${this.baseUrl}/muestras/${id}`)
   }
 
-  getSugerencias(termino:string) : Observable<Muestra[]> {
-    return this.http.get<Muestra[]>(`${this.baseUrl}/muestras?q=${termino}&_limit=6`)
-  }
-
   agregarMuestra(muestra : Muestra): Observable<Muestra>{
-    return this.http.post<Muestra>(`${this.baseUrl}/muestras`,muestra)
+    //Token actual
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
+
+    return this.http.post<Muestra>(`${this.baseUrl}/muestras`,muestra,{headers})
   }
 
   actualizarMuestra (muestra: Muestra): Observable<Muestra>{
-    return this.http.put<Muestra>(`${this.baseUrl}/muestras/${ muestra.id }`,muestra)
+    //Token actual
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
+
+    return this.http.put<Muestra>(`${this.baseUrl}/muestras/${ muestra.id }`,muestra, {headers})
   }
 
   borrarMuestra (id: string): Observable<any>{
-    return this.http.delete<any>(`${this.baseUrl}/muestras/${ id }`)
+    //Token actual
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
+    return this.http.delete<any>(`${this.baseUrl}/muestras/${ id }`,{headers})
   }
 
 }
