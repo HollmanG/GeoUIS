@@ -18,5 +18,21 @@ router.put('/:id', [
     validar_roles_1.esAdmin,
     validarCampos_1.validarCampos
 ], muestra_ctrl_1.editarMuestra);
+router.delete('/:id', [
+    validarJWT_1.validarJWT,
+    validar_roles_1.esAdmin,
+    validarCampos_1.validarCampos
+], muestra_ctrl_1.eliminarMuestra);
+router.get('/fotos/:id', muestra_ctrl_1.getFotos);
+router.post('/fotos', [
+    validarJWT_1.validarJWT,
+    validar_roles_1.esAdmin,
+    validarCampos_1.validarCampos
+], muestra_ctrl_1.agregarFoto);
+router.delete('/fotos', [
+    validarJWT_1.validarJWT,
+    validar_roles_1.esAdmin,
+    validarCampos_1.validarCampos
+], muestra_ctrl_1.eliminarFoto);
 exports.default = router;
 //# sourceMappingURL=muestra.rt.js.map
