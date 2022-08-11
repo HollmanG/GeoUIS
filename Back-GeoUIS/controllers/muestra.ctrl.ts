@@ -165,23 +165,16 @@ export const eliminarMuestra = async (req: Req, res: Response) => {
 
     const { id } = req.params;
 
-    if(!id) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'El id es obligatorio'
-        });
-    }
-
-    const muestraExiste = await Muestra.findByPk(id);
-    
-    if(!muestraExiste) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'No existe la muestra'
-        });
-    }
-
     try {
+
+        const muestraExiste = await Muestra.findByPk(id);
+    
+        if(!muestraExiste) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No existe la muestra'
+            });
+        }
         
         await Muestra.destroy({where:{id_muestra:id}});
 
@@ -264,28 +257,28 @@ export const agregarFoto = async (req: Req, res: Response) => {
 }
 
 export const eliminarFoto = async (req: Req, res: Response) => {
-
-    const { id_muestra, id_foto } = req.body;
-
-    if(!id_muestra || !id_foto) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'Los parámetros id_muestra y id_foto son obligatorios'
-        });
-    }
-
-    const fotoExiste = await Foto.findByPk(id_foto);
     
-    if(!fotoExiste) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'No existe la foto'
-        });
-    }
+    const { id } = req.params;
 
     try {
+
+        // if(!id) {
+        //     return res.status(400).json({
+        //         ok: false,
+        //         msg: 'El id de la foto es obligatorio'
+        //     });
+        // }
+
+        const fotoExiste = await Foto.findByPk(id);
+    
+        if(!fotoExiste) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No existe la foto'
+            });
+        }
         
-        await Foto.destroy({where:{id_foto, id_muestra}});
+        await Foto.destroy({where:{id_foto:id}});
 
         return res.status(200).json({
             ok: true,
@@ -301,3 +294,4 @@ export const eliminarFoto = async (req: Req, res: Response) => {
     }
 
 }
+ 
