@@ -9,19 +9,20 @@
          fxFlex.gt-xs="column"
          fxLayoutGap="30px">
         <div fxFlex="50">
-            <h1>{{muestra.superhero}}</h1>
+            <h1>{{muestra.nombre}}</h1>
             <hr>
             <br>
             <img [src]="muestra | imagen">
         </div>
         <div fxFlex="50">
-            <h1>{{muestra.publisher}}</h1>
+            <h1>{{muestra.mineralogia}}</h1>
             <hr>
             <mat-list>
-                <mat-list-item>{{muestra.first_appearance}}</mat-list-item>
-                <mat-list-item>{{muestra.characters}}</mat-list-item>
-                <mat-list-item>{{muestra.publisher}}</mat-list-item>
-                <mat-list-item>{{muestra.alter_ego}}</mat-list-item>
+                <mat-list-item>{{muestra.formacion}}</mat-list-item>
+                <mat-list-item>{{muestra.edad}}</mat-list-item>
+                <mat-list-item>{{muestra.fecha_ingreso}}</mat-list-item>
+                <mat-list-item>{{muestra.fecha_recoleccion}}</mat-list-item>
+                <mat-list-item>{{muestra.caracteristicas_fisicas}}</mat-list-item>
             </mat-list>
             <br>
             <button mat-button color="warn" (click)="regresar()">Regresar</button>

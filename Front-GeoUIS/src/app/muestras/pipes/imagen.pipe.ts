@@ -6,8 +6,17 @@ import { Muestra } from '../interfaces/muestra.interface';
 })
 export class ImagenPipe implements PipeTransform {
 
-  transform(muestra: Muestra): string {
-    return `assets/heroes/${muestra.id}.jpg`;
+  transform(value: any, ...args: any[]) {
+    
   }
+  // transform(muestra: Muestra): string {
+  //   if(!muestra.id && !muestra.alt_img){
+  //     return 'assets/no-image.png';
+  //   } else if (muestra.alt_img){
+  //     return muestra.alt_img;
+  //   } else {
+  //     return `assets/heroes/${muestra.id}.jpg`;
+  //   }
+  // }
 
 }
