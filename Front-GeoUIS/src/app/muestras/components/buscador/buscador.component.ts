@@ -39,14 +39,14 @@ export class BuscadorComponent implements OnInit {
     }
 
     const muestra: Muestra = event.option.value;
-    this.termino = muestra.superhero;
+    this.termino = muestra.nombre;
     
-    this.muestrasService.getMuestraPorId(muestra.id!)
+    this.muestrasService.getMuestraPorId(muestra.id_muestra!)
     .subscribe(muestra => this.muestraSeleccionada = muestra);
     
     this.outputMuestra(muestra);
 
-    this.router.navigate([`/muestra/${muestra.id}`]);
+    this.router.navigate([`/muestra/${muestra.id_muestra}`]);
   }
 
 }

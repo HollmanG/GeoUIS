@@ -4,7 +4,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { MuestrasService } from '../../services/muestras.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { Muestra, Publisher } from '../../interfaces/muestra.interface';
+import { Muestra } from '../../interfaces/muestra.interface';
 import { switchMap } from 'rxjs/operators';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
@@ -21,24 +21,11 @@ export class AgregarComponent implements OnInit {
     return this.authService.usuario
   }
 
-  publishers = [
-    {
-      id: 'Dc Comics',
-      desc: 'Dc-Comics'
-    },
-    {
-      id: 'Marvel Comics',
-      desc: 'Marvel-Comics'
-    }
-  ]
-
   muestra: Muestra = {
-    superhero: '',
-    alter_ego: '',
-    characters: '',
-    first_appearance: '',
-    publisher: Publisher.DCComics,
-    alt_img: ''
+    caracteristicas_fisicas: "",
+    codigo: "",
+    id_tipo_muestra: 0,
+    nombre: ""
   }
 
   constructor(private router: Router,
@@ -63,17 +50,17 @@ export class AgregarComponent implements OnInit {
   }
 
   guardar() {
-    if (this.muestra.superhero.trim().length === 0) {
+    if (this.muestra.nombre.trim().length === 0) {
       return;
     }
 
-    if (this.muestra.id) {
+    if (this.muestra.id_muestra) {
       //actualizar
       this.muestraService.actualizarMuestra(this.muestra).subscribe(muestra => this.mostrarSnackBar('Registro actualizado'))
     } else {
       //crear
       this.muestraService.agregarMuestra(this.muestra).subscribe(muestra => {
-        this.router.navigate(['/muestras/editar/', muestra.id]);
+        this.router.navigate(['/muestras/editar/', muestra.id_muestra]);
         this.mostrarSnackBar('Registro Creado');
       })
 
@@ -91,7 +78,7 @@ export class AgregarComponent implements OnInit {
     dialog.afterClosed().subscribe(
       (result) => {
         if (result) {
-          this.muestraService.borrarMuestra(this.muestra.id!)
+          this.muestraService.borrarMuestra(this.muestra.id_muestra!)
             .subscribe(resp => {
               this.router.navigate(['/muestras'])
             })
@@ -99,7 +86,7 @@ export class AgregarComponent implements OnInit {
       }
     )
 
-    this.muestraService.borrarMuestra(this.muestra.id!)
+    this.muestraService.borrarMuestra(this.muestra.id_muestra!)
       .subscribe(resp => {
         this.router.navigate(['/muestras'])
       })

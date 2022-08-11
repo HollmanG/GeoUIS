@@ -1,14 +1,28 @@
 export interface Muestra {
-    id?:              string;
-    superhero:        string;
-    publisher:        Publisher;
-    alter_ego:        string;
-    first_appearance: string;
-    characters:       string;
-    alt_img:          string;
+    id_muestra?:                number;
+    caracteristicas_fisicas:    string;
+    fecha_recoleccion?:         Date;
+    fecha_ingreso?:             Date;
+    id_ubicacion?:              number;
+    nombre:                     string;
+    id_localizacion?:           number;
+    id_tipo_muestra:            number;
+    edad?:                      number;
+    mineralogia?:               string;
+    codigo:                     string;
+    formacion?:                 string;
 }
 
-export enum Publisher {
-    DCComics = "DC Comics",
-    MarvelComics = "Marvel Comics",
+export interface MuestrasResponse {
+    ok: boolean; 
+    msg: string | {}; 
+    muestras: Muestra[];
+
+}
+
+export interface MuestraResponse {
+    ok: boolean; 
+    msg: string | {}; 
+    muestra: Muestra;
+
 }
