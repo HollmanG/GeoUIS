@@ -108,14 +108,6 @@ export const editarMuestra = async (req: Req, res: Response) => {
 
     const body = req.body;
 
-    //Verficamos los parámetros obligatorios
-    if (!body.nombre || !body.id_tipo_muestra || !body.codigo) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'Los parámetros nombre, id_tipo_muestra y codigo son obligatorios'
-        });
-    }
-
     //Verificamos las fechas
     if (body.fecha_recoleccion && !regexFecha.test(body.fecha_recoleccion)) {
         return res.status(200).json({
