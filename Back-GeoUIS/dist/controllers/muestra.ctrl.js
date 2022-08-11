@@ -146,20 +146,14 @@ const editarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.editarMuestra = editarMuestra;
 const eliminarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    if (!id) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'El id es obligatorio'
-        });
-    }
-    const muestraExiste = yield muestra_mdl_1.default.findByPk(id);
-    if (!muestraExiste) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'No existe la muestra'
-        });
-    }
     try {
+        const muestraExiste = yield muestra_mdl_1.default.findByPk(id);
+        if (!muestraExiste) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No existe la muestra'
+            });
+        }
         yield muestra_mdl_1.default.destroy({ where: { id_muestra: id } });
         return res.status(200).json({
             ok: true,
@@ -227,22 +221,22 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.agregarFoto = agregarFoto;
 const eliminarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id_muestra, id_foto } = req.body;
-    if (!id_muestra || !id_foto) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'Los parámetros id_muestra y id_foto son obligatorios'
-        });
-    }
-    const fotoExiste = yield foto_mdl_1.default.findByPk(id_foto);
-    if (!fotoExiste) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'No existe la foto'
-        });
-    }
+    const { id } = req.params;
     try {
-        yield foto_mdl_1.default.destroy({ where: { id_foto, id_muestra } });
+        // if(!id) {
+        //     return res.status(400).json({
+        //         ok: false,
+        //         msg: 'El id de la foto es obligatorio'
+        //     });
+        // }
+        const fotoExiste = yield foto_mdl_1.default.findByPk(id);
+        if (!fotoExiste) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No existe la foto'
+            });
+        }
+        yield foto_mdl_1.default.destroy({ where: { id_foto: id } });
         return res.status(200).json({
             ok: true,
             msg: 'Foto Eliminada'

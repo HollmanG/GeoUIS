@@ -36,7 +36,7 @@ router.post('/fotos', [
     validarCampos
 ], agregarFoto);
 
-router.delete('/fotos', [
+router.delete('/fotos/:id', [
     validarJWT,
     esAdmin,
     validarCampos
