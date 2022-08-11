@@ -29,7 +29,7 @@ router.post('/fotos', [
     validar_roles_1.esAdmin,
     validarCampos_1.validarCampos
 ], muestra_ctrl_1.agregarFoto);
-router.delete('/fotos', [
+router.delete('/fotos/:id', [
     validarJWT_1.validarJWT,
     validar_roles_1.esAdmin,
     validarCampos_1.validarCampos
