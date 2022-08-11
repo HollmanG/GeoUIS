@@ -5,6 +5,7 @@ import depMunRoutes from "../routes/municipio.rt";
 import muestrasRoutes from "../routes/muestra.rt";
 import cors from "cors";
 import db from "../db/connection";
+import fileUpload from "express-fileupload";
 
 class Server {
 
@@ -51,6 +52,10 @@ class Server {
         this.app.use(cors());
         //Lectura del body
         this.app.use(express.json());
+        this.app.use(express.urlencoded({extended: true, limit: '13mb'}));
+
+        //subir archivos
+        this.app.use(fileUpload({createParentPath: true}));  
         //Carpeta pública
         this.app.use(express.static('public'));
     }

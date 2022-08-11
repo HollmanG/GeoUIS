@@ -19,6 +19,7 @@ const municipio_rt_1 = __importDefault(require("../routes/municipio.rt"));
 const muestra_rt_1 = __importDefault(require("../routes/muestra.rt"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("../db/connection"));
+const express_fileupload_1 = __importDefault(require("express-fileupload"));
 class Server {
     constructor() {
         this.apiPaths = {
@@ -52,6 +53,9 @@ class Server {
         this.app.use((0, cors_1.default)());
         //Lectura del body
         this.app.use(express_1.default.json());
+        this.app.use(express_1.default.urlencoded({ extended: true, limit: '13mb' }));
+        //subir archivos
+        this.app.use((0, express_fileupload_1.default)({ createParentPath: true }));
         //Carpeta pública
         this.app.use(express_1.default.static('public'));
     }
