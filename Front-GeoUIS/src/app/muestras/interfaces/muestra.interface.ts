@@ -16,13 +16,13 @@ export interface Muestra {
 export interface MuestrasResponse {
     ok: boolean; 
     msg: string | {}; 
-    muestras: Muestra[];
+    muestras?: Muestra[];
 
 }
 
 export interface MuestraResponse {
     ok: boolean; 
     msg: string | {}; 
-    muestra: Muestra;
+    muestra?: Muestra;
 
 }
