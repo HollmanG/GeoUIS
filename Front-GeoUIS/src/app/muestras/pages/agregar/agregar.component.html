@@ -1,58 +1,106 @@
-<h1> {{( muestra.id_muestra)? 'Editar' : 'Nuevo'}} Héroe <small>{{muestra.nombre}}</small></h1>
+<h1> {{( muestra.id_muestra)? 'Editar' : 'Nueva'}} Muestra</h1>
+<h1> {{muestra.nombre}} </h1>
 
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
-    <div fxFlex="50" fxLayout="column">
+    <div fxFlex="60" fxLayout="column">
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
-                <mat-label>Muestra</mat-label>
+                <mat-label>Nombre</mat-label>
                 <input matInput type="text" required [(ngModel)]="muestra.nombre">
             </mat-form-field>
-    
+
             <mat-form-field fxFlex="100" fxLayout.xs="column">
-                <mat-label>Mineralogia</mat-label>
-                <input matInput type="text" required [(ngModel)]="muestra.mineralogia">
+                <mat-label>Edad</mat-label>
+                <input matInput type="number" [(ngModel)]="muestra.edad">
             </mat-form-field>
         </div>
-        
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Tipo de muestra</mat-label>
+                <input matInput type="number" required [(ngModel)]="muestra.id_tipo_muestra">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Codigo</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.codigo">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Mineralogia</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.mineralogia">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100">
+                <mat-label>Formacion</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.formacion">
+            </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+
+            <mat-form-field fxFlex="100">
+                <mat-label>Fecha de recolección</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="muestra.fecha_recoleccion">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100">
+                <mat-label>Fecha de ingreso</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="muestra.fecha_ingreso">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+        <br>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Ubicación</mat-label>
+                <input matInput type="number" [(ngModel)]="muestra.id_ubicacion">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Localizacion</mat-label>
+                <input matInput type="number" [(ngModel)]="muestra.id_localizacion">
+            </mat-form-field>
+        </div>
+
         <mat-form-field fxFlex="100">
             <mat-label>Caracteristicas fisicas </mat-label>
             <input matInput type="text" required [(ngModel)]="muestra.caracteristicas_fisicas">
         </mat-form-field>
 
-        <mat-form-field fxFlex="100">
-            <mat-label>Formacion</mat-label>
-            <input matInput type="text" required [(ngModel)]="muestra.formacion">
-        </mat-form-field>
-
-        <mat-form-field fxFlex="100">
-            <mat-label>Fecha recoleccion</mat-label>
-            <!-- <mat-select required [(ngModel)]="muestra.publisher">
-                <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">{{publisher.desc}}</mat-option>
-            </mat-select> -->
-            
-        </mat-form-field>
-
         <br>
 
-        <div fxLayout>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <button mat-raised-button color="primary" (click)="guardar()">
                 <mat-icon>edit</mat-icon>
                 {{( muestra.id_muestra)? 'Actualiza' : 'Crear'}}
             </button>
 
-            <span class="spacer"></span>
 
-        
             <button mat-raised-button color="warn" *ngIf="muestra.id_muestra" (click)="borrar()">
                 <mat-icon>remove</mat-icon>
                 Borrar
             </button>
         </div>
 
+        
+
     </div>
 
-    <div fxFlex="50">
+    <div fxFlex="40">
         <img [src]="muestra | imagen">
     </div>
 

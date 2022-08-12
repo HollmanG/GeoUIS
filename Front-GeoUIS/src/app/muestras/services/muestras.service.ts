@@ -25,10 +25,10 @@ export class MuestrasService {
   constructor(private http: HttpClient) { }
 
   getMuestras(): Observable<Muestra[]> {
-    this.http.get<MuestrasResponse>(`${this.baseUrl}/muestras`)
+    return this.http.get<MuestrasResponse>(`${this.baseUrl}/muestras`)
     .pipe(
       map(resp => {
-            return resp.muestras
+            return resp.muestras!
         }
       )
     )
@@ -38,7 +38,7 @@ export class MuestrasService {
     return this.http.get<MuestraResponse>(`${this.baseUrl}/muestras/${id}`)
     .pipe(
       map(resp =>{
-        return resp.muestra
+        return resp.muestra!
       })
     )
   }
@@ -48,7 +48,12 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.post<Muestra>(`${this.baseUrl}/muestras`, muestra, { headers })
+    return this.http.post<MuestraResponse>(`${this.baseUrl}/muestras`, muestra, { headers })
+    .pipe(
+      map(resp =>{
+        return resp.muestra!
+      })
+    )
   }
 
   actualizarMuestra(muestra: Muestra): Observable<Muestra> {
