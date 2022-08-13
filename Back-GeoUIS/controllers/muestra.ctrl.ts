@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { UploadedFile } from "express-fileupload";
 import { where } from "sequelize/types";
 import { Req } from "../helpers/interfaces";
 import Foto from "../models/foto.mdl";
@@ -43,7 +44,7 @@ export const crearMuestra = async (req: Req, res: Response) => {
 
     const { nombre, id_tipo_muestra, codigo, caracteristicas_fisicas,
         fecha_recoleccion, fecha_ingreso, id_ubicacion, id_localizacion,
-        edad, mineralogia, formacion} = req.body;
+        edad, mineralogia, formacion } = req.body;
 
     //Verficamos los parámetros obligatorios
     if (!nombre || !id_tipo_muestra || !codigo) {
@@ -160,15 +161,15 @@ export const eliminarMuestra = async (req: Req, res: Response) => {
     try {
 
         const muestraExiste = await Muestra.findByPk(id);
-    
-        if(!muestraExiste) {
+
+        if (!muestraExiste) {
             return res.status(400).json({
                 ok: false,
                 msg: 'No existe la muestra'
             });
         }
-        
-        await Muestra.destroy({where:{id_muestra:id}});
+
+        await Muestra.destroy({ where: { id_muestra: id } });
 
         return res.status(200).json({
             ok: true,
@@ -204,18 +205,35 @@ export const getFotos = async (req: Req, res: Response) => {
 
 export const agregarFoto = async (req: Req, res: Response) => {
 
-    const { id_muestra, foto, descripcion } = req.body;
+    const { id_muestra, descripcion } = req.body;
 
-    if(!id_muestra || !foto || !descripcion) {
+    if (!id_muestra) {
         return res.status(400).json({
             ok: false,
-            msg: 'Los parámetros id_muestra, foto y descripcion son obligatorios'
+            msg: 'El id de la muestra es obligatorio'
         });
     }
 
-    const muestraExiste = await Muestra.findByPk(id_muestra);
+    //Verificamos que se envió la foto
     
-    if(!muestraExiste) {
+    if (!req.files?.foto) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'La foto es obligatoria'
+        });
+    }
+    // console.log(req.files.foto.name);
+    
+    const foto = req.files.foto as UploadedFile;
+
+    const nombreFoto:string = foto.name;
+
+    console.log(nombreFoto);
+    
+
+    const muestraExiste = await Muestra.findByPk(id_muestra);
+
+    if (!muestraExiste) {
         return res.status(400).json({
             ok: false,
             msg: 'No existe la muestra'
@@ -223,11 +241,11 @@ export const agregarFoto = async (req: Req, res: Response) => {
     }
 
     try {
-        
-        const fotoCreada: Foto =  Foto.build({
+
+        const fotoCreada: Foto = Foto.build({
             id_muestra,
-            foto,
-            descripcion 
+            // foto,
+            descripcion
         });
 
         await fotoCreada.save();
@@ -249,7 +267,7 @@ export const agregarFoto = async (req: Req, res: Response) => {
 }
 
 export const eliminarFoto = async (req: Req, res: Response) => {
-    
+
     const { id } = req.params;
 
     try {
@@ -262,15 +280,15 @@ export const eliminarFoto = async (req: Req, res: Response) => {
         // }
 
         const fotoExiste = await Foto.findByPk(id);
-    
-        if(!fotoExiste) {
+
+        if (!fotoExiste) {
             return res.status(400).json({
                 ok: false,
                 msg: 'No existe la foto'
             });
         }
-        
-        await Foto.destroy({where:{id_foto:id}});
+
+        await Foto.destroy({ where: { id_foto: id } });
 
         return res.status(200).json({
             ok: true,
@@ -286,4 +304,3 @@ export const eliminarFoto = async (req: Req, res: Response) => {
     }
 
 }
- 

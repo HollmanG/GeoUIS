@@ -177,13 +177,25 @@ const getFotos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getFotos = getFotos;
 const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id_muestra, foto, descripcion } = req.body;
-    if (!id_muestra || !foto || !descripcion) {
+    var _a;
+    const { id_muestra, descripcion } = req.body;
+    if (!id_muestra) {
         return res.status(400).json({
             ok: false,
-            msg: 'Los parámetros id_muestra, foto y descripcion son obligatorios'
+            msg: 'El id de la muestra es obligatorio'
         });
     }
+    //Verificamos que se envió la foto
+    if (!((_a = req.files) === null || _a === void 0 ? void 0 : _a.foto)) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'La foto es obligatoria'
+        });
+    }
+    // console.log(req.files.foto.name);
+    const foto = req.files.foto;
+    const nombreFoto = foto.name;
+    console.log(nombreFoto);
     const muestraExiste = yield muestra_mdl_1.default.findByPk(id_muestra);
     if (!muestraExiste) {
         return res.status(400).json({
@@ -194,7 +206,7 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const fotoCreada = foto_mdl_1.default.build({
             id_muestra,
-            foto,
+            // foto,
             descripcion
         });
         yield fotoCreada.save();
