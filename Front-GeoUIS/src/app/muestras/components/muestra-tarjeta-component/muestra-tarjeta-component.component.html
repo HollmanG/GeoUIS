@@ -1,17 +1,51 @@
 <mat-card>
-    <mat-card-header>
-        <div></div>
-        <mat-card-title>{{muestra.nombre}}</mat-card-title>
-        <mat-card-subtitle>{{muestra.edad}}</mat-card-subtitle>
-    </mat-card-header>
+    <div style="text-align: center;">
+            <mat-card-title>{{muestra.nombre}}</mat-card-title>
+    </div>
     <img mat-card-image [src]="muestra | imagen">
     <mat-card-content>
-        <h3>{{muestra.mineralogia}}</h3>
-        <p>
-            <strong>Caracteristicas Fisicas: </strong>{{muestra.caracteristicas_fisicas}}
-            <br>
-            <strong>Formacion </strong> {{muestra.formacion}}
-        </p>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <strong>Tipo de roca: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.id_tipo_muestra}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Mineralogia: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.mineralogia}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Caracteristicas Fisicas: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.caracteristicas_fisicas}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Formacion: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.formacion}}
+                    </p>
+                </div>
+            </div>
+        </div>
     </mat-card-content>
     <mat-card-actions>
         <button mat-button

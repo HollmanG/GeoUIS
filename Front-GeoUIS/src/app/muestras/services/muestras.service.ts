@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Fotos } from '../interfaces/fotos.interface';
 import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestra.interface';
@@ -61,7 +61,12 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.put<Muestra>(`${this.baseUrl}/muestras/${muestra.id_muestra}`, muestra, { headers })
+    return this.http.put<MuestraResponse>(`${this.baseUrl}/muestras/${muestra.id_muestra}`, muestra, { headers })
+    .pipe(
+      map(resp =>{
+        return resp.muestra!
+      })
+    )
   }
 
   borrarMuestra(id: number): Observable<any> {

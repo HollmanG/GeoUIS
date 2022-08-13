@@ -18,7 +18,7 @@
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
-                <mat-label>Tipo de muestra</mat-label>
+                <mat-label>Tipo de roca</mat-label>
                 <input matInput type="number" required [(ngModel)]="muestra.id_tipo_muestra">
             </mat-form-field>
 
@@ -84,20 +84,26 @@
         <br>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <button mat-raised-button color="primary" (click)="guardar()">
-                <mat-icon>edit</mat-icon>
-                {{( muestra.id_muestra)? 'Actualiza' : 'Crear'}}
-            </button>
-
-
-            <button mat-raised-button color="warn" *ngIf="muestra.id_muestra" (click)="borrar()">
-                <mat-icon>remove</mat-icon>
-                Borrar
-            </button>
-        </div>
-
+            <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+                    <button mat-raised-button color="primary" (click)="guardar()">
+                        <mat-icon>edit</mat-icon>
+                        {{( muestra.id_muestra)? 'Actualizar' : 'Crear'}}
+                    </button>
         
-
+        
+                    <button mat-raised-button color="warn" *ngIf="muestra.id_muestra" (click)="borrar()">
+                        <mat-icon>remove</mat-icon>
+                        Borrar
+                    </button>
+                </div>
+            </div>
+            <div fxLayout="column" fxFlex="30">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+                    <button mat-button color="warn" (click)="regresar()">Regresar</button>
+                </div>    
+            </div>
+        </div>
     </div>
 
     <div fxFlex="40">
