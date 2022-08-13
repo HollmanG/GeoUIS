@@ -104,4 +104,8 @@ export class AgregarComponent implements OnInit {
     this.authService.logOut();
   }
 
+  regresar() {
+    this.router.navigate(['/muestra/listar']);
+  }
+
 }
