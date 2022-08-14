@@ -12,10 +12,13 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'listar', component: ListarComponent },
-      { path: 'agregar', component: AgregarComponent },
       {
-        path: 'editar/:id', component: AgregarComponent
-        // canActivate: [ValidarTokenGuard]
+        path: 'agregar', component: AgregarComponent,
+        canActivate: [ValidarTokenGuard]
+      },
+      {
+        path: 'editar/:id', component: AgregarComponent,
+        canActivate: [ValidarTokenGuard]
       },
       { path: ':id', component: MuestraComponent },
       { path: '**', redirectTo: 'listar' },

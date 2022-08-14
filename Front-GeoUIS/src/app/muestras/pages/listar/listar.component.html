@@ -1,10 +1,24 @@
-<h1>Listado de muestras</h1>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <h1>Listado de muestras</h1>
+        </div>
+    </div>
+    <div fxLayout="column" fxFlex="30" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+            <button mat-raised-button [routerLink]="['/muestra/agregar/']" color="warn">
+                <mat-icon>
+                    add
+                </mat-icon>
+                Nueva muestra
+            </button>
+        </div>
+    </div>
+</div>
+
 <hr>
-<div fxLayout="row wrap" class="margen" 
-     fxLayout.xs="column"   
-     fxLayoutAlign="center"
-     fxLayoutGap="20px">
-    <div fxFlex="30" *ngFor="let muestra of muestras" fxFlex.lg = "15" fxFlex.sm = "30">
+<div fxLayout="row wrap" class="margen" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex="30" *ngFor="let muestra of muestras" fxFlex.lg="15" fxFlex.sm="30">
         <app-muestra-tarjeta-component [muestra]="muestra"></app-muestra-tarjeta-component>
     </div>
 
