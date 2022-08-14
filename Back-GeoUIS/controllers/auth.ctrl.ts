@@ -52,6 +52,7 @@ export const login = async(req: Request, res: Response) => {
         return res.status(200).json({
             ok: true,
             id: usuario.id,
+            rol: usuario?.rol,
             msg: 'login',
             correo,
             token
@@ -77,6 +78,7 @@ export const revalidarToken = async(req: Req, res: Response) => {
         ok: true,
         msg: "Renew",
         id: usuario?.id,
+        rol: usuario?.rol,
         nombre: usuario?.nombre,
         correo: usuario?.correo,
         token
