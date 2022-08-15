@@ -68,7 +68,8 @@ export class AuthService {
             this._usuario = {
               correo: resp.correo!,
               id: resp.id!,
-              nombre: resp.nombre!
+              nombre: resp.nombre!,
+              rol: resp.rol!
             }
           return resp.ok;
         }),

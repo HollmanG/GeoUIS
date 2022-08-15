@@ -11,7 +11,9 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: 'listar', component: ListarComponent },
+      {
+        path: 'listar', component: ListarComponent
+      },
       {
         path: 'agregar', component: AgregarComponent,
         canActivate: [ValidarTokenGuard]

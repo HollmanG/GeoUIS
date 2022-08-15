@@ -6,7 +6,7 @@
     </div>
     <div fxLayout="column" fxFlex="30" fxLayoutGap="20px">
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
-            <button mat-raised-button [routerLink]="['/muestra/agregar/']" color="warn">
+            <button mat-raised-button [routerLink]="['/muestra/agregar/']" color="warn" *ngIf="verificarRolAdmin()">
                 <mat-icon>
                     add
                 </mat-icon>
