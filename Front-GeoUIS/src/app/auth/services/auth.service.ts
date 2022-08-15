@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  register(nombre:string, correo: string, password: string){
+  register(nombre: string, correo: string, password: string) {
 
     const url = `${this.baseURL}/usuarios`;
 
@@ -30,6 +30,12 @@ export class AuthService {
         tap(resp => {
           if (resp.ok) {
             localStorage.setItem('token', resp.token!);
+            this._usuario = {
+              correo: resp.correo!,
+              id: resp.id!,
+              nombre: resp.nombre!,
+              rol: resp.rol!
+            }
           }
         }),
         map(resp => resp.ok),
@@ -47,6 +53,12 @@ export class AuthService {
         tap(resp => {
           if (resp.ok) {
             localStorage.setItem('token', resp.token!);
+            this._usuario = {
+              correo: resp.correo!,
+              id: resp.id!,
+              nombre: resp.nombre!,
+              rol: resp.rol!
+            }
           }
         }),
         map(resp => resp.ok),
@@ -65,19 +77,35 @@ export class AuthService {
         map(resp => {
 
           localStorage.setItem('token', resp.token!);
-            this._usuario = {
-              correo: resp.correo!,
-              id: resp.id!,
-              nombre: resp.nombre!,
-              rol: resp.rol!
+          this._usuario = {
+            correo: resp.correo!,
+            id: resp.id!,
+            nombre: resp.nombre!,
+            rol: resp.rol!
+          }
+          if(resp.ok = true){
+            if(this._usuario.rol == 2 || this._usuario.rol == 4){
+              return true;
             }
-          return resp.ok;
+          }
+          return false;
         }),
         catchError(err => of(false))
       )
   }
 
-  logOut(){
+  // validarRol() {
+  //   const url = `${this.baseURL}/auth/renew`;
+  //   const headers = new HttpHeaders()
+  //     .set('Authorization', localStorage.getItem('token') || '')
+
+  //     this.http.get<AuthResponse>(url, { headers })
+  //     .pipe(resp => {
+
+  //     })
+  // }
+
+  logOut() {
     localStorage.removeItem('token');
   }
 
