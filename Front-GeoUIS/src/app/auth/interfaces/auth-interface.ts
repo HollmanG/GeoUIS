@@ -7,12 +7,13 @@ export interface AuthResponse {
     correo?: string;
     nombre?: string;
     token?: string;
+    rol?:number;
 }
 
 export interface Usuario {
     id: number;
     correo: string;
     nombre: string;
-
+    rol: number;
 }
 

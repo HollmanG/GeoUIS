@@ -37,6 +37,8 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log("rol usuario " + this.usuario.rol)
+
     if (!this.router.url.includes('editar')) {
       return;
     }
@@ -46,6 +48,8 @@ export class AgregarComponent implements OnInit {
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
       )
       .subscribe(muestra => this.muestra = muestra);
+
+      
 
   }
 
@@ -85,11 +89,6 @@ export class AgregarComponent implements OnInit {
         }
       }
     )
-
-    this.muestraService.borrarMuestra(this.muestra.id_muestra!)
-      .subscribe(resp => {
-        this.router.navigate(['/muestras'])
-      })
   }
 
 

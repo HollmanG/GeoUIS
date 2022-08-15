@@ -53,6 +53,7 @@
                 color="accent">Ver más</button>
         <button mat-button
                 [routerLink]="['/muestra/editar/',muestra.id_muestra]"
-                color="warn">Editar</button>
+                color="warn"
+                *ngIf="verificarRolAdmin()">Editar</button>
     </mat-card-actions>
 </mat-card>
