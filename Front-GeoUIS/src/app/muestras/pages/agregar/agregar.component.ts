@@ -89,11 +89,6 @@ export class AgregarComponent implements OnInit {
         }
       }
     )
-
-    this.muestraService.borrarMuestra(this.muestra.id_muestra!)
-      .subscribe(resp => {
-        this.router.navigate(['/muestras'])
-      })
   }
 
 
