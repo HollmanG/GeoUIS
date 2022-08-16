@@ -1,0 +1,105 @@
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+    <div fxFlex="45" fxLayout="column">
+        <h1 style="margin: 0;"> Prestamo muestra : {{muestra.nombre}}</h1>
+        <hr>
+        <img [src]="muestra | imagen">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <strong>Tipo de roca: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.id_tipo_muestra}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Mineralogia: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.mineralogia}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Caracteristicas Fisicas: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.caracteristicas_fisicas}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Formacion: </strong>
+                </div>
+                <div class="col">
+                    <p>
+                        {{muestra.formacion}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex="55" fxLayout="column">
+        <h1 style="margin: 0;">&nbsp;</h1>
+        <hr>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100">
+                <mat-label>Fecha de recepción *</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100">
+                <mat-label>Fecha de entrega *</mat-label>
+                <input matInput [matDatepicker]="picker2">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Lugar de recepción y entrega *</mat-label>
+                <input matInput type="text" >
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Motivo *</mat-label>
+                <input matInput type="text" >
+            </mat-form-field>
+        </div>
+
+        <br>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+                    <button mat-raised-button color="primary">
+                        <mat-icon>archive</mat-icon>
+                        Solicitar prestamo
+                    </button>
+        
+                    
+                </div>
+            </div>
+            <div fxLayout="column" fxFlex="30">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+                    <button mat-raised-button color="warn" (click)="regresar()">Regresar</button>
+                </div>    
+            </div>
+        </div>
+        
+    </div>
+
+</div>

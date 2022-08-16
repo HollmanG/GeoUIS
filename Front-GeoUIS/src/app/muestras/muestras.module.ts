@@ -14,6 +14,7 @@ import { MuestraTarjetaComponentComponent } from './components/muestra-tarjeta-c
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
+import { PrestamoComponent } from './pages/prestamo/prestamo.component';
 
 
 
@@ -26,7 +27,8 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
     MuestraTarjetaComponentComponent,
     ImagenPipe,
     BuscadorComponent,
-    ConfirmarComponent
+    ConfirmarComponent,
+    PrestamoComponent
   ],
   imports: [
     CommonModule,

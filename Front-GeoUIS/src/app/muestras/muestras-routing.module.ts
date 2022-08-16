@@ -5,6 +5,7 @@ import { ListarComponent } from './pages/listar/listar.component';
 import { MuestraComponent } from './pages/muestra/muestra.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ValidarTokenGuard } from '../auth/guards/validar-token.guard';
+import { PrestamoComponent } from './pages/prestamo/prestamo.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,9 @@ const routes: Routes = [
     children: [
       {
         path: 'listar', component: ListarComponent
+      },
+      {
+        path: 'prestamo/:id', component: PrestamoComponent
       },
       {
         path: 'agregar', component: AgregarComponent,
