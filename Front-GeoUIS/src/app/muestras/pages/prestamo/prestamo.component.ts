@@ -25,4 +25,8 @@ export class PrestamoComponent implements OnInit {
     .subscribe(muestra=>this.muestra = muestra)
   }
 
+  regresar() {
+    this.router.navigate(['/muestra/',this.muestra.id_muestra]);
+  }
+
 }
