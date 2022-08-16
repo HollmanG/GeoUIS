@@ -82,7 +82,7 @@
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
                 <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
                     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-                        <button mat-raised-button color="primary">
+                        <button mat-raised-button color="primary" [routerLink]="['/muestra/prestamo/',muestra.id_muestra]">
                             <mat-icon>archive</mat-icon>
                             Pedir prestado
                         </button>
