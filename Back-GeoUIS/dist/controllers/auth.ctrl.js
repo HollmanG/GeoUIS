@@ -53,6 +53,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(200).json({
             ok: true,
             id: usuario.id,
+            rol: usuario === null || usuario === void 0 ? void 0 : usuario.rol,
             msg: 'login',
             correo,
             token
@@ -75,6 +76,7 @@ const revalidarToken = (req, res) => __awaiter(void 0, void 0, void 0, function*
         ok: true,
         msg: "Renew",
         id: usuario === null || usuario === void 0 ? void 0 : usuario.id,
+        rol: usuario === null || usuario === void 0 ? void 0 : usuario.rol,
         nombre: usuario === null || usuario === void 0 ? void 0 : usuario.nombre,
         correo: usuario === null || usuario === void 0 ? void 0 : usuario.correo,
         token

@@ -5,9 +5,7 @@
 </mat-grid-list>
 
 <ng-template #divMuestra>
-    <div fxLayout="row"
-         fxFlex.gt-xs="column"
-         fxLayoutGap="30px">
+    <div fxLayout="row" fxFlex.gt-xs="column" fxLayoutGap="30px">
         <div fxFlex="50">
             <h1>{{muestra.nombre}}</h1>
             <hr>
@@ -15,17 +13,87 @@
             <img [src]="muestra | imagen">
         </div>
         <div fxFlex="50">
-            <h1>{{muestra.mineralogia}}</h1>
+            <h1>Detalles</h1>
             <hr>
             <mat-list>
-                <mat-list-item>{{muestra.formacion}}</mat-list-item>
-                <mat-list-item>{{muestra.edad}}</mat-list-item>
-                <mat-list-item>{{muestra.fecha_ingreso}}</mat-list-item>
-                <mat-list-item>{{muestra.fecha_recoleccion}}</mat-list-item>
-                <mat-list-item>{{muestra.caracteristicas_fisicas}}</mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Tipo de roca: &nbsp;
+                    </strong>
+                    {{muestra.id_tipo_muestra}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Mineralogia: &nbsp;
+                    </strong>
+                    {{muestra.mineralogia}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Caracteristicas fisicas: &nbsp;
+                    </strong>
+                    {{muestra.caracteristicas_fisicas}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Formación: &nbsp;
+                    </strong>
+                    {{muestra.formacion}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Edad: &nbsp;
+                    </strong>
+                    {{muestra.edad}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Ubicación: &nbsp;
+                    </strong>
+                    {{muestra.id_ubicacion}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Localización &nbsp;
+                    </strong>
+                    {{muestra.id_localizacion}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Codigo: &nbsp;
+                    </strong>
+                    {{muestra.codigo}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Fecha recoleccion: &nbsp;
+                    </strong>
+                    {{muestra.fecha_recoleccion}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Fecha ingreso: &nbsp;
+                    </strong>
+                    {{muestra.fecha_ingreso}}
+                </mat-list-item>
             </mat-list>
             <br>
-            <button mat-button color="warn" (click)="regresar()">Regresar</button>
-        </div>    
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+                <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+                        <button mat-raised-button color="primary" [routerLink]="['/muestra/prestamo/',muestra.id_muestra]">
+                            <mat-icon>archive</mat-icon>
+                            Pedir prestado
+                        </button>
+                    </div>
+                </div>
+                <div fxLayout="column" fxFlex="30">
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+                        <button mat-raised-button color="warn" (click)="regresar()">Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </ng-template>
