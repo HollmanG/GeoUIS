@@ -52,7 +52,7 @@ Muestra.init({
     }, 
     id_ubicacion : {
         type: DataTypes.NUMBER,
-        allowNull: true
+        allowNull: false
     }, 
     nombre : {
         type: DataTypes.STRING,
@@ -60,7 +60,7 @@ Muestra.init({
     }, 
     id_localizacion : {
         type: DataTypes.NUMBER,
-        allowNull: true
+        allowNull: false
     }, 
     id_tipo_muestra : {
         type: DataTypes.NUMBER,
