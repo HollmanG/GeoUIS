@@ -28,7 +28,7 @@ Muestra.init({
     },
     id_ubicacion: {
         type: sequelize_1.DataTypes.NUMBER,
-        allowNull: true
+        allowNull: false
     },
     nombre: {
         type: sequelize_1.DataTypes.STRING,
@@ -36,7 +36,7 @@ Muestra.init({
     },
     id_localizacion: {
         type: sequelize_1.DataTypes.NUMBER,
-        allowNull: true
+        allowNull: false
     },
     id_tipo_muestra: {
         type: sequelize_1.DataTypes.NUMBER,
