@@ -21,10 +21,6 @@ Foto.init({
     foto: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
-    },
-    descripcion: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
     }
 }, {
     timestamps: false,

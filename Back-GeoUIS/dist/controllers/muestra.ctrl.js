@@ -17,6 +17,8 @@ const foto_mdl_1 = __importDefault(require("../models/foto.mdl"));
 const muestra_mdl_1 = __importDefault(require("../models/muestra.mdl"));
 const sequelize_1 = require("sequelize");
 const localizacion_mdl_1 = __importDefault(require("../models/localizacion.mdl"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = require("fs");
 const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 const getMuestras = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -234,8 +236,8 @@ const getFotos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getFotos = getFotos;
 const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c;
-    const { id_muestra, descripcion } = req.body;
+    var _c, _d;
+    const { id_muestra } = req.body;
     if (!id_muestra) {
         return res.status(400).json({
             ok: false,
@@ -246,13 +248,9 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     if (!((_c = req.files) === null || _c === void 0 ? void 0 : _c.foto)) {
         return res.status(400).json({
             ok: false,
-            msg: 'La foto es obligatoria'
+            msg: 'Debe enviar al menos 1 foto'
         });
     }
-    // console.log(req.files.foto.name);
-    const foto = req.files.foto;
-    const nombreFoto = foto.name;
-    console.log(nombreFoto);
     const muestraExiste = yield muestra_mdl_1.default.findByPk(id_muestra);
     if (!muestraExiste) {
         return res.status(400).json({
@@ -260,17 +258,45 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             msg: 'No existe la muestra'
         });
     }
+    const fotos = req.files.foto;
+    const ruta = path_1.default.join(`${path_1.default.resolve()}/storage/uploads/muestras/${id_muestra}`);
+    const extensionesValidas = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
     try {
-        const fotoCreada = foto_mdl_1.default.build({
-            id_muestra,
-            // foto,
-            descripcion
-        });
-        yield fotoCreada.save();
+        let fotosCreadas = [];
+        for (let foto of fotos) {
+            const fotoID = yield ((_d = foto_mdl_1.default.sequelize) === null || _d === void 0 ? void 0 : _d.query("SELECT nextval('fotos_id_fotos_seq'::regclass)", { type: sequelize_1.QueryTypes.SELECT }));
+            const id_foto = Object.values(fotoID[0])[0];
+            const nombreCortado = foto.name.split('.');
+            const extension = nombreCortado[nombreCortado.length - 1];
+            const nombre = `${id_muestra}_${id_foto}.${extension}`;
+            if (!extensionesValidas.includes(extension)) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: `Las extensiones admitidas son ${extensionesValidas.join(', ')}`
+                });
+            }
+            const fotoTemp = foto_mdl_1.default.build({
+                id_muestra,
+                id_foto,
+                foto: nombre
+            });
+            yield fotoTemp.save();
+            fotosCreadas.push(fotoTemp);
+            if (!(0, fs_1.existsSync)(ruta))
+                (0, fs_1.mkdirSync)(ruta, { recursive: true });
+            yield new Promise((resolve, reject) => {
+                foto.mv(`${ruta}/${nombre}`, (err) => {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve(`${nombre}`);
+                });
+            });
+        }
         return res.status(200).json({
             ok: true,
             msg: 'agregarFoto',
-            fotoCreada
+            fotosCreadas
         });
     }
     catch (error) {

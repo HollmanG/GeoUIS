@@ -4,15 +4,13 @@ import db from "../db/connection";
 export interface FotoInterface {
     id_foto?: number,
     id_muestra?: number,
-    foto?: string,
-    descripcion?: string
+    foto?: string
 }
 
 class Foto extends Model<FotoInterface> implements FotoInterface {
     id_foto?: number;
     id_muestra?: number;
     foto?: string;
-    descripcion?: string;
 }
 
 Foto.init({
@@ -29,10 +27,6 @@ Foto.init({
     foto: {
         type: DataTypes.STRING,
         allowNull: false
-    },  
-    descripcion: {
-        type: DataTypes.STRING,
-        allowNull: true
     }
 }, {
     timestamps: false,
