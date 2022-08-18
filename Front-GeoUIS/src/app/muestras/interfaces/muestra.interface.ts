@@ -1,6 +1,6 @@
 export interface Muestra {
     id_muestra?:                number;
-    caracteristicas_fisicas:    string;
+    caracteristicas_fisicas?:    string;
     fecha_recoleccion?:         Date;
     fecha_ingreso?:             Date;
     id_ubicacion?:              number;
@@ -11,6 +11,24 @@ export interface Muestra {
     mineralogia?:               string;
     codigo:                     string;
     formacion?:                 string;
+    ubicacion?:                 string;
+    punto?:                     Punto;
+    localizacion_geografica?:   string;
+    localizacion_geologica?:    string;
+    id_municipio?:              string;
+
+}
+
+export interface Punto {
+    crs:{
+        type:   string;
+        properties: {
+            name:   string;
+        }
+    }
+    type: string;
+    coordinates: number[];
+
 }
 
 export interface MuestrasResponse {

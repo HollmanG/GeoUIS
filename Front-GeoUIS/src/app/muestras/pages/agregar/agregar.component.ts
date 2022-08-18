@@ -54,7 +54,7 @@ export class AgregarComponent implements OnInit {
   }
 
   guardar() {
-    if (this.muestra.nombre.trim().length === 0) {
+    if (this.muestra.nombre!.trim().length === 0) {
       return;
     }
 

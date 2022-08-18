@@ -2,5 +2,11 @@ export interface Fotos {
     id_foto?: number;
     id_muestra: number;
     foto: string;
-    descripcion: string;
+}
+
+export interface FotosResponse {
+    ok: boolean; 
+    msg: string | {}; 
+    fotos: Fotos[];
+
 }

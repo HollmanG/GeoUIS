@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Muestra } from '../../interfaces/muestra.interface';
 import { MuestrasService } from '../../services/muestras.service';
+import { Fotos } from '../../interfaces/fotos.interface';
+import { FotosService } from '../../services/fotos.service';
 
 @Component({
   selector: 'app-buscador',
@@ -17,10 +19,15 @@ export class BuscadorComponent implements OnInit {
   muestras: Muestra[] = [];
   muestraSeleccionada!: Muestra;
 
+  fotos!: Fotos[];
+
   constructor(private muestrasService:MuestrasService,
-              private router: Router) { }
+              private router: Router,
+              private fotosService: FotosService) { }
 
   ngOnInit(): void {
+    // this.fotosService.getFotos(this.muestraSeleccionada.id_muestra!)
+    // .subscribe(fotos => this.fotos = fotos);
   }
 
   buscando() {
@@ -39,7 +46,7 @@ export class BuscadorComponent implements OnInit {
     }
 
     const muestra: Muestra = event.option.value;
-    this.termino = muestra.nombre;
+    this.termino = muestra.nombre!;
     
     this.muestrasService.getMuestraPorId(muestra.id_muestra!)
     .subscribe(muestra => this.muestraSeleccionada = muestra);

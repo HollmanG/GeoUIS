@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, tap } from 'rxjs';
+import {  map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Fotos } from '../interfaces/fotos.interface';
 import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestra.interface';
 
 @Injectable({
@@ -35,10 +34,10 @@ export class MuestrasService {
   }
 
   getMuestraPorId(id: number): Observable<Muestra> {
-    return this.http.get<MuestraResponse>(`${this.baseUrl}/muestras/${id}`)
+    return this.http.get<MuestrasResponse>(`${this.baseUrl}/muestras/${id}`)
     .pipe(
       map(resp =>{
-        return resp.muestra!
+        return resp.muestras![0]
       })
     )
   }
@@ -74,25 +73,6 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
     return this.http.delete<any>(`${this.baseUrl}/muestras/${id}`, { headers })
-  }
-
-  getFotos(id_muestra: number): Observable<Fotos[]> {
-    return this.http.get<Fotos[]>(`${this.baseUrl}/muestras/fotos/${id_muestra}`)
-  }
-
-  agregarFoto(foto : Fotos): Observable<Fotos>{
-    //Token actual
-    const headers = new HttpHeaders()
-      .set('Authorization', localStorage.getItem('token') || '')
-    return this.http.post<Fotos>(`${this.baseUrl}/muestras/fotos`,foto,{headers})
-  }
-
-  borrarFoto(id_muestra: number){
-    //Token actual
-    const headers = new HttpHeaders()
-      .set('Authorization', localStorage.getItem('token') || '')
-    
-      return this.http.delete<any>(`${this.baseUrl}/muestras/fotos/${id_muestra}` , {headers} )
   }
 
   getSugerencias(termino:string) : Observable<Muestra[]> {
