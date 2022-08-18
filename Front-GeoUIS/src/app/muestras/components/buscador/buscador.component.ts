@@ -4,6 +4,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Muestra } from '../../interfaces/muestra.interface';
 import { MuestrasService } from '../../services/muestras.service';
 import { Fotos } from '../../interfaces/fotos.interface';
+import { FotosService } from '../../services/fotos.service';
 
 @Component({
   selector: 'app-buscador',
@@ -21,9 +22,12 @@ export class BuscadorComponent implements OnInit {
   fotos!: Fotos[];
 
   constructor(private muestrasService:MuestrasService,
-              private router: Router) { }
+              private router: Router,
+              private fotosService: FotosService) { }
 
   ngOnInit(): void {
+    // this.fotosService.getFotos(this.muestraSeleccionada.id_muestra!)
+    // .subscribe(fotos => this.fotos = fotos);
   }
 
   buscando() {

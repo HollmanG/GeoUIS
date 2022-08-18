@@ -7,6 +7,6 @@ export interface Fotos {
 export interface FotosResponse {
     ok: boolean; 
     msg: string | {}; 
-    fotos?: Fotos[];
+    fotos: Fotos[];
 
 }
