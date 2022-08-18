@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Muestra } from '../../interfaces/muestra.interface';
 import { MuestrasService } from '../../services/muestras.service';
+import { Fotos } from '../../interfaces/fotos.interface';
 
 @Component({
   selector: 'app-buscador',
@@ -16,6 +17,8 @@ export class BuscadorComponent implements OnInit {
   termino:string = '';
   muestras: Muestra[] = [];
   muestraSeleccionada!: Muestra;
+
+  fotos!: Fotos[];
 
   constructor(private muestrasService:MuestrasService,
               private router: Router) { }

@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Muestra } from '../../interfaces/muestra.interface';
 import { AuthService } from '../../../auth/services/auth.service';
+import { Fotos } from '../../interfaces/fotos.interface';
+import { FotosService } from '../../services/fotos.service';
+
 
 @Component({
   selector: 'app-muestra-tarjeta-component',
@@ -11,15 +14,21 @@ export class MuestraTarjetaComponentComponent implements OnInit {
 
   @Input() muestra!: Muestra;
 
+  fotos!: Fotos[];
+
   get usuario() {
     return this.authService.usuario
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private fotosService: FotosService) { }
 
   ngOnInit(): void {
     this.authService.validarToken()
     .subscribe();
+
+    this.fotosService.getFotos(this.muestra.id_muestra!)
+    .subscribe(fotos => this.fotos = fotos);
     
   }
 
@@ -29,5 +38,7 @@ export class MuestraTarjetaComponentComponent implements OnInit {
     }
     return false;
   }
+
+  
 
 }

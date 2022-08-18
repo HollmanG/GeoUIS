@@ -1,22 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Muestra } from '../interfaces/muestra.interface';
+import { Fotos } from '../interfaces/fotos.interface';
 
 @Pipe({
   name: 'imagen'
 })
 export class ImagenPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]) {
+  
+  transform(foto: Fotos): string {
     
+      return `assets/heroes/${foto.foto}`;
+
   }
-  // transform(muestra: Muestra): string {
-  //   if(!muestra.id && !muestra.alt_img){
-  //     return 'assets/no-image.png';
-  //   } else if (muestra.alt_img){
-  //     return muestra.alt_img;
-  //   } else {
-  //     return `assets/heroes/${muestra.id}.jpg`;
-  //   }
-  // }
 
 }
