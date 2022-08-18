@@ -35,10 +35,10 @@ export class MuestrasService {
   }
 
   getMuestraPorId(id: number): Observable<Muestra> {
-    return this.http.get<MuestraResponse>(`${this.baseUrl}/muestras/${id}`)
+    return this.http.get<MuestrasResponse>(`${this.baseUrl}/muestras/${id}`)
     .pipe(
       map(resp =>{
-        return resp.muestra!
+        return resp.muestras![0]
       })
     )
   }
