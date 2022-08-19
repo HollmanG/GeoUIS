@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Muestra } from '../interfaces/muestra.interface';
 import { Fotos } from '../interfaces/fotos.interface';
 
 @Pipe({
@@ -8,9 +7,12 @@ import { Fotos } from '../interfaces/fotos.interface';
 export class ImagenPipe implements PipeTransform {
 
   
-  transform(foto: Fotos): string {
+  transform(foto: Fotos) : string {
     
-      return `assets/heroes/${foto.foto}`;
+    if(!foto){
+      return 'assets/no-image.png';
+    }
+    return `http://localhost:8000/images/${foto.id_muestra}/${foto.foto}`;
 
   }
 

@@ -14,7 +14,7 @@ export class MuestraTarjetaComponentComponent implements OnInit {
 
   @Input() muestra!: Muestra;
 
-  fotos!: Fotos[];
+  fotos: Fotos[] = [];
 
   get usuario() {
     return this.authService.usuario

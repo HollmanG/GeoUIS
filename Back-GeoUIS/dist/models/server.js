@@ -58,6 +58,7 @@ class Server {
         this.app.use((0, express_fileupload_1.default)({ createParentPath: true }));
         //Carpeta pública
         this.app.use(express_1.default.static('public'));
+        this.app.use("/images", express_1.default.static("storage/uploads/muestras"));
     }
     routes() {
         this.app.use(this.apiPaths.usuarios, usuario_rt_1.default);

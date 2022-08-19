@@ -18,7 +18,7 @@ export class FotosService {
     .pipe(
         map(
             resp => {
-                return resp.fotos!
+                return resp.fotos
             }
         )
     )
