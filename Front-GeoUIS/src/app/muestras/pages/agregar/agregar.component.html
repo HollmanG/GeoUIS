@@ -2,7 +2,7 @@
 <h1> {{muestra.nombre}} </h1>
 
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
-    <div fxFlex="60" fxLayout="column">
+    <div fxFlex="50" fxLayout="column">
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
@@ -105,8 +105,9 @@
         </div>
     </div>
 
-    <div fxFlex="40">
-        <img [src]="muestra">
+    <div fxFlex="50">
+        <div fxFlex="100" *ngFor="let foto of fotos" fxLayout="column" fxLayout.xs="row">
+            <img [src]="foto | imagen">
+        </div>
     </div>
-
 </div>

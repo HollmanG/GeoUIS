@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MuestrasService } from '../../services/muestras.service';
-import { MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Muestra } from '../../interfaces/muestra.interface';
 import { switchMap } from 'rxjs/operators';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
+import { Fotos } from '../../interfaces/fotos.interface';
+import { FotosService } from '../../services/fotos.service';
+import { HttpParams } from '@angular/common/http';
+
 
 
 @Component({
@@ -16,6 +20,8 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 })
 
 export class AgregarComponent implements OnInit {
+
+  fotos: Fotos[] = [];
 
   get usuario() {
     return this.authService.usuario
@@ -31,13 +37,12 @@ export class AgregarComponent implements OnInit {
   constructor(private router: Router,
     private authService: AuthService,
     private muestraService: MuestrasService,
+    private fotosService: FotosService,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-
-    console.log("rol usuario " + this.usuario.rol)
 
     if (!this.router.url.includes('editar')) {
       return;
@@ -49,7 +54,11 @@ export class AgregarComponent implements OnInit {
       )
       .subscribe(muestra => this.muestra = muestra);
 
-      
+    this.activatedRoute.params
+    .pipe(
+      switchMap(({ id }) => this.fotosService.getFotos(id))
+    )
+    .subscribe(fotos => this.fotos = fotos);
 
   }
 
