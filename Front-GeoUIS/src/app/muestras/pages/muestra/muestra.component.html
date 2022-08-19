@@ -6,11 +6,14 @@
 
 <ng-template #divMuestra>
     <div fxLayout="row" fxFlex.gt-xs="column" fxLayoutGap="30px">
-        <div fxFlex="50">
-            <h1>{{muestra.nombre}}</h1>
+        <div fxFlex="50" fxLayout="column">
+            <h1 style="margin: 0;">{{muestra.nombre}}</h1>
             <hr>
-            <br>
-            <img [src]="muestra ">
+            <div fxFlex="50">
+                <div fxFlex="100" *ngFor="let foto of fotos" fxLayout.xs="row">
+                    <img [src]="foto | imagen">
+                </div>
+            </div>
         </div>
         <div fxFlex="50">
             <h1>Detalles</h1>
