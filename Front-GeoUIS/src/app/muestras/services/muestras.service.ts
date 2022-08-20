@@ -70,8 +70,8 @@ export class MuestrasService {
     return this.http.delete<any>(`${this.baseUrl}/muestras/${id}`, { headers })
   }
 
-  getSugerencias(termino:string) : Observable<Muestra[]> {
-    return this.http.get<Muestra[]>(`${this.baseUrl}/muestras?q=${termino}&_limit=6`)
+  getSugerencias(termino:string) : Observable<any> {
+    return this.http.get<Muestra[]>(`${this.baseUrl}/muestras?q=${termino}&limit=6`)
   }
 
 }
