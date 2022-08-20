@@ -206,6 +206,7 @@ const eliminarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function
                 msg: 'No existe la muestra'
             });
         }
+        yield foto_mdl_1.default.destroy({ where: { id_muestra: id } });
         yield muestra_mdl_1.default.destroy({ where: { id_muestra: id } });
         yield localizacion_mdl_1.default.destroy({ where: { id_localizacion: muestraExiste.id_localizacion } });
         return res.status(200).json({
@@ -259,7 +260,14 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             msg: 'No existe la muestra'
         });
     }
-    const fotos = req.files.foto;
+    const f = req.files.foto;
+    let fotos = [];
+    if (!f.length) {
+        fotos.push(req.files.foto);
+    }
+    else {
+        fotos = req.files.foto;
+    }
     const ruta = path_1.default.join(`${path_1.default.resolve()}/storage/uploads/muestras/${id_muestra}`);
     const extensionesValidas = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
     try {

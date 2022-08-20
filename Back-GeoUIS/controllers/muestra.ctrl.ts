@@ -8,6 +8,7 @@ import Ubicacion from "../models/ubicacion.mdl";
 import Localizacion from '../models/localizacion.mdl';
 import path from "path";
 import { existsSync, mkdirSync } from "fs";
+import TipoMuestra from '../models/tipo_muestra.mdl';
 
 const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 
@@ -231,6 +232,7 @@ export const eliminarMuestra = async (req: Req, res: Response) => {
                 msg: 'No existe la muestra'
             });
         }
+        await Foto.destroy({ where: { id_muestra: id } });
         await Muestra.destroy({ where: { id_muestra: id } });
         await Localizacion.destroy({ where: { id_localizacion: muestraExiste.id_localizacion } });
 
@@ -293,7 +295,14 @@ export const agregarFoto = async (req: Req, res: Response) => {
             msg: 'No existe la muestra'
         });
     }
-    const fotos = req.files.foto as UploadedFile[];
+    const f = req.files.foto as UploadedFile[];
+    let fotos: any = [];
+    if(!f.length) {
+        fotos.push(req.files.foto as any);
+    } else {
+        fotos = req.files.foto;
+    }
+    
     const ruta = path.join(`${path.resolve()}/storage/uploads/muestras/${id_muestra}`);
     const extensionesValidas = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
     try {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getMuestra, getMuestras, crearMuestra, editarMuestra, getFotos, agregarFoto, eliminarFoto, eliminarMuestra } from '../controllers/muestra.ctrl';
+import { getMuestra, getMuestras, crearMuestra, editarMuestra, getFotos, agregarFoto, eliminarFoto, eliminarMuestra} from '../controllers/muestra.ctrl';
 import { esAdmin } from "../middlewares/validar-roles";
 import { validarCampos } from '../middlewares/validarCampos';
 import { validarJWT } from "../middlewares/validarJWT";
@@ -41,5 +41,6 @@ router.delete('/fotos/:id', [
     esAdmin,
     validarCampos
 ], eliminarFoto);
+
 
 export default router;
