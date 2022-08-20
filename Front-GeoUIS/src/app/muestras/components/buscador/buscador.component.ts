@@ -32,7 +32,8 @@ export class BuscadorComponent implements OnInit {
 
   buscando() {
     this.muestrasService.getSugerencias(this.termino.trim())
-    .subscribe(muestras=>this.muestras = muestras)
+    .subscribe(muestras=>this.muestras = muestras.muestras)
+    
   }
 
   outputMuestra(muestra: Muestra) {

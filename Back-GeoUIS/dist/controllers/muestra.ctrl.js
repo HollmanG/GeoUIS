@@ -22,16 +22,17 @@ const fs_1 = require("fs");
 const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 const getMuestras = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    const { q, limit } = req.query;
     try {
-        const query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
+        let query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
                      JOIN ubicaciones ub ON ub.id_ubicacion = mu.id_ubicacion
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
-                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra`;
+                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``}order by mu.nombre`;
         const muestras = yield ((_a = muestra_mdl_1.default.sequelize) === null || _a === void 0 ? void 0 : _a.query(query, { type: sequelize_1.QueryTypes.SELECT }));
         return res.status(200).json({
             ok: true,
             msg: 'getMuestras',
-            muestras
+            muestras: limit ? muestras === null || muestras === void 0 ? void 0 : muestras.slice(0, parseInt(limit)) : muestras
         });
     }
     catch (error) {
