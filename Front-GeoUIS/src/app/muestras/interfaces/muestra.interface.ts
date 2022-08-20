@@ -1,15 +1,15 @@
 export interface Muestra {
     id_muestra?:                number;
+    nombre:                     string;
+    id_tipo_muestra:            number;
+    codigo:                     string;
     caracteristicas_fisicas?:    string;
     fecha_recoleccion?:         Date;
     fecha_ingreso?:             Date;
     id_ubicacion?:              number;
-    nombre:                     string;
     id_localizacion?:           number;
-    id_tipo_muestra:            number;
     edad?:                      number;
     mineralogia?:               string;
-    codigo:                     string;
     formacion?:                 string;
     ubicacion?:                 string;
     punto?:                     Punto;
