@@ -18,7 +18,7 @@
 
 <hr>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="20px">
-    <div fxFlex="30" *ngFor="let muestra of muestras" fxFlex.lg="15" fxFlex.sm="30" fxFlex.md="20">
+    <div *ngFor="let muestra of muestras" fxFlex.lg="15" fxFlex.sm="30" fxFlex.md="20">
         <app-muestra-tarjeta-component [muestra]="muestra"></app-muestra-tarjeta-component>
     </div>
 
