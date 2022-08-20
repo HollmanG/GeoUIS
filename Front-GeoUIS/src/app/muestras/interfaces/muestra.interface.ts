@@ -37,10 +37,3 @@ export interface MuestrasResponse {
     muestras?: Muestra[];
 
 }
-
-export interface MuestraResponse {
-    ok: boolean; 
-    msg: string | {}; 
-    muestra?: Muestra;
-
-}

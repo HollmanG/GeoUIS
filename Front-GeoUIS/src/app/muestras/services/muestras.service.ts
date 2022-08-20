@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestra.interface';
+import { Muestra, MuestrasResponse } from '../interfaces/muestra.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +10,10 @@ import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestr
 export class MuestrasService {
 
   private baseUrl: string = environment.baseURL;
-  private _muestra !: Muestra;
   private _muestras !: Muestra[];
 
   get muestras(){
     return { ...this._muestras};
-  }
-
-  get muestra() {
-    return { ...this._muestra };
   }
 
   constructor(private http: HttpClient) { }
@@ -47,10 +42,10 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.post<MuestraResponse>(`${this.baseUrl}/muestras`, muestra, { headers })
+    return this.http.post<MuestrasResponse>(`${this.baseUrl}/muestras`, muestra, { headers })
     .pipe(
       map(resp =>{
-        return resp.muestra!
+        return resp.muestras![0]
       })
     )
   }
@@ -60,10 +55,10 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.put<MuestraResponse>(`${this.baseUrl}/muestras/${muestra.id_muestra}`, muestra, { headers })
+    return this.http.put<MuestrasResponse>(`${this.baseUrl}/muestras/${muestra.id_muestra}`, muestra, { headers })
     .pipe(
       map(resp =>{
-        return resp.muestra!
+        return resp.muestras![0]
       })
     )
   }
