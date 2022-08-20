@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Muestra, MuestrasResponse } from '../interfaces/muestra.interface';
+import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestra.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +42,10 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.post<MuestrasResponse>(`${this.baseUrl}/muestras`, muestra, { headers })
+    return this.http.post<MuestraResponse>(`${this.baseUrl}/muestras`, muestra, { headers })
     .pipe(
       map(resp =>{
-        return resp.muestras![0]
+        return resp.muestra!
       })
     )
   }
@@ -55,10 +55,10 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.put<MuestrasResponse>(`${this.baseUrl}/muestras/${muestra.id_muestra}`, muestra, { headers })
+    return this.http.put<MuestraResponse>(`${this.baseUrl}/muestras/${muestra.id_muestra}`, muestra, { headers })
     .pipe(
       map(resp =>{
-        return resp.muestras![0]
+        return resp.muestra!
       })
     )
   }

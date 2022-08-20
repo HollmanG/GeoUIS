@@ -10,6 +10,8 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
 import { HttpParams } from '@angular/common/http';
+import { MunicipiosService } from '../../services/municipios.service';
+import { Municipio } from '../../interfaces/municipios.interface';
 
 
 
@@ -22,6 +24,8 @@ import { HttpParams } from '@angular/common/http';
 export class AgregarComponent implements OnInit {
 
   fotos: Fotos[] = [];
+
+  municipios: Municipio[] = [];
 
   get usuario() {
     return this.authService.usuario
@@ -38,11 +42,15 @@ export class AgregarComponent implements OnInit {
     private authService: AuthService,
     private muestraService: MuestrasService,
     private fotosService: FotosService,
+    private municipiosService: MunicipiosService,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+    this.municipiosService.getMunicipios()
+    .subscribe(municipios => this.municipios = municipios);
 
     if (!this.router.url.includes('editar')) {
       return;

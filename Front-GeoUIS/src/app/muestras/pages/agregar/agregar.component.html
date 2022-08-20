@@ -72,7 +72,10 @@
 
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Municipio</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.id_municipio">
+                <mat-select [(value)]="muestra.id_municipio" [(ngModel)]="muestra.id_municipio">
+                    <mat-option>Ninguno</mat-option>
+                    <mat-option *ngFor="let municipio of municipios" value="{{municipio.id_municipio}}">{{municipio.nombre}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
 
