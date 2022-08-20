@@ -1,20 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MuestrasService } from '../../services/muestras.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Muestra } from '../../interfaces/muestra.interface';
-import { switchMap, take, takeUntil } from 'rxjs/operators';
+import { switchMap} from 'rxjs/operators';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
-import { HttpParams } from '@angular/common/http';
 import { MunicipiosService } from '../../services/municipios.service';
 import { Municipio } from '../../interfaces/municipios.interface';
-import { FormControl } from '@angular/forms';
-import { ReplaySubject, Subject } from 'rxjs';
-import { MatSelect } from '@angular/material/select';
+import { Subject } from 'rxjs';
 
 
 

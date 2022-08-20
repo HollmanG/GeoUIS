@@ -17,9 +17,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-
-
 
 @NgModule({
   declarations: [],
@@ -41,8 +38,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatSnackBarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    NgxMatSelectSearchModule
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

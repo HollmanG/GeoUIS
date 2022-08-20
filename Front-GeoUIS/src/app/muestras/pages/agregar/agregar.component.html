@@ -73,9 +73,10 @@
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Municipio</mat-label>
                 <mat-select [(value)]="muestra.id_municipio" [(ngModel)]="muestra.id_municipio" placeholder="Municipio">
-                   
+
                     <mat-option>Ninguno</mat-option>
-                    <mat-option *ngFor="let municipio of municipios" value="{{municipio.id_municipio}}">{{municipio.nombre}}</mat-option>
+                    <mat-option *ngFor="let municipio of municipios" value="{{municipio.id_municipio}}">
+                        {{municipio.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -95,12 +96,12 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Longitud</mat-label>
-                <input matInput type="number" >
+                <input matInput type="number">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Latitud</mat-label>
-                <input matInput type="text" >
+                <input matInput type="text">
             </mat-form-field>
         </div>
 
@@ -118,7 +119,7 @@
                         <mat-icon>edit</mat-icon>
                         {{( muestra.id_muestra)? 'Actualizar' : 'Crear'}}
                     </button>
-        
+
                     <button mat-raised-button color="warn" *ngIf="muestra.id_muestra" (click)="borrar()">
                         <mat-icon>remove</mat-icon>
                         Borrar
@@ -128,14 +129,28 @@
             <div fxLayout="column" fxFlex="30">
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
                     <button mat-button color="warn" (click)="regresar()">Regresar</button>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
 
     <div fxFlex="50">
-        <div fxFlex="100" *ngFor="let foto of fotos" fxLayout="column" fxLayout.xs="row">
-            <img [src]="foto | imagen">
+        <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active" *ngFor="let foto of fotos">
+                    <img [src]="foto | imagen" class="d-block w-100" style="width: 50vh; height: 50vh; padding-left: 10%; padding-right: 10%;">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
         </div>
     </div>
 </div>
