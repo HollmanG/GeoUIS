@@ -24,8 +24,11 @@ export class ListarComponent implements OnInit{
     this.muestrasService.getMuestras()
       .subscribe(muestras => { this.muestras = muestras });
 
-    this.authService.validarToken()
+    if( Object.keys(this.usuario).length != 0 ){
+      this.authService.validarToken()
     .subscribe();
+    }
+      
 
   }
 

@@ -24,8 +24,11 @@ export class MuestraTarjetaComponentComponent implements OnInit {
               private fotosService: FotosService) { }
 
   ngOnInit(): void {
-    this.authService.validarToken()
+    
+    if( Object.keys(this.usuario).length != 0 ){
+      this.authService.validarToken()
     .subscribe();
+    }
 
     this.fotosService.getFotos(this.muestra.id_muestra!)
     .subscribe(fotos => this.fotos = fotos);
