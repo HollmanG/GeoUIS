@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const usuario_rt_1 = __importDefault(require("../routes/usuario.rt"));
 const auth_rt_1 = __importDefault(require("../routes/auth.rt"));
-const municipio_rt_1 = __importDefault(require("../routes/municipio.rt"));
+const filtros_1 = __importDefault(require("../routes/filtros"));
 const muestra_rt_1 = __importDefault(require("../routes/muestra.rt"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("../db/connection"));
@@ -25,7 +25,7 @@ class Server {
         this.apiPaths = {
             usuarios: '/api/usuarios',
             auth: '/api/auth',
-            municipios: '/api/municipios',
+            filtros: '/api/filtros',
             muestras: '/api/muestras'
         };
         this.app = (0, express_1.default)();
@@ -63,7 +63,7 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.usuarios, usuario_rt_1.default);
         this.app.use(this.apiPaths.auth, auth_rt_1.default);
-        this.app.use(this.apiPaths.municipios, municipio_rt_1.default);
+        this.app.use(this.apiPaths.filtros, filtros_1.default);
         this.app.use(this.apiPaths.muestras, muestra_rt_1.default);
     }
     listen() {

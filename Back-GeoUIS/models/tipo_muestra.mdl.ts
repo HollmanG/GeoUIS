@@ -3,12 +3,12 @@ import db from "../db/connection";
 
 export interface TipoMuestraInterface {
     id_tipo_muestra?: number,
-    descripcion?: string
+    nombre?: string
 }
 
 class TipoMuestra extends Model<TipoMuestraInterface> implements TipoMuestraInterface {
     id_tipo_muestra?: number;
-    descripcion?: string;
+    nombre?: string;
 }
 
 TipoMuestra.init({
@@ -17,14 +17,14 @@ TipoMuestra.init({
         type: DataTypes.NUMBER,
         allowNull: false
     },
-    descripcion: {
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false
     }
 }, {
     timestamps: false,
     sequelize: db,
-    tableName: 'tipos_muestras',
+    tableName: 'tipos_muestra',
   });
 
 export default TipoMuestra;
