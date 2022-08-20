@@ -13,14 +13,14 @@ TipoMuestra.init({
         type: sequelize_1.DataTypes.NUMBER,
         allowNull: false
     },
-    descripcion: {
+    nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     }
 }, {
     timestamps: false,
     sequelize: connection_1.default,
-    tableName: 'tipos_muestras',
+    tableName: 'tipos_muestra',
 });
 exports.default = TipoMuestra;
 //# sourceMappingURL=tipo_muestra.mdl.js.map
