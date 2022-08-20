@@ -10,15 +10,10 @@ import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestr
 export class MuestrasService {
 
   private baseUrl: string = environment.baseURL;
-  private _muestra !: Muestra;
   private _muestras !: Muestra[];
 
   get muestras(){
     return { ...this._muestras};
-  }
-
-  get muestra() {
-    return { ...this._muestra };
   }
 
   constructor(private http: HttpClient) { }
