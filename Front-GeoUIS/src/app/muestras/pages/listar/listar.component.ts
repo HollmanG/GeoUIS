@@ -25,7 +25,7 @@ export class ListarComponent implements OnInit{
       .subscribe(muestras => { this.muestras = muestras });
 
     if( Object.keys(this.usuario).length != 0 ){
-      this.authService.validarToken()
+      this.authService.validarTokenAdmin()
     .subscribe();
     }
       

@@ -67,7 +67,7 @@ export class AuthService {
 
   }
 
-  validarToken(): Observable<boolean> {
+  validarTokenAdmin(): Observable<boolean> {
     const url = `${this.baseURL}/auth/renew`;
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
@@ -94,16 +94,32 @@ export class AuthService {
       )
   }
 
-  // validarRol() {
-  //   const url = `${this.baseURL}/auth/renew`;
-  //   const headers = new HttpHeaders()
-  //     .set('Authorization', localStorage.getItem('token') || '')
+  validarTokenUsuario(): Observable<boolean> {
+    const url = `${this.baseURL}/auth/renew`;
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
 
-  //     this.http.get<AuthResponse>(url, { headers })
-  //     .pipe(resp => {
+    return this.http.get<AuthResponse>(url, { headers })
+      .pipe(
+        map(resp => {
 
-  //     })
-  // }
+          localStorage.setItem('token', resp.token!);
+          this._usuario = {
+            correo: resp.correo!,
+            id: resp.id!,
+            nombre: resp.nombre!,
+            rol: resp.rol!
+          }
+          if(resp.ok = true){
+            if(this._usuario.rol != undefined){
+              return true;
+            }
+          }
+          return false;
+        }),
+        catchError(err => of(false))
+      )
+  }
 
   logOut() {
     localStorage.removeItem('token');
