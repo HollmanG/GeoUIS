@@ -5,11 +5,11 @@
 </mat-grid-list>
 
 <ng-template #divMuestra>
-    <div fxLayout="row" fxFlex.gt-xs="column" fxLayoutGap="30px">
+    <div fxLayout="row" fxLayoutGap="30px" fxLayout.xs="column">
         <div fxFlex="50" fxLayout="column">
             <h1 style="margin: 0;">{{muestra.nombre}}</h1>
             <hr>
-            <div fxFlex="50">
+            <div fxFlex="50" fxLayout.xs="column">
                 <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
                     <div class="carousel-inner">
                         <div class="carousel-item active" *ngFor="let foto of fotos">
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div fxFlex="50">
+        <div fxFlex="50" fxLayout.xs="column">
             <h1>Detalles</h1>
             <hr>
             <mat-list>
