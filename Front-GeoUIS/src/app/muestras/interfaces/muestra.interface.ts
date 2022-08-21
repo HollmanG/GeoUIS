@@ -44,3 +44,15 @@ export interface MuestraResponse {
     muestra?: Muestra;
 
 }
+
+export interface TipoMuestra {
+    id_tipo_muestra: number;
+    nombre:          string;
+}
+
+
+export interface TipoMuestraResponse {
+    ok: boolean;
+    msg: string | {};
+    tiposMuestra: TipoMuestra[]
+}

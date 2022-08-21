@@ -9,9 +9,9 @@ import { switchMap} from 'rxjs/operators';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
-import { MunicipiosService } from '../../services/municipios.service';
 import { Municipio } from '../../interfaces/municipios.interface';
 import { Subject } from 'rxjs';
+import { FiltrosService } from '../../services/filtros.service';
 
 
 
@@ -45,7 +45,7 @@ export class AgregarComponent implements OnInit {
     private authService: AuthService,
     private muestraService: MuestrasService,
     private fotosService: FotosService,
-    private municipiosService: MunicipiosService,
+    private filtrosService: FiltrosService,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) { 
@@ -54,7 +54,7 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.municipiosService.getMunicipios()
+    this.filtrosService.getMunicipios()
       .subscribe(municipios => this.municipios = municipios);
 
     if (!this.router.url.includes('editar')) {
