@@ -1,17 +1,19 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MuestrasService } from '../../services/muestras.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Muestra } from '../../interfaces/muestra.interface';
-import { switchMap} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
 import { Municipio } from '../../interfaces/municipios.interface';
 import { Subject } from 'rxjs';
 import { FiltrosService } from '../../services/filtros.service';
+import { TipoMuestra } from '../../interfaces/muestra.interface';
+import { Ubicacion } from '../../interfaces/ubicaciones.interface';
 
 
 
@@ -26,6 +28,10 @@ export class AgregarComponent implements OnInit {
   fotos: Fotos[] = [];
 
   municipios: Municipio[] = [];
+
+  tiposMuestra: TipoMuestra[] = [];
+
+  ubicaciones: Ubicacion[] = [];
 
 
   get usuario() {
@@ -48,14 +54,20 @@ export class AgregarComponent implements OnInit {
     private filtrosService: FiltrosService,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog) { 
+    private dialog: MatDialog) {
 
-    }
+  }
 
   ngOnInit(): void {
+    
+    this.filtrosService.getTiposMuestras()
+      .subscribe(tipos => this.tiposMuestra = tipos);
 
     this.filtrosService.getMunicipios()
       .subscribe(municipios => this.municipios = municipios);
+
+    this.filtrosService.getUbicaciones()
+      .subscribe(ubicaciones => this.ubicaciones = ubicaciones);
 
     if (!this.router.url.includes('editar')) {
       return;
@@ -73,7 +85,7 @@ export class AgregarComponent implements OnInit {
       )
       .subscribe(fotos => this.fotos = fotos);
 
-      
+
 
   }
 
