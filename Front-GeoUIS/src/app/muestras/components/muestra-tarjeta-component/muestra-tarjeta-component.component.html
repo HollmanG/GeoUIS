@@ -2,7 +2,10 @@
     <div style="text-align: center;">
             <mat-card-title>{{muestra.nombre}}</mat-card-title>
     </div>
-    <img mat-card-image [src]="fotos[0] | imagen" style="padding: 5%;">
+    <div style="text-align: center;">
+        <img [src]="fotos[0] | imagen" class="ImagenCard">
+    </div>
+
     <mat-card-content>
         <div class="container">
             <div class="row">
@@ -11,7 +14,7 @@
                 </div>
                 <div class="col">
                     <p>
-                        {{muestra.id_tipo_muestra}}
+                        {{muestra.tipo_muestra}}
                     </p>
                 </div>
             </div>
