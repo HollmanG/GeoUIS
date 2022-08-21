@@ -26,7 +26,7 @@ export class MuestraTarjetaComponentComponent implements OnInit {
   ngOnInit(): void {
     
     if( Object.keys(this.usuario).length != 0 ){
-      this.authService.validarToken()
+      this.authService.validarTokenAdmin()
     .subscribe();
     }
 

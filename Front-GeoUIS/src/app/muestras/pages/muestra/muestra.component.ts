@@ -7,6 +7,7 @@ import { Municipio } from '../../interfaces/municipios.interface';
 import { FotosService } from '../../services/fotos.service';
 import { MuestrasService } from '../../services/muestras.service';
 import { FiltrosService } from '../../services/filtros.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-muestra',
@@ -24,10 +25,15 @@ export class MuestraComponent implements OnInit {
     nombre : ""
   }
 
+  get usuario() {
+    return this.authService.usuario
+  }
+
   constructor(private activatedRoute: ActivatedRoute,
     private muestraService: MuestrasService,
     private fotosService: FotosService,
     private filtrosService: FiltrosService,
+    private authService: AuthService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -50,12 +56,22 @@ export class MuestraComponent implements OnInit {
       )
       .subscribe(fotos => this.fotos = fotos);
 
-
+      if( Object.keys(this.usuario).length != 0 ){
+        this.authService.validarTokenUsuario()
+      .subscribe();
+      }
 
   }
 
   regresar() {
     this.router.navigate(['/muestra/listar']);
+  }
+
+  verificarRolUsuario() {
+    if (this.usuario.rol != undefined) {
+      return true;
+    }
+    return false;
   }
 
 }
