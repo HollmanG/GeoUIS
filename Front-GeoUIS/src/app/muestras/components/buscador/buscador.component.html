@@ -1,36 +1,22 @@
 <mat-form-field class="example-full-width" appearance="legacy">
-    <input type="text"
-           placeholder="Buscar muestra"
-           matInput
-           [(ngModel)]="termino"
-           [matAutocomplete]="auto"
-           (input)="buscando()">
-    <mat-autocomplete autoActiveFirstOption 
-                      #auto="matAutocomplete"
-                      (optionSelected)="opcionSeleccionada($event)">
-      <mat-option *ngFor="let muestra of muestras" [value]="muestra">
-        <div flexLayout="row" fxLayoutGap="5px">
+  <input type="text" placeholder="Buscar muestra" matInput [(ngModel)]="termino" [matAutocomplete]="auto"
+    (input)="buscando()">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="opcionSeleccionada($event)">
+    <mat-option *ngFor="let muestra of muestras" [value]="muestra">
+      
+        <div flexLayout="column">
+          <div class="letra"><strong>{{muestra.nombre}}</strong></div>
+          <div class="letra">Formación: {{muestra.formacion}}</div>
+          <div class="letra">Mineralogia: {{muestra.mineralogia}}</div>
+          <div class="letra">&nbsp;</div>
+        
 
-            <div fxFlex="50">
-                <img aria-hidden [src]="muestra">
-            </div>
+      </div>
+    </mat-option>
 
-            <div fxFlex="50">
+    <mat-option value="" *ngIf="muestras.length===0 && termino.trim().length>0">
+      No se encontró nada con el término {{ termino }}
+    </mat-option>
 
-                <div flexLayout="column">
-                    <div class="letra">{{muestra.nombre}}</div>
-                    <div class="letra">Edad: {{muestra.edad}}</div>
-                    <div class="letra">Mineralogia: {{muestra.mineralogia}}</div>
-                </div>
-                
-            </div>
-            
-        </div>
-      </mat-option>
-
-      <mat-option value="" *ngIf="muestras.length===0 && termino.trim().length>0">
-        No se encontró nada con el término {{ termino }}
-      </mat-option>
-
-    </mat-autocomplete>
+  </mat-autocomplete>
 </mat-form-field>

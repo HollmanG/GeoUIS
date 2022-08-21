@@ -16,6 +16,7 @@ export interface Muestra {
     localizacion_geografica?:   string;
     localizacion_geologica?:    string;
     id_municipio?:              string;
+    tipo_muestra?:              string;
 
 }
 
@@ -43,4 +44,16 @@ export interface MuestraResponse {
     msg: string | {}; 
     muestra?: Muestra;
 
+}
+
+export interface TipoMuestra {
+    id_tipo_muestra: number;
+    nombre:          string;
+}
+
+
+export interface TipoMuestraResponse {
+    ok: boolean;
+    msg: string | {};
+    tiposMuestra: TipoMuestra[]
 }

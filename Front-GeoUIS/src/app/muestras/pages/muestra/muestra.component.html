@@ -10,8 +10,22 @@
             <h1 style="margin: 0;">{{muestra.nombre}}</h1>
             <hr>
             <div fxFlex="50">
-                <div fxFlex="100" *ngFor="let foto of fotos" fxLayout.xs="row">
-                    <img [src]="foto | imagen">
+                <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" *ngFor="let foto of fotos">
+                            <img [src]="foto | imagen" class="d-block w-100" style="width: 50vh; height: 50vh; padding-left: 10%; padding-right: 10%;">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -23,7 +37,7 @@
                     <strong>
                         Tipo de roca: &nbsp;
                     </strong>
-                    {{muestra.id_tipo_muestra}}
+                    {{muestra.tipo_muestra}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
@@ -51,15 +65,27 @@
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
-                        Ubicación: &nbsp;
+                        Municipio:&nbsp;
                     </strong>
-                    {{muestra.id_ubicacion}}
+                    {{muestra.localizacion_geografica}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
-                        Localización &nbsp;
+                        Ubicación: &nbsp;
                     </strong>
-                    {{muestra.id_localizacion}}
+                    {{municipio.nombre}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Localización geografica:&nbsp;
+                    </strong>
+                    {{muestra.localizacion_geografica}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Localización geologica:&nbsp;
+                    </strong>
+                    {{muestra.localizacion_geologica}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
@@ -78,6 +104,18 @@
                         Fecha ingreso: &nbsp;
                     </strong>
                     {{muestra.fecha_ingreso}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Longitud:&nbsp;
+                    </strong>
+                    
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Latitud:&nbsp;
+                    </strong>
+                    
                 </mat-list-item>
             </mat-list>
             <br>
