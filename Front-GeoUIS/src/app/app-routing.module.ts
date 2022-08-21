@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ValidarTokenGuard } from './auth/guards/validar-token.guard';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [

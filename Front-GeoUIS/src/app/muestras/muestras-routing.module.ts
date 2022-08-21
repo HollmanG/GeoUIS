@@ -4,8 +4,9 @@ import { AgregarComponent } from './pages/agregar/agregar.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { MuestraComponent } from './pages/muestra/muestra.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ValidarTokenGuard } from '../auth/guards/validar-token.guard';
 import { PrestamoComponent } from './pages/prestamo/prestamo.component';
+import { ValidarTokenAdminGuard } from '../auth/guards/validar-token-admin.guard';
+import { ValidarTokenUsuarioGuard } from '../auth/guards/validar-token-usuario.guard';
 
 const routes: Routes = [
   {
@@ -16,15 +17,16 @@ const routes: Routes = [
         path: 'listar', component: ListarComponent
       },
       {
-        path: 'prestamo/:id', component: PrestamoComponent
+        path: 'prestamo/:id', component: PrestamoComponent,
+        canActivate: [ValidarTokenUsuarioGuard]
       },
       {
         path: 'agregar', component: AgregarComponent,
-        canActivate: [ValidarTokenGuard]
+        canActivate: [ValidarTokenAdminGuard]
       },
       {
         path: 'editar/:id', component: AgregarComponent,
-        canActivate: [ValidarTokenGuard]
+        canActivate: [ValidarTokenAdminGuard]
       },
       { path: ':id', component: MuestraComponent },
       { path: '**', redirectTo: 'listar' },

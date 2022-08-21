@@ -6,12 +6,12 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ValidarTokenGuard implements CanActivate, CanLoad {
+export class ValidarTokenUsuarioGuard implements CanActivate, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(): Observable<boolean> | boolean {
-    return this.authService.validarTokenAdmin()
+    return this.authService.validarTokenUsuario()
       .pipe(
         tap(valid => {
           if (!valid) {
@@ -22,7 +22,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
   }
 
   canLoad(): Observable<boolean> | boolean {
-    return this.authService.validarTokenAdmin()
+    return this.authService.validarTokenUsuario()
       .pipe(
         tap(valid => {
           if (!valid) {
