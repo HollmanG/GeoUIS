@@ -1,5 +1,5 @@
 export interface Ubicacion{
-    id_ubicacion: string;
+    id_ubicacion: number;
     descripcion: string;
 }
 

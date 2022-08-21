@@ -16,6 +16,7 @@ export interface Muestra {
     localizacion_geografica?:   string;
     localizacion_geologica?:    string;
     id_municipio?:              string;
+    tipo_muestra?:              string;
 
 }
 

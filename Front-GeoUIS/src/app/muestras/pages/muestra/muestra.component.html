@@ -37,7 +37,7 @@
                     <strong>
                         Tipo de roca: &nbsp;
                     </strong>
-                    {{muestra.id_tipo_muestra}}
+                    {{muestra.tipo_muestra}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
@@ -65,15 +65,27 @@
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
-                        Ubicación: &nbsp;
+                        Municipio:&nbsp;
                     </strong>
-                    {{muestra.id_ubicacion}}
+                    {{muestra.localizacion_geografica}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
-                        Localización &nbsp;
+                        Ubicación: &nbsp;
                     </strong>
-                    {{muestra.id_localizacion}}
+                    {{municipio.nombre}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Localización geografica:&nbsp;
+                    </strong>
+                    {{muestra.localizacion_geografica}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Localización geologica:&nbsp;
+                    </strong>
+                    {{muestra.localizacion_geologica}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
@@ -92,6 +104,18 @@
                         Fecha ingreso: &nbsp;
                     </strong>
                     {{muestra.fecha_ingreso}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Longitud:&nbsp;
+                    </strong>
+                    
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Latitud:&nbsp;
+                    </strong>
+                    
                 </mat-list-item>
             </mat-list>
             <br>
