@@ -37,7 +37,6 @@ const getMunicipio = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             msg: 'Debe especificar un id'
         });
     }
-    ;
     const municipio = yield municipio_mdl_1.default.findByPk(id);
     if (!municipio) {
         return res.status(400).json({
@@ -45,7 +44,6 @@ const getMunicipio = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             msg: 'Debe especificar un municipio válido'
         });
     }
-    ;
     const municipios = yield municipio_mdl_1.default.findAll({
         where: { id_municipio: id },
     });

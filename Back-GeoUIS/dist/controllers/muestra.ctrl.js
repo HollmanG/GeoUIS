@@ -24,11 +24,20 @@ const getMuestras = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     var _a;
     const { q, limit } = req.query;
     try {
-        let query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
+        const query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
                      JOIN ubicaciones ub ON ub.id_ubicacion = mu.id_ubicacion
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
                      JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``}order by mu.nombre`;
         const muestras = yield ((_a = muestra_mdl_1.default.sequelize) === null || _a === void 0 ? void 0 : _a.query(query, { type: sequelize_1.QueryTypes.SELECT }));
+        if (muestras) {
+            muestras.forEach((muestra) => {
+                if (muestra.punto) {
+                    muestra.lng = muestra.punto.coordinates[0];
+                    muestra.lat = muestra.punto.coordinates[1];
+                }
+                delete muestra.punto;
+            });
+        }
         return res.status(200).json({
             ok: true,
             msg: 'getMuestras',
@@ -271,8 +280,8 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const ruta = path_1.default.join(`${path_1.default.resolve()}/storage/uploads/muestras/${id_muestra}`);
     const extensionesValidas = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
     try {
-        let fotosCreadas = [];
-        for (let foto of fotos) {
+        const fotosCreadas = [];
+        for (const foto of fotos) {
             const fotoID = yield ((_d = foto_mdl_1.default.sequelize) === null || _d === void 0 ? void 0 : _d.query("SELECT nextval('fotos_id_fotos_seq'::regclass)", { type: sequelize_1.QueryTypes.SELECT }));
             const id_foto = Object.values(fotoID[0])[0];
             const nombreCortado = foto.name.split('.');

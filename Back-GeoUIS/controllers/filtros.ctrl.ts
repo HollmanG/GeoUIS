@@ -27,7 +27,7 @@ export const getMunicipio = async(req: Request, res: Response) => {
             ok: false,
             msg: 'Debe especificar un id'
         });
-    };
+    }
 
     const municipio = await Municipio.findByPk(id);
     
@@ -36,7 +36,7 @@ export const getMunicipio = async(req: Request, res: Response) => {
             ok: false,
             msg: 'Debe especificar un municipio válido'
         });
-    };
+    }
 
     const municipios = await Municipio.findAll({
         where: {id_municipio:id},

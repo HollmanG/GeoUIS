@@ -62,7 +62,7 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         yield usuario.save();
         //Generar el JWT
         const token = yield (0, generarJWT_1.generarJWT)(usuario.id);
-        const { password, nombre: nombre1, correo: correo1 } = usuario;
+        const { nombre: nombre1, correo: correo1 } = usuario;
         return res.status(200).json({
             ok: true,
             msg: 'register',
@@ -83,7 +83,7 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.postUsuario = postUsuario;
 const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const _a = req.body, { correo, password } = _a, resto = __rest(_a, ["correo", "password"]);
+    const _a = req.body, { password } = _a, resto = __rest(_a, ["password"]);
     if (password) {
         //Encriptar la contraseña
         const salt = bcryptjs_1.default.genSaltSync();
