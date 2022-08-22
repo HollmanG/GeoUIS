@@ -1,4 +1,4 @@
-import { DataTypes, GeometryDataTypeConstructor, Model, GeometryDataType } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from "../db/connection";
 
 export interface LocalizacionInterface {

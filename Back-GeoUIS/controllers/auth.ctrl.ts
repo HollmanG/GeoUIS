@@ -72,7 +72,7 @@ export const revalidarToken = async(req: Req, res: Response) => {
     const { usuario } = req;
 
     //Generar el JWT
-    const token = await generarJWT(usuario?.id!);
+    const token = await generarJWT(usuario!.id!);
     
     return res.json({
         ok: true,

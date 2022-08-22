@@ -3,12 +3,10 @@ import { UploadedFile } from "express-fileupload";
 import { Req } from "../helpers/interfaces";
 import Foto from "../models/foto.mdl";
 import Muestra from '../models/muestra.mdl';
-import { QueryTypes, GeometryDataType } from 'sequelize';
-import Ubicacion from "../models/ubicacion.mdl";
+import { QueryTypes } from 'sequelize';
 import Localizacion from '../models/localizacion.mdl';
 import path from "path";
 import { existsSync, mkdirSync } from "fs";
-import TipoMuestra from '../models/tipo_muestra.mdl';
 
 const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 
@@ -16,12 +14,23 @@ export const getMuestras = async (req: Request, res: Response) => {
 
     const {q, limit} = req.query;
     try {
-        let query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
+        const query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
                      JOIN ubicaciones ub ON ub.id_ubicacion = mu.id_ubicacion
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
                      JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``}order by mu.nombre`;
 
         const muestras = await Muestra.sequelize?.query(query, { type: QueryTypes.SELECT });
+        if(muestras) {
+            muestras.forEach((muestra: any) => {
+                if(muestra.punto){ 
+                    muestra.lng = muestra.punto.coordinates[0];
+                    muestra.lat = muestra.punto.coordinates[1];
+                }
+                delete muestra.punto;
+            })
+        }
+        
+        
         return res.status(200).json({
             ok: true,
             msg: 'getMuestras',
@@ -306,8 +315,8 @@ export const agregarFoto = async (req: Req, res: Response) => {
     const ruta = path.join(`${path.resolve()}/storage/uploads/muestras/${id_muestra}`);
     const extensionesValidas = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
     try {
-        let fotosCreadas: Foto[] = [];
-        for (let foto of fotos) {
+        const fotosCreadas: Foto[] = [];
+        for (const foto of fotos) {
 
             const fotoID = await Foto.sequelize?.query("SELECT nextval('fotos_id_fotos_seq'::regclass)", { type: QueryTypes.SELECT });
             const id_foto = Object.values(fotoID![0])[0];

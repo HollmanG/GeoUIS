@@ -50,7 +50,7 @@ export const postUsuario = async(req: Request, res: Response) => {
 
         //Generar el JWT
         const token = await generarJWT(usuario.id!);
-        const {password, nombre: nombre1, correo: correo1} = usuario;
+        const {nombre: nombre1, correo: correo1} = usuario;
 
         return res.status(200).json({
             ok: true,
@@ -74,7 +74,7 @@ export const postUsuario = async(req: Request, res: Response) => {
 export const putUsuario = async(req: Request, res: Response) => {
     
     const {id} = req.params;
-    const {correo, password, ...resto} = req.body;
+    const {password, ...resto} = req.body;
 
     if(password) {
         //Encriptar la contraseña

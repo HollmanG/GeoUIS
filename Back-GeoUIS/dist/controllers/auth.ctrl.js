@@ -71,7 +71,7 @@ exports.login = login;
 const revalidarToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { usuario } = req;
     //Generar el JWT
-    const token = yield (0, generarJWT_1.generarJWT)(usuario === null || usuario === void 0 ? void 0 : usuario.id);
+    const token = yield (0, generarJWT_1.generarJWT)(usuario.id);
     return res.json({
         ok: true,
         msg: "Renew",
