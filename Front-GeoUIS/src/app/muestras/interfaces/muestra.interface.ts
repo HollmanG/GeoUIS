@@ -12,11 +12,12 @@ export interface Muestra {
     mineralogia?:               string;
     formacion?:                 string;
     ubicacion?:                 string;
-    punto?:                     Punto;
     localizacion_geografica?:   string;
     localizacion_geologica?:    string;
     id_municipio?:              string;
     tipo_muestra?:              string;
+    lng?:                       number;
+    lat?:                       number;
 
 }
 

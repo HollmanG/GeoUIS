@@ -55,13 +55,12 @@ export class AgregarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) {
-
   }
 
   ngOnInit(): void {
     
     this.filtrosService.getTiposMuestras()
-      .subscribe(tipos => this.tiposMuestra = tipos);
+      .subscribe(tipos => {this.tiposMuestra = tipos});
 
     this.filtrosService.getMunicipios()
       .subscribe(municipios => this.municipios = municipios);
@@ -77,7 +76,8 @@ export class AgregarComponent implements OnInit {
       .pipe(
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
       )
-      .subscribe(muestra => this.muestra = muestra);
+      .subscribe(muestra => {this.muestra = muestra;});
+    
 
     this.activatedRoute.params
       .pipe(

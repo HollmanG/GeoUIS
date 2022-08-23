@@ -19,10 +19,10 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Tipo de roca</mat-label>
-                <mat-select [(value)]="muestra.id_tipo_muestra" [(ngModel)]="muestra.id_tipo_muestra" placeholder="Tipo de muestra" >
+                <mat-select [(ngModel)]="muestra.id_tipo_muestra" placeholder="Tipo de muestra" >
 
                     <mat-option>Ninguno</mat-option>
-                    <mat-option *ngFor="let tipo of tiposMuestra" value="{{tipo.id_tipo_muestra}}">
+                    <mat-option *ngFor="let tipo of tiposMuestra" [value]="tipo.id_tipo_muestra">
                         {{tipo.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -73,10 +73,10 @@
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Ubicación</mat-label>
 
-                <mat-select [(value)]="muestra.id_ubicacion" [(ngModel)]="muestra.id_ubicacion" placeholder="Ubicacion">
+                <mat-select [(ngModel)]="muestra.id_ubicacion" placeholder="Ubicacion">
 
                     <mat-option>Ninguno</mat-option>
-                    <mat-option *ngFor="let ubicacion of ubicaciones" value="{{ubicacion.id_ubicacion}}">
+                    <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id_ubicacion">
                         {{ubicacion.descripcion}}</mat-option>
                 </mat-select>
 
@@ -108,12 +108,12 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Longitud</mat-label>
-                <input matInput type="number">
+                <input matInput type="number" [(ngModel)]="muestra.lng">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Latitud</mat-label>
-                <input matInput type="text">
+                <input matInput type="text" [(ngModel)]="muestra.lat">
             </mat-form-field>
         </div>
 
