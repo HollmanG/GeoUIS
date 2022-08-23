@@ -64,17 +64,17 @@
         <h1 style="margin: 0;">&nbsp;</h1>
         <hr>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100">
-                <mat-label>Fecha de recepción *</mat-label>
-                <input matInput [matDatepicker]="picker">
+            <mat-form-field fxFlex="100" aria-required="true">
+                <mat-label>Fecha de recepción</mat-label>
+                <input matInput [matDatepicker]="picker" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100">
-                <mat-label>Fecha de entrega *</mat-label>
-                <input matInput [matDatepicker]="picker2">
+            <mat-form-field fxFlex="100" aria-required="true">
+                <mat-label>Fecha de entrega</mat-label>
+                <input matInput [matDatepicker]="picker2" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -83,9 +83,9 @@
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
-                <mat-label>Motivo *</mat-label>
-                <input matInput type="text" >
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Motivo</mat-label>
+                <input matInput type="text" required>
             </mat-form-field>
         </div>
 
