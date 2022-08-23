@@ -3,6 +3,7 @@ import userRoutes from "../routes/usuario.rt";
 import authRoutes from "../routes/auth.rt";
 import filtrosRoutes from "../routes/filtros";
 import muestrasRoutes from "../routes/muestra.rt";
+import prestamosRoutes from "../routes/prestamo.rt";
 import cors from "cors";
 import db from "../db/connection";
 import fileUpload from "express-fileupload";
@@ -15,7 +16,8 @@ class Server {
         usuarios: '/api/usuarios',
         auth: '/api/auth',
         filtros: '/api/filtros',
-        muestras: '/api/muestras'
+        muestras: '/api/muestras',
+        prestamos: '/api/prestamos'
     }
 
     constructor() {
@@ -68,6 +70,7 @@ class Server {
         this.app.use(this.apiPaths.auth, authRoutes);
         this.app.use(this.apiPaths.filtros, filtrosRoutes);
         this.app.use(this.apiPaths.muestras, muestrasRoutes);
+        this.app.use(this.apiPaths.prestamos, prestamosRoutes);
 
     }
 
