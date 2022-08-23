@@ -62,11 +62,20 @@ const getMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
                      JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra
                      where mu.id_muestra = :id`;
-        const muestras = yield ((_b = muestra_mdl_1.default.sequelize) === null || _b === void 0 ? void 0 : _b.query(query, { replacements: { id }, type: sequelize_1.QueryTypes.SELECT }));
+        const muestra = yield ((_b = muestra_mdl_1.default.sequelize) === null || _b === void 0 ? void 0 : _b.query(query, { replacements: { id }, type: sequelize_1.QueryTypes.SELECT }));
+        if (muestra) {
+            muestra.forEach((muestra) => {
+                if (muestra.punto) {
+                    muestra.lng = muestra.punto.coordinates[0];
+                    muestra.lat = muestra.punto.coordinates[1];
+                }
+                delete muestra.punto;
+            });
+        }
         return res.status(200).json({
             ok: true,
-            msg: 'getMuestras',
-            muestras
+            msg: 'getMuestra',
+            muestra
         });
     }
     catch (error) {
@@ -89,17 +98,15 @@ const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     //Verificamos las fechas
     if (fecha_recoleccion && !regexFecha.test(fecha_recoleccion)) {
-        return res.status(200).json({
-            status: 400,
-            message: 'El parámetro fecha_recoleccion tiene un formato incorrecto, debe ser yyyy-mm-dd',
-            body: null
+        return res.status(400).json({
+            ok: false,
+            msg: 'El parámetro fecha_recoleccion tiene un formato incorrecto, debe ser yyyy-mm-dd'
         });
     }
     if (fecha_ingreso && !regexFecha.test(fecha_ingreso)) {
-        return res.status(200).json({
-            status: 400,
-            message: 'El parámetro fecha_ingreso tiene un formato incorrecto, debe ser yyyy-mm-dd',
-            body: null
+        return res.status(400).json({
+            ok: false,
+            msg: 'El parámetro fecha_ingreso tiene un formato incorrecto, debe ser yyyy-mm-dd'
         });
     }
     try {
@@ -154,17 +161,15 @@ const editarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     console.log(body);
     //Verificamos las fechas
     if (body.fecha_recoleccion && !regexFecha.test(body.fecha_recoleccion)) {
-        return res.status(200).json({
-            status: 400,
-            message: 'El parámetro fecha_recoleccion tiene un formato incorrecto, debe ser yyyy-mm-dd',
-            body: null
+        return res.status(400).json({
+            ok: false,
+            msg: 'El parámetro fecha_recoleccion tiene un formato incorrecto, debe ser yyyy-mm-dd'
         });
     }
     if (body.fecha_ingreso && !regexFecha.test(body.fecha_ingreso)) {
         return res.status(200).json({
-            status: 400,
-            message: 'El parámetro fecha_ingreso tiene un formato incorrecto, debe ser yyyy-mm-dd',
-            body: null
+            ok: false,
+            msg: 'El parámetro fecha_ingreso tiene un formato incorrecto, debe ser yyyy-mm-dd'
         });
     }
     try {
@@ -176,7 +181,7 @@ const editarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 msg: 'No se encontró la muestra con el id proporcionado'
             });
         }
-        yield (muestra === null || muestra === void 0 ? void 0 : muestra.update(body));
+        yield muestra.update(body);
         let punto;
         //TODO: Validar si es correcto el punto
         if (body.lng && body.lat) {

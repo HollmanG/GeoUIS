@@ -17,6 +17,7 @@ const usuario_rt_1 = __importDefault(require("../routes/usuario.rt"));
 const auth_rt_1 = __importDefault(require("../routes/auth.rt"));
 const filtros_1 = __importDefault(require("../routes/filtros"));
 const muestra_rt_1 = __importDefault(require("../routes/muestra.rt"));
+const prestamo_rt_1 = __importDefault(require("../routes/prestamo.rt"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("../db/connection"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
@@ -26,7 +27,8 @@ class Server {
             usuarios: '/api/usuarios',
             auth: '/api/auth',
             filtros: '/api/filtros',
-            muestras: '/api/muestras'
+            muestras: '/api/muestras',
+            prestamos: '/api/prestamos'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -65,6 +67,7 @@ class Server {
         this.app.use(this.apiPaths.auth, auth_rt_1.default);
         this.app.use(this.apiPaths.filtros, filtros_1.default);
         this.app.use(this.apiPaths.muestras, muestra_rt_1.default);
+        this.app.use(this.apiPaths.prestamos, prestamo_rt_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
