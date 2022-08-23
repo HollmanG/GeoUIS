@@ -31,7 +31,7 @@ export class PrestamosService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.post<PrestamoResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, { headers })
+    return this.http.get<PrestamoResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, { headers })
     .pipe(
       map(resp =>{
         return resp.disponible
