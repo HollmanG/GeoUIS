@@ -40,10 +40,17 @@ export interface MuestrasResponse {
 
 }
 
+export interface MuestraResponses {
+    ok: boolean; 
+    msg: string | {}; 
+    muestra?: Muestra[]
+
+}
+
 export interface MuestraResponse {
     ok: boolean; 
     msg: string | {}; 
-    muestra?: Muestra;
+    muestra?: Muestra
 
 }
 

@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 import { FiltrosService } from '../../services/filtros.service';
 import { TipoMuestra } from '../../interfaces/muestra.interface';
 import { Ubicacion } from '../../interfaces/ubicaciones.interface';
+import { AgregarFotosComponent } from '../../components/agregar-fotos/agregar-fotos.component';
 
 
 
@@ -76,7 +77,7 @@ export class AgregarComponent implements OnInit {
       .pipe(
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
       )
-      .subscribe(muestra => {this.muestra = muestra;});
+      .subscribe(muestra => this.muestra = muestra);
     
 
     this.activatedRoute.params
@@ -125,6 +126,13 @@ export class AgregarComponent implements OnInit {
         }
       }
     )
+  }
+
+  agregar(){
+    const dialog = this.dialog.open(AgregarFotosComponent, {
+      width: '350px',
+      data: this.muestra
+    })
   }
 
 
