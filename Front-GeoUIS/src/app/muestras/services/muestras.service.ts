@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Muestra, MuestraResponse, MuestrasResponse } from '../interfaces/muestra.interface';
+import { Muestra, MuestraResponse, MuestraResponses, MuestrasResponse } from '../interfaces/muestra.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +29,10 @@ export class MuestrasService {
   }
 
   getMuestraPorId(id: number): Observable<Muestra> {
-    return this.http.get<MuestrasResponse>(`${this.baseUrl}/muestras/${id}`)
+    return this.http.get<MuestraResponses>(`${this.baseUrl}/muestras/${id}`)
     .pipe(
       map(resp =>{
-        return resp.muestras![0]
+        return resp.muestra![0]
       })
     )
   }

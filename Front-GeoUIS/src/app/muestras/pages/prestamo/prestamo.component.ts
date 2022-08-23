@@ -5,6 +5,7 @@ import { MuestrasService } from '../../services/muestras.service';
 import { switchMap } from 'rxjs';
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
+import { PrestamosService } from '../../services/prestamos.service';
 
 @Component({
   selector: 'app-prestamo',
@@ -19,19 +20,29 @@ export class PrestamoComponent implements OnInit {
     id_tipo_muestra: 0
   }
 
+  disponible : Boolean = true;
+
   fotos: Fotos[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
     private muestraService: MuestrasService,
     private fotosService: FotosService,
+    private prestamosService: PrestamosService,
     private router: Router) { }
 
   ngOnInit(): void {
+
     this.activatedRoute.params
     .pipe(
       switchMap(({id})=> this.muestraService.getMuestraPorId(id))
     )
     .subscribe(muestra=>this.muestra = muestra)
+
+    this.activatedRoute.params
+    .pipe(
+      switchMap(({id})=> this.prestamosService.getDisponible(id))
+    )
+    .subscribe(disponible=>this.disponible = disponible)
 
 
     this.activatedRoute.params

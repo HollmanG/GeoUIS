@@ -15,6 +15,7 @@ import { ImagenPipe } from './pipes/imagen.pipe';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { PrestamoComponent } from './pages/prestamo/prestamo.component';
+import { AgregarFotosComponent } from './components/agregar-fotos/agregar-fotos.component';
 
 
 
@@ -28,7 +29,8 @@ import { PrestamoComponent } from './pages/prestamo/prestamo.component';
     ImagenPipe,
     BuscadorComponent,
     ConfirmarComponent,
-    PrestamoComponent
+    PrestamoComponent,
+    AgregarFotosComponent
   ],
   imports: [
     CommonModule,

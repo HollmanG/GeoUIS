@@ -5,61 +5,61 @@
     <div fxFlex="50" fxLayout="column">
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Nombre</mat-label>
                 <input matInput type="text" required [(ngModel)]="muestra.nombre">
             </mat-form-field>
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Edad</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.edad">
+                <input matInput type="number" required [(ngModel)]="muestra.edad">
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Tipo de roca</mat-label>
-                <mat-select [(value)]="muestra.id_tipo_muestra" [(ngModel)]="muestra.id_tipo_muestra" placeholder="Tipo de muestra" >
+                <mat-select [(ngModel)]="muestra.id_tipo_muestra" placeholder="Tipo de muestra" required>
 
                     <mat-option>Ninguno</mat-option>
-                    <mat-option *ngFor="let tipo of tiposMuestra" value="{{tipo.id_tipo_muestra}}">
+                    <mat-option *ngFor="let tipo of tiposMuestra" [value]="tipo.id_tipo_muestra">
                         {{tipo.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Codigo</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.codigo">
+                <input matInput type="text" [(ngModel)]="muestra.codigo" required>
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Mineralogia</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.mineralogia">
+                <input matInput type="text" [(ngModel)]="muestra.mineralogia" required>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Formacion</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.formacion">
+                <input matInput type="text" [(ngModel)]="muestra.formacion" required>
             </mat-form-field>
 
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
 
-            <mat-form-field fxFlex="100">
+            <mat-form-field fxFlex="100" aria-required="true">
                 <mat-label>Fecha de recolección</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="muestra.fecha_recoleccion">
+                <input matInput [matDatepicker]="picker" [(ngModel)]="muestra.fecha_recoleccion" required>
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100">
+            <mat-form-field fxFlex="100" aria-required="true">
                 <mat-label>Fecha de ingreso</mat-label>
-                <input matInput [matDatepicker]="picker2" [(ngModel)]="muestra.fecha_ingreso">
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="muestra.fecha_ingreso" required>
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -70,21 +70,21 @@
         <br>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Ubicación</mat-label>
 
-                <mat-select [(value)]="muestra.id_ubicacion" [(ngModel)]="muestra.id_ubicacion" placeholder="Ubicacion">
+                <mat-select [(ngModel)]="muestra.id_ubicacion" placeholder="Ubicacion" required>
 
                     <mat-option>Ninguno</mat-option>
-                    <mat-option *ngFor="let ubicacion of ubicaciones" value="{{ubicacion.id_ubicacion}}">
+                    <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id_ubicacion">
                         {{ubicacion.descripcion}}</mat-option>
                 </mat-select>
 
             </mat-form-field>
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Municipio</mat-label>
-                <mat-select [(value)]="muestra.id_municipio" [(ngModel)]="muestra.id_municipio" placeholder="Municipio">
+                <mat-select [(value)]="muestra.id_municipio" [(ngModel)]="muestra.id_municipio" placeholder="Municipio" required>
 
                     <mat-option>Ninguno</mat-option>
                     <mat-option *ngFor="let municipio of municipios" value="{{municipio.id_municipio}}">
@@ -94,30 +94,30 @@
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Localización geografica</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.localizacion_geografica">
+                <input matInput type="text" [(ngModel)]="muestra.localizacion_geografica" required>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Localización geologica</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.localizacion_geologica">
+                <input matInput type="text" [(ngModel)]="muestra.localizacion_geologica" required>
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Longitud</mat-label>
-                <input matInput type="number">
+                <input matInput type="number" [(ngModel)]="muestra.lng" required>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Latitud</mat-label>
-                <input matInput type="text">
+                <input matInput type="number" [(ngModel)]="muestra.lat" required>
             </mat-form-field>
         </div>
 
-        <mat-form-field fxFlex="100">
+        <mat-form-field fxFlex="100" aria-required="true">
             <mat-label>Caracteristicas fisicas </mat-label>
             <input matInput type="text" required [(ngModel)]="muestra.caracteristicas_fisicas">
         </mat-form-field>
@@ -147,22 +147,37 @@
     </div>
 
     <div fxFlex="50">
-        <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" *ngIf="muestra.id_muestra">
-            <div class="carousel-inner">
-                <div class="carousel-item active" *ngFor="let foto of fotos">
-                    <img [src]="foto | imagen" class="d-block w-100" style="width: 50vh; height: 50vh; padding-left: 10%; padding-right: 10%;">
+        <div fxLayout="column" fxLayoutGap="20px">
+            <div fxLayout="row">
+                <div fxLayout="colum" fxLayout.xs="column" fxLayoutGap="20px">
+                    <button mat-raised-button color="accent" (click)="agregar()">
+                        <mat-icon>add</mat-icon>
+                        Añadir imagenes
+                    </button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-            </button>
+
+            <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"
+                *ngIf="muestra.id_muestra">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" *ngFor="let foto of fotos">
+                        <img [src]="foto | imagen" class="d-block w-100"
+                            style="width: 50vh; height: 50vh; padding-left: 10%; padding-right: 10%;">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
         </div>
     </div>
+
+
 </div>

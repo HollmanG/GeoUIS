@@ -12,11 +12,12 @@ export interface Muestra {
     mineralogia?:               string;
     formacion?:                 string;
     ubicacion?:                 string;
-    punto?:                     Punto;
     localizacion_geografica?:   string;
     localizacion_geologica?:    string;
     id_municipio?:              string;
     tipo_muestra?:              string;
+    lng?:                       number;
+    lat?:                       number;
 
 }
 
@@ -39,10 +40,17 @@ export interface MuestrasResponse {
 
 }
 
+export interface MuestraResponses {
+    ok: boolean; 
+    msg: string | {}; 
+    muestra?: Muestra[]
+
+}
+
 export interface MuestraResponse {
     ok: boolean; 
     msg: string | {}; 
-    muestra?: Muestra;
+    muestra?: Muestra
 
 }
 

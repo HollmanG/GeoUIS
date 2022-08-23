@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 import { FiltrosService } from '../../services/filtros.service';
 import { TipoMuestra } from '../../interfaces/muestra.interface';
 import { Ubicacion } from '../../interfaces/ubicaciones.interface';
+import { AgregarFotosComponent } from '../../components/agregar-fotos/agregar-fotos.component';
 
 
 
@@ -55,13 +56,12 @@ export class AgregarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) {
-
   }
 
   ngOnInit(): void {
     
     this.filtrosService.getTiposMuestras()
-      .subscribe(tipos => this.tiposMuestra = tipos);
+      .subscribe(tipos => {this.tiposMuestra = tipos});
 
     this.filtrosService.getMunicipios()
       .subscribe(municipios => this.municipios = municipios);
@@ -78,6 +78,7 @@ export class AgregarComponent implements OnInit {
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
       )
       .subscribe(muestra => this.muestra = muestra);
+    
 
     this.activatedRoute.params
       .pipe(
@@ -90,7 +91,11 @@ export class AgregarComponent implements OnInit {
   }
 
   guardar() {
-    if (this.muestra.nombre!.trim().length === 0) {
+    if (this.muestra.nombre!.trim().length === 0 || this.muestra.edad == undefined || this.muestra.tipo_muestra == undefined || 
+        this.muestra.codigo == undefined || this.muestra.mineralogia == undefined || this.muestra.formacion == undefined || 
+        this.muestra.fecha_ingreso == undefined || this.muestra.fecha_recoleccion == undefined || this.muestra.id_ubicacion == undefined || 
+        this.muestra.id_municipio == undefined || this.muestra.localizacion_geografica == undefined || this.muestra.localizacion_geologica == undefined
+        || this.muestra.lng == undefined  || this.muestra.lat == undefined || this.muestra.caracteristicas_fisicas == undefined) {
       return;
     }
 
@@ -125,6 +130,13 @@ export class AgregarComponent implements OnInit {
         }
       }
     )
+  }
+
+  agregar(){
+    const dialog = this.dialog.open(AgregarFotosComponent, {
+      width: '350px',
+      data: this.muestra
+    })
   }
 
 
