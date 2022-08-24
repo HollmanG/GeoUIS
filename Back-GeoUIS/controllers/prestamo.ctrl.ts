@@ -87,8 +87,15 @@ export const getDisponible = async (req: Request, res: Response) => {
 export const putPrestamo = async (req: Req, res: Response) => {
 
     const {fecha_devolucion} = req.body;
-    
     const { id } = req.params;
+    const disponible: boolean = await disp(id);
+
+    if(disponible) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'La muestra no está en estado de prestamo'
+        });
+    }
 
     if(!fecha_devolucion ) {
         return res.status(400).json({
@@ -101,19 +108,28 @@ export const putPrestamo = async (req: Req, res: Response) => {
     if (!regexFecha.test(fecha_devolucion)) {
         return res.status(400).json({
             ok: false,
-            msg: 'El parámetro fecha_recoleccion tiene un formato incorrecto, debe ser yyyy-mm-dd'
+            msg: 'El parámetro fecha_devolucion tiene un formato incorrecto, debe ser yyyy-mm-dd'
         });
     }
 
     try {
-        const prestamo: Prestamo | null = await Prestamo.findByPk(id);
+
+        const prestamo: Prestamo | null = await Prestamo.findOne({
+            where: {id_muestra: id},
+            order: [
+            ['id_prestamo', 'DESC']
+            ]
+        });
+        
+        // const prestamo = await Prestamo.findByPk(prestamo1?.getDataValue('id_prestamo'));
+
         if(!prestamo){
             return res.status(400).json({
                 ok: false,
                 msg: 'No se encontró un préstamo con el id especificado'
             });
         }
-        await prestamo.update(fecha_devolucion);
+        await prestamo.update({fecha_devolucion});
     
         return res.status(200).json({
             ok: true,
