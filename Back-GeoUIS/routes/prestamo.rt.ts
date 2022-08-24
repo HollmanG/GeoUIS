@@ -6,19 +6,20 @@ import { validarJWT } from '../middlewares/validarJWT';
 
 const router = Router();
 
+router.get('/:id', getDisponible);
+
 router.post('/', [
     validarJWT,
     puedePrestar, 
     validarCampos
 ], postPrestamo);
 
-router.post('/:id', [
+router.put('/:id', [
     validarJWT,
     esAdmin, 
     validarCampos
 ], putPrestamo);
 
-router.get('/:id', getDisponible);
 
 
 export default router;
