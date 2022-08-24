@@ -14,6 +14,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { MuestrasModule } from './muestras/muestras.module';
+import { MaterialModule } from './material/material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MuestrasModule } from './muestras/muestras.module';
     AuthModule,
     MapaModule,
     MuestrasModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
