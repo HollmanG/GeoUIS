@@ -7,6 +7,7 @@ import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
 import { PrestamosService } from '../../services/prestamos.service';
 import { Prestamo } from '../../interfaces/prestamos.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-prestamo',
@@ -31,6 +32,7 @@ export class PrestamoComponent implements OnInit {
     private muestraService: MuestrasService,
     private fotosService: FotosService,
     private prestamosService: PrestamosService,
+    private snackBar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -68,7 +70,16 @@ export class PrestamoComponent implements OnInit {
 
     this.prestamosService.agregarPrestamo(this.prestamo)
     .subscribe(prestamo => {
-      this.router.navigate(['/muestra/', prestamo.id_muestra]);})
+      this.router.navigate(['/muestra/', prestamo.id_muestra]);
+      this.mostrarSnackBar("Prestamo exitoso, por favor acercarse a " + this.muestra.ubicacion + " para recoger a " + this.muestra.nombre);
+    })
+  }
+
+
+  mostrarSnackBar(mensaje: string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 5000
+    })
   }
 
 }
