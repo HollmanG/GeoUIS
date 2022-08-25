@@ -61,7 +61,11 @@ export class PrestamoComponent implements OnInit {
 
   perdirPrestamo(){
     this.prestamo.id_muestra = this.muestra.id_muestra;
-    console.log(this.prestamo)
+
+    if(this.prestamo.id_muestra == undefined || this.prestamo.fecha_prestamo == undefined){
+      return;
+    }
+
     this.prestamosService.agregarPrestamo(this.prestamo)
     .subscribe(prestamo => {
       this.router.navigate(['/muestra/', prestamo.id_muestra]);})
