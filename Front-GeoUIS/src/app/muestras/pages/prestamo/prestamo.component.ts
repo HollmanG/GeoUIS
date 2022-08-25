@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs';
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
 import { PrestamosService } from '../../services/prestamos.service';
+import { Prestamo } from '../../interfaces/prestamos.interface';
 
 @Component({
   selector: 'app-prestamo',
@@ -19,6 +20,8 @@ export class PrestamoComponent implements OnInit {
     codigo: "",
     id_tipo_muestra: 0
   }
+
+  prestamo: Prestamo = {};
 
   disponible : Boolean = true;
 
@@ -54,6 +57,14 @@ export class PrestamoComponent implements OnInit {
 
   regresar() {
     this.router.navigate(['/muestra/',this.muestra.id_muestra]);
+  }
+
+  perdirPrestamo(){
+    this.prestamo.id_muestra = this.muestra.id_muestra;
+    console.log(this.prestamo)
+    this.prestamosService.agregarPrestamo(this.prestamo)
+    .subscribe(prestamo => {
+      this.router.navigate(['/muestra/', prestamo.id_muestra]);})
   }
 
 }

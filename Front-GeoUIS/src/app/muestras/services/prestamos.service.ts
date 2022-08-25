@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Prestamo, PrestamoResponse } from '../interfaces/prestamos.interface';
+import { Prestamo, PrestamoDisponibleResponse, PrestamoResponse } from '../interfaces/prestamos.interface';
 
 
 @Injectable({
@@ -14,15 +14,20 @@ export class PrestamosService {
 
   constructor(private http: HttpClient) { }
 
-  agregarPrestamo(prestamo: Prestamo): Observable<Boolean> {
+  agregarPrestamo(prestamo: Prestamo): Observable<Prestamo> {
     //Token actual
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.post<PrestamoResponse>(`${this.baseUrl}/prestamos`, prestamo, { headers })
+    const añadirprestamobody = {
+      id_muestra : prestamo.id_muestra,
+      fecha_prestamo : prestamo.fecha_prestamo
+    }
+
+    return this.http.post<PrestamoResponse>(`${this.baseUrl}/prestamos`, añadirprestamobody, { headers })
     .pipe(
       map(resp =>{
-        return resp.disponible
+        return resp.prestamo
       })
     )
   }
@@ -31,7 +36,7 @@ export class PrestamosService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
-    return this.http.get<PrestamoResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, { headers })
+    return this.http.get<PrestamoDisponibleResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, { headers })
     .pipe(
       map(resp =>{
         return resp.disponible
