@@ -15,6 +15,7 @@ import { FiltrosService } from '../../services/filtros.service';
 import { TipoMuestra } from '../../interfaces/muestra.interface';
 import { Ubicacion } from '../../interfaces/ubicaciones.interface';
 import { AgregarFotosComponent } from '../../components/agregar-fotos/agregar-fotos.component';
+import { PrestamosService } from '../../services/prestamos.service';
 
 
 
@@ -34,6 +35,7 @@ export class AgregarComponent implements OnInit {
 
   ubicaciones: Ubicacion[] = [];
 
+  disponible: Boolean = true;
 
   get usuario() {
     return this.authService.usuario
@@ -54,14 +56,15 @@ export class AgregarComponent implements OnInit {
     private fotosService: FotosService,
     private filtrosService: FiltrosService,
     private activatedRoute: ActivatedRoute,
+    private prestamosService: PrestamosService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    
+
     this.filtrosService.getTiposMuestras()
-      .subscribe(tipos => {this.tiposMuestra = tipos});
+      .subscribe(tipos => { this.tiposMuestra = tipos });
 
     this.filtrosService.getMunicipios()
       .subscribe(municipios => this.municipios = municipios);
@@ -78,7 +81,7 @@ export class AgregarComponent implements OnInit {
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
       )
       .subscribe(muestra => this.muestra = muestra);
-    
+
 
     this.activatedRoute.params
       .pipe(
@@ -86,16 +89,22 @@ export class AgregarComponent implements OnInit {
       )
       .subscribe(fotos => this.fotos = fotos);
 
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => this.prestamosService.getDisponible(id))
+      )
+      .subscribe(disponible => this.disponible = disponible)
+
 
 
   }
 
   guardar() {
-    if (this.muestra.nombre!.trim().length === 0 || this.muestra.edad == undefined || this.muestra.tipo_muestra == undefined || 
-        this.muestra.codigo == undefined || this.muestra.mineralogia == undefined || this.muestra.formacion == undefined || 
-        this.muestra.fecha_ingreso == undefined || this.muestra.fecha_recoleccion == undefined || this.muestra.id_ubicacion == undefined || 
-        this.muestra.id_municipio == undefined || this.muestra.localizacion_geografica == undefined || this.muestra.localizacion_geologica == undefined
-        || this.muestra.lng == undefined  || this.muestra.lat == undefined || this.muestra.caracteristicas_fisicas == undefined) {
+    if (this.muestra.nombre!.trim().length === 0 || this.muestra.edad == undefined || this.muestra.tipo_muestra == undefined ||
+      this.muestra.codigo == undefined || this.muestra.mineralogia == undefined || this.muestra.formacion == undefined ||
+      this.muestra.fecha_ingreso == undefined || this.muestra.fecha_recoleccion == undefined || this.muestra.id_ubicacion == undefined ||
+      this.muestra.id_municipio == undefined || this.muestra.localizacion_geografica == undefined || this.muestra.localizacion_geologica == undefined
+      || this.muestra.lng == undefined || this.muestra.lat == undefined || this.muestra.caracteristicas_fisicas == undefined) {
       return;
     }
 
@@ -132,7 +141,7 @@ export class AgregarComponent implements OnInit {
     )
   }
 
-  agregar(){
+  agregar() {
     const dialog = this.dialog.open(AgregarFotosComponent, {
       width: '350px',
       data: this.muestra
@@ -154,6 +163,8 @@ export class AgregarComponent implements OnInit {
   regresar() {
     this.router.navigate(['/muestra/listar']);
   }
+
+  
 
 
 }

@@ -63,7 +63,7 @@
     <div fxFlex="50" fxLayout="column">
         <h1 style="margin: 0;">&nbsp;</h1>
         <hr>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" *ngIf="disponible">
             <mat-form-field fxFlex="100" aria-required="true">
                 <mat-label>Fecha de recepción</mat-label>
                 <input matInput [matDatepicker]="picker" required>
@@ -84,8 +84,8 @@
         <br>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
-                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="20px" fxFlex="70" >
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" *ngIf="disponible">
                     <button mat-raised-button color="primary">
                         <mat-icon>archive</mat-icon>
                         {{( disponible)? 'Solicitar prestamo' : 'Reservar prestamo'}}

@@ -149,12 +149,23 @@
     <div fxFlex="50">
         <div fxLayout="column" fxLayoutGap="20px">
             <div fxLayout="row">
-                <div fxLayout="colum" fxLayout.xs="column" fxLayoutGap="20px">
-                    <button mat-raised-button color="accent" (click)="agregar()">
-                        <mat-icon>add</mat-icon>
-                        Añadir imagenes
-                    </button>
+                <div fxLayout="colum" fxLayout.xs="column" fxLayoutGap="20px" fxFlex="70">
+                    <div fxLayout="row">
+                        <button mat-raised-button color="accent" (click)="agregar()">
+                            <mat-icon>add</mat-icon>
+                            Añadir imagenes
+                        </button>
+                    </div>
                 </div>
+                <div fxLayout="column" fxFlex="30" *ngIf="!disponible">
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+                        <button mat-raised-button color="primary" (click)="agregar()">
+                            <mat-icon>settings_backup_restore</mat-icon>
+                            Devolver prestamo
+                        </button>
+                    </div>
+                </div >
+                
             </div>
 
             <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"
