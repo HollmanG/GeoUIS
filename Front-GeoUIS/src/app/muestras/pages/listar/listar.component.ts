@@ -8,7 +8,7 @@ import { AuthService } from '../../../auth/services/auth.service';
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
-export class ListarComponent implements OnInit{
+export class ListarComponent implements OnInit {
 
   get usuario() {
     return this.authService.usuario
@@ -18,21 +18,21 @@ export class ListarComponent implements OnInit{
 
   constructor(private muestrasService: MuestrasService,
     private authService: AuthService) { }
-  
-    ngOnInit(): void {
+
+  ngOnInit(): void {
 
     this.muestrasService.getMuestras()
       .subscribe(muestras => { this.muestras = muestras });
 
-    if( Object.keys(this.usuario).length != 0 ){
+    if (Object.keys(this.usuario).length != 0) {
       this.authService.validarTokenAdmin()
-    .subscribe();
+        .subscribe();
     }
-      
+
 
   }
 
-  
+
 
   verificarRolAdmin() {
     if (this.usuario.rol == 2 || this.usuario.rol == 4) {

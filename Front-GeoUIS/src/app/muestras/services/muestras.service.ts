@@ -42,6 +42,7 @@ export class MuestrasService {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
+
     return this.http.post<MuestraResponse>(`${this.baseUrl}/muestras`, muestra, { headers })
     .pipe(
       map(resp =>{

@@ -63,30 +63,23 @@
     <div fxFlex="50" fxLayout="column">
         <h1 style="margin: 0;">&nbsp;</h1>
         <hr>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" *ngIf="disponible">
             <mat-form-field fxFlex="100" aria-required="true">
-                <mat-label>Fecha de recepción</mat-label>
-                <input matInput [matDatepicker]="picker" required>
+                <mat-label>Fecha de solicitud prestamo</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="prestamo.fecha_prestamo" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100" aria-required="true">
-                <mat-label>Fecha de entrega</mat-label>
-                <input matInput [matDatepicker]="picker2" required>
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
-            </mat-form-field>
         </div>
 
         <br>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-            <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
-                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-                    <button mat-raised-button color="primary">
+            <div fxLayout="column" fxLayoutGap="20px" fxFlex="70" >
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" *ngIf="disponible">
+                    <button mat-raised-button color="primary" (click)="perdirPrestamo()">
                         <mat-icon>archive</mat-icon>
                         {{( disponible)? 'Solicitar prestamo' : 'Reservar prestamo'}}
                     </button>
