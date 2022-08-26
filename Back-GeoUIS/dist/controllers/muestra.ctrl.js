@@ -116,7 +116,7 @@ const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             punto = {
                 type: 'Point',
                 coordinates: [lng, lat],
-                crs: { type: 'name', properties: { name: 'EPSG:4326' } }
+                crs: { type: 'name', properties: { name: 'EPSG:9377' } }
             };
         }
         //Se crea la localización

@@ -122,7 +122,7 @@ export const crearMuestra = async (req: Req, res: Response) => {
             punto = {
                 type: 'Point',
                 coordinates: [lng, lat],
-                crs: { type: 'name', properties: { name: 'EPSG:4326' } }
+                crs: { type: 'name', properties: { name: 'EPSG:9377' } }
             };
         }
 
