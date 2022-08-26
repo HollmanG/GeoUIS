@@ -155,11 +155,6 @@ export class AgregarComponent implements OnInit {
     })
   }
 
-  logOut() {
-    this.router.navigateByUrl('/auth');
-    this.authService.logOut();
-  }
-
   regresar() {
     this.router.navigate(['/muestra/listar']);
   }

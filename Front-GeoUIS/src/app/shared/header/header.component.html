@@ -16,8 +16,11 @@
           <li class="nav-item">
             <a class="nav-link active" routerLink="/muestra">Muestras</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="this.usuario.rol == undefined">
             <a class="nav-link active" routerLink="/auth/login">Acceder</a>
+          </li>
+          <li class="nav-item" *ngIf="this.usuario.rol != undefined">
+            <a class="nav-link active" routerLink="#" (click)="logOut()">Salir</a>
           </li>
         </ul>
       </div>
