@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Muestra } from 'src/app/muestras/interfaces/muestra.interface';
 
 @Component({
@@ -10,15 +12,28 @@ export class HeaderComponent implements OnInit {
 
   muestra!: Muestra;
 
-  constructor() { }
+  get usuario() {
+    return this.authService.usuario
+  }
+
+  constructor( private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    if (Object.keys(this.usuario).length != 0) {
+      this.authService.validarTokenAdmin()
+        .subscribe();
+    }
   }
 
   setMuestra(muestra: Muestra) {
     this.muestra = muestra
     console.log(muestra);
     
+  }
+
+  logOut() {
+    this.authService.logOut();
   }
 
 }

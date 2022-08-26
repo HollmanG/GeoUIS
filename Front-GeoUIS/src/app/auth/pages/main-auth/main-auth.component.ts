@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-main-auth',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainAuthComponent implements OnInit {
 
-  constructor() { }
+  get usuario() {
+    return this.authService.usuario
+  }
+
+  constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
+    if (Object.keys(this.usuario).length != 0) {
+      this.authService.validarTokenAdmin()
+        .subscribe();
+    }
   }
 
 }

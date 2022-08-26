@@ -5,3 +5,19 @@
     height: 30rem;
     object-fit: fill;
 }
+
+.imagenes{
+    padding: 2rem;
+    padding-top: 0%;
+}
+
+.textMain{
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 2rem;
+    text-align: justify;
+}
+
+.titulos{
+    text-align: center;
+}
