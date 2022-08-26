@@ -10,12 +10,12 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 import { Fotos } from '../../interfaces/fotos.interface';
 import { FotosService } from '../../services/fotos.service';
 import { Municipio } from '../../interfaces/municipios.interface';
-import { Subject } from 'rxjs';
 import { FiltrosService } from '../../services/filtros.service';
 import { TipoMuestra } from '../../interfaces/muestra.interface';
 import { Ubicacion } from '../../interfaces/ubicaciones.interface';
 import { AgregarFotosComponent } from '../../components/agregar-fotos/agregar-fotos.component';
 import { PrestamosService } from '../../services/prestamos.service';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -48,8 +48,6 @@ export class AgregarComponent implements OnInit {
     nombre: ""
   }
 
-  protected _onDestroy = new Subject();
-
   constructor(private router: Router,
     private authService: AuthService,
     private muestraService: MuestrasService,
@@ -58,7 +56,9 @@ export class AgregarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private prestamosService: PrestamosService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    public datepipe: DatePipe) {
+
   }
 
   ngOnInit(): void {
@@ -157,6 +157,12 @@ export class AgregarComponent implements OnInit {
 
   regresar() {
     this.router.navigate(['/muestra/listar']);
+  }
+
+  Devolver(){
+    const fechaActual = this.datepipe.transform(Date.now(), 'yyyy-MM-dd');
+    this.prestamosService.DevolverPrestamo(this.muestra.id_muestra!, fechaActual!)
+    .subscribe()
   }
 
   

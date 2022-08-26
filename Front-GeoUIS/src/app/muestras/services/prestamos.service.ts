@@ -1,4 +1,6 @@
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -42,5 +44,25 @@ export class PrestamosService {
         return resp.disponible
       })
     )
+  }
+
+
+  DevolverPrestamo(id_muestra: number, fechaActual: string): Observable<Prestamo>{
+     //Token actual
+     const headers = new HttpHeaders()
+     .set('Authorization', localStorage.getItem('token') || '')
+
+     console.log(fechaActual);
+
+   const devolverPrestamo = {
+     fecha_devolucion : fechaActual
+   }
+
+   return this.http.put<PrestamoResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, devolverPrestamo, { headers })
+   .pipe(
+     map(resp =>{
+       return resp.prestamo
+     })
+   )
   }
 }
