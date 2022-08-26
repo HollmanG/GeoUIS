@@ -134,7 +134,7 @@ export class AgregarComponent implements OnInit {
         if (result) {
           this.muestraService.borrarMuestra(this.muestra.id_muestra!)
             .subscribe(resp => {
-              this.router.navigate(['/muestras'])
+              this.router.navigate(['/muestra/listar'])
             })
         }
       }
@@ -162,10 +162,10 @@ export class AgregarComponent implements OnInit {
   Devolver(){
     const fechaActual = this.datepipe.transform(Date.now(), 'yyyy-MM-dd');
     this.prestamosService.DevolverPrestamo(this.muestra.id_muestra!, fechaActual!)
-    .subscribe()
+    .subscribe(resp => {
+      this.router.navigate(['/muestra/listar']);
+      this.mostrarSnackBar('Muestra devuelta')
+    })
   }
-
-  
-
 
 }

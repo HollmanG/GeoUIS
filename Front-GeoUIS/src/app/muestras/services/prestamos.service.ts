@@ -22,47 +22,45 @@ export class PrestamosService {
       .set('Authorization', localStorage.getItem('token') || '')
 
     const añadirprestamobody = {
-      id_muestra : prestamo.id_muestra,
-      fecha_prestamo : prestamo.fecha_prestamo
+      id_muestra: prestamo.id_muestra,
+      fecha_prestamo: prestamo.fecha_prestamo
     }
 
     return this.http.post<PrestamoResponse>(`${this.baseUrl}/prestamos`, añadirprestamobody, { headers })
-    .pipe(
-      map(resp =>{
-        return resp.prestamo
-      })
-    )
+      .pipe(
+        map(resp => {
+          return resp.prestamo
+        })
+      )
   }
 
-  getDisponible(id_muestra: number): Observable<Boolean>{
+  getDisponible(id_muestra: number): Observable<Boolean> {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
     return this.http.get<PrestamoDisponibleResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, { headers })
-    .pipe(
-      map(resp =>{
-        return resp.disponible
-      })
-    )
+      .pipe(
+        map(resp => {
+          return resp.disponible
+        })
+      )
   }
 
 
-  DevolverPrestamo(id_muestra: number, fechaActual: string): Observable<Prestamo>{
-     //Token actual
-     const headers = new HttpHeaders()
-     .set('Authorization', localStorage.getItem('token') || '')
+  DevolverPrestamo(id_muestra: number, fechaActual: string): Observable<Prestamo> {
+    //Token actual
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
 
-     console.log(fechaActual);
+    const devolverPrestamo = {
+      fecha_devolucion: fechaActual
+    }
 
-   const devolverPrestamo = {
-     fecha_devolucion : fechaActual
-   }
-
-   return this.http.put<PrestamoResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, devolverPrestamo, { headers })
-   .pipe(
-     map(resp =>{
-       return resp.prestamo
-     })
-   )
+    return this.http.put<PrestamoResponse>(`${this.baseUrl}/prestamos/${id_muestra}`, devolverPrestamo, { headers })
+      .pipe(
+        map(resp => {
+          return resp.prestamo
+        })
+      )
   }
 }
