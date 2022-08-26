@@ -15,7 +15,7 @@ Localizacion.init({
         allowNull: false
     },
     punto: {
-        type: sequelize_1.DataTypes.GEOMETRY('POINT', 4326),
+        type: sequelize_1.DataTypes.GEOMETRY('POINT', 9377),
         allowNull: true
     },
     localizacion_geografica: {
