@@ -56,11 +56,6 @@ export class MuestraComponent implements OnInit {
       )
       .subscribe(fotos => this.fotos = fotos);
 
-      if( Object.keys(this.usuario).length != 0 ){
-        this.authService.validarTokenUsuario()
-      .subscribe();
-      }
-
   }
 
   regresar() {

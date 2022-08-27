@@ -16,6 +16,7 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { PrestamoComponent } from './pages/prestamo/prestamo.component';
 import { AgregarFotosComponent } from './components/agregar-fotos/agregar-fotos.component';
+import { FotoTarjetaComponent } from './components/foto-tarjeta/foto-tarjeta.component';
 
 
 
@@ -30,7 +31,8 @@ import { AgregarFotosComponent } from './components/agregar-fotos/agregar-fotos.
     BuscadorComponent,
     ConfirmarComponent,
     PrestamoComponent,
-    AgregarFotosComponent
+    AgregarFotosComponent,
+    FotoTarjetaComponent
   ],
   imports: [
     CommonModule,

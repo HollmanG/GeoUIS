@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { AuthService } from './auth/services/auth.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AuthService } from './auth/services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   title = 'Front-GeoUIS';
 
   get usuario() {
@@ -16,9 +16,10 @@ export class AppComponent implements OnInit {
   constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (Object.keys(this.usuario).length != 0) {
-      this.authService.validarTokenAdmin()
-        .subscribe();
-    }
+    
+  }
+
+  ngOnChanges(): void {
+
   }
 }

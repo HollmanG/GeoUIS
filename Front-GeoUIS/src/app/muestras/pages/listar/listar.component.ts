@@ -24,15 +24,8 @@ export class ListarComponent implements OnInit {
     this.muestrasService.getMuestras()
       .subscribe(muestras => { this.muestras = muestras });
 
-    if (Object.keys(this.usuario).length != 0) {
-      this.authService.validarTokenAdmin()
-        .subscribe();
-    }
-
 
   }
-
-
 
   verificarRolAdmin() {
     if (this.usuario.rol == 2 || this.usuario.rol == 4) {

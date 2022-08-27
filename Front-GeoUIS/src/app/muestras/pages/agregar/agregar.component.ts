@@ -143,7 +143,7 @@ export class AgregarComponent implements OnInit {
 
   agregar() {
     const dialog = this.dialog.open(AgregarFotosComponent, {
-      width: '350px',
+      
       data: this.muestra
     })
   }
