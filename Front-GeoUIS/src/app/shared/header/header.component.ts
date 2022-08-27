@@ -20,8 +20,11 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (Object.keys(this.usuario).length != 0) {
-      this.authService.validarTokenAdmin()
+    const token = localStorage.getItem('token')
+
+    if(token != null){
+      
+      this.authService.validarTokenUsuario()
         .subscribe();
     }
   }
