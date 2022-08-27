@@ -1,7 +1,7 @@
 <h1> {{( muestra.id_muestra)? 'Editar' : 'Nueva'}} Muestra</h1>
 <h1> {{muestra.nombre}} </h1>
 
-<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.sm="column" fxLayout.xs="column">
     <div fxFlex="50" fxLayout="column">
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
@@ -146,10 +146,10 @@
         </div>
     </div>
 
-    <div fxFlex="50">
-        <div fxLayout="column" fxLayoutGap="20px">
-            <div fxLayout="row">
-                <div fxLayout="colum" fxLayout.xs="column" fxLayoutGap="20px" fxFlex="70">
+    <div fxFlex="50" fxLayout="column" >
+        
+            <div fxLayout="row" fxLayoutGap="20px">
+                <div fxLayout="colum" fxLayoutGap="20px" fxFlex="60">
                     <div fxLayout="row">
                         <button mat-raised-button color="accent" (click)="agregar()">
                             <mat-icon>add</mat-icon>
@@ -157,8 +157,8 @@
                         </button>
                     </div>
                 </div>
-                <div fxLayout="column" fxFlex="30" *ngIf="!disponible">
-                    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+                <div fxLayout="column" fxFlex="40" *ngIf="!disponible">
+                    <div fxLayout="row" fxLayoutGap="30px" style="justify-content: flex-end">
                         <button mat-raised-button color="primary" (click)="Devolver()">
                             <mat-icon>settings_backup_restore</mat-icon>
                             Devolver prestamo
@@ -168,7 +168,7 @@
                 
             </div>
 
-            <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"
+            <!-- <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"
                 *ngIf="muestra.id_muestra">
                 <div class="carousel-inner">
                     <div class="carousel-item active" *ngFor="let foto of fotos">
@@ -186,9 +186,16 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Siguiente</span>
                 </button>
+            </div> -->
+
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px" style="margin-top: 2%;" *ngIf="muestra.id_muestra">
+                <div *ngFor="let foto of fotos" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="35">
+                    <app-foto-tarjeta [Foto]="foto" ></app-foto-tarjeta>
+                </div>
+            
             </div>
         </div>
-    </div>
+    
 
 
 </div>

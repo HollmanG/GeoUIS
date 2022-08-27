@@ -1,1 +1,13 @@
-<p>foto-tarjeta works!</p>
+<mat-card class="tarjeta">
+    <mat-card-content>
+        <div class="containerImagen">
+            <div style="text-align: center;">
+                <img [src]="Foto | imagen" class="ImagenCard">
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions style="text-align: center;">
+        <button mat-button
+                color="warn">Eliminar</button>
+    </mat-card-actions>
+</mat-card>

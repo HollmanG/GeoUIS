@@ -1,0 +1,17 @@
+.ImagenCard{
+    padding: 5%;
+    padding-bottom: 0%;
+    height: 9.8rem;
+    width: 9.8rem;
+    margin: 0;
+    object-fit: cover;
+    transform-origin: 100% 100%;
+}
+
+.containerImagen{
+    padding-bottom: 0%;
+}
+
+.tarjeta{
+    margin-bottom: 5%;
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Fotos } from '../../interfaces/fotos.interface';
 
 @Component({
   selector: 'app-foto-tarjeta',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FotoTarjetaComponent implements OnInit {
 
+  @Input() Foto!: Fotos;
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
   }
 
 }
