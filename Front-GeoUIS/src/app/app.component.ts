@@ -20,11 +20,6 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    console.log("onChange");
-    
-    if (Object.keys(this.usuario).length != 0) {
-      this.authService.validarTokenAdmin()
-        .subscribe();
-    }
+
   }
 }
