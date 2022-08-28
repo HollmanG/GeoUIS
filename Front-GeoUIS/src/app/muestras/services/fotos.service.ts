@@ -31,12 +31,12 @@ export class FotosService {
     return this.http.post<Fotos>(`${this.baseUrl}/muestras/fotos`,foto,{headers})
   }
 
-  borrarFoto(id_muestra: number){
+  borrarFoto(id_foto: number){
     //Token actual
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
     
-      return this.http.delete<any>(`${this.baseUrl}/muestras/fotos/${id_muestra}` , {headers} )
+      return this.http.delete<any>(`${this.baseUrl}/muestras/fotos/${id_foto}` , {headers} )
   }
 
 }
