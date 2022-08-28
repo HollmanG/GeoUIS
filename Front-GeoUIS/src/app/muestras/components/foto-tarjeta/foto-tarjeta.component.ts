@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Fotos } from '../../interfaces/fotos.interface';
+import { FotosService } from '../../services/fotos.service';
 
 @Component({
   selector: 'app-foto-tarjeta',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FotoTarjetaComponent implements OnInit {
 
-  constructor() { }
+  @Input() Foto!: Fotos;
 
-  ngOnInit(): void {
+  constructor(private router: Router,
+              private snackBar: MatSnackBar,
+              private fotosService: FotosService) { }
+
+  ngOnInit(): void { 
+  }
+
+  EliminarFoto(){
+    this.fotosService.borrarFoto(this.Foto.id_foto!)
+    .subscribe(resp => {
+      this.mostrarSnackBar('Foto Eliminada');
+      window.location.reload();
+    })
+  }
+
+  mostrarSnackBar(mensaje: string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 2500
+    })
   }
 
 }
