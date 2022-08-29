@@ -12,6 +12,8 @@ export class AgregarFotosComponent implements OnInit {
 
   public archivos: any = [];
 
+  public previsualizacion: string = "";
+
   constructor(private dialogRef: MatDialogRef<AgregarFotosComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Muestra,
     private sanitizer: DomSanitizer) { }
@@ -26,8 +28,12 @@ export class AgregarFotosComponent implements OnInit {
 
   capturarFile(event:any):any{
     const archivoCapturado = event.target.files[0];
+    this.extraerbase64(archivoCapturado).then((imagen:any) => {
+      this.previsualizacion = imagen.base;
+      console.log(imagen)
+    })
     this.archivos.push(archivoCapturado);
-    console.log(event.target.files);
+    // console.log(event.target.files);
   }
 
   extraerbase64 = async ($event: any) => new Promise((resolve, reject) => {
