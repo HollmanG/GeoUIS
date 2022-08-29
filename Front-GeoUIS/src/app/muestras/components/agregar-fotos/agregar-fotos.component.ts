@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Muestra } from 'src/app/muestras/interfaces/muestra.interface';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
+import { FotosService } from '../../services/fotos.service';
 
 @Component({
   selector: 'app-agregar-fotos',
@@ -16,7 +19,10 @@ export class AgregarFotosComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<AgregarFotosComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Muestra,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private fotosService: FotosService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -30,10 +36,8 @@ export class AgregarFotosComponent implements OnInit {
     const archivoCapturado = event.target.files[0];
     this.extraerbase64(archivoCapturado).then((imagen:any) => {
       this.previsualizacion = imagen.base;
-      console.log(imagen)
     })
     this.archivos.push(archivoCapturado);
-    // console.log(event.target.files);
   }
 
   extraerbase64 = async ($event: any) => new Promise((resolve, reject) => {
@@ -59,5 +63,26 @@ export class AgregarFotosComponent implements OnInit {
       return null;
     }
   })
+
+
+  subirArchivo():any {
+    try {
+
+      const datosformulario = new FormData();
+      this.archivos.forEach((archivoFoto:any) => {
+        datosformulario.append('foto', archivoFoto)
+      });
+      datosformulario.append('id_muestra', this.data.id_muestra!.toString())
+
+      this.fotosService.agregarFoto(datosformulario)
+      .subscribe(resp =>{
+        window.location.reload();
+      });
+
+    } catch (e) {
+      console.log('ERROR', e);
+
+    }
+  }
 
 }
