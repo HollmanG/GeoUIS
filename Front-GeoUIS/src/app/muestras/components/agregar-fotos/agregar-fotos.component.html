@@ -1,9 +1,16 @@
 <h1>Seleccione la imagen</h1>
 <hr>
 
+<div>
+    <input type="file" (change)="capturarFile($event)">
+</div>
+
+<div *ngIf="previsualizacion">
+    <img [src]="previsualizacion" alt="" width="100px">
+</div>
 
 <div>
-    <button mat-button color="accent">Añadir</button>
+    <button mat-button color="accent" (click)="subirArchivo()">Añadir</button>
     <button mat-button (click)="cerrar()">Regresar</button>
 
 </div>

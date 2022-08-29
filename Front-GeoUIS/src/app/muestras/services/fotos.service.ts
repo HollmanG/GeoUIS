@@ -24,11 +24,12 @@ export class FotosService {
     )
   }
 
-  agregarFoto(foto : Fotos): Observable<Fotos>{
+  agregarFoto(body:any): Observable<Fotos>{
     //Token actual
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
-    return this.http.post<Fotos>(`${this.baseUrl}/muestras/fotos`,foto,{headers})
+    
+    return this.http.post<Fotos>(`${this.baseUrl}/muestras/fotos`,body,{headers})
   }
 
   borrarFoto(id_foto: number){
