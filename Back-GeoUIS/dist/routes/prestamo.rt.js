@@ -7,6 +7,7 @@ const prestamo_ctrl_1 = require("../controllers/prestamo.ctrl");
 const validarJWT_1 = require("../middlewares/validarJWT");
 const router = (0, express_1.Router)();
 router.get('/:id', prestamo_ctrl_1.getDisponible);
+router.get('/', prestamo_ctrl_1.getPrestamos);
 router.post('/', [
     validarJWT_1.validarJWT,
     validar_roles_1.puedePrestar,
