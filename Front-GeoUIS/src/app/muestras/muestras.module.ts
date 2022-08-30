@@ -17,6 +17,8 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { PrestamoComponent } from './pages/prestamo/prestamo.component';
 import { AgregarFotosComponent } from './components/agregar-fotos/agregar-fotos.component';
 import { FotoTarjetaComponent } from './components/foto-tarjeta/foto-tarjeta.component';
+import { ListarPrestamoComponent } from './pages/listar-prestamo/listar-prestamo.component';
+import { PrestamoTarjetaComponent } from './components/prestamo-tarjeta/prestamo-tarjeta.component';
 
 
 
@@ -32,7 +34,9 @@ import { FotoTarjetaComponent } from './components/foto-tarjeta/foto-tarjeta.com
     ConfirmarComponent,
     PrestamoComponent,
     AgregarFotosComponent,
-    FotoTarjetaComponent
+    FotoTarjetaComponent,
+    ListarPrestamoComponent,
+    PrestamoTarjetaComponent
   ],
   imports: [
     CommonModule,

@@ -34,4 +34,11 @@ export class ListarComponent implements OnInit {
     return false;
   }
 
+  verificarRolUsuario() {
+    if (this.usuario.rol != undefined) {
+      return true;
+    }
+    return false;
+  }
+
 }

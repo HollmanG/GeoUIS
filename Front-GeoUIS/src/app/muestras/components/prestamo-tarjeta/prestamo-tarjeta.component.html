@@ -1,0 +1,67 @@
+<mat-card>
+    <div style="text-align: center;">
+        <mat-card-title>{{prestamo.nombre_muestra}}</mat-card-title>
+    </div>
+    <div style="text-align: center;">
+        <img [src]="fotos[0] | imagen" class="ImagenCard">
+    </div>
+
+    <mat-card-content>
+        <div class="container">
+            <div class="row">
+                
+                    <strong>Usuario: </strong>
+                
+                    <p>
+                        {{prestamo.nombre_usuario}}
+                    </p>
+                
+            </div>
+            <div class="row">
+                
+                    <strong>Correo: </strong>
+                
+                    <p>
+                        {{prestamo.correo}}
+                    </p>
+                
+            </div>
+            <div class="row">
+                
+                    <strong>Fecha Prestamo: </strong>
+                
+                    <p>
+                        {{prestamo.fecha_prestamo}}
+                    </p>
+                
+            </div>
+            <div class="row">
+                
+                    <strong>Fecha Devolución: </strong>
+                
+                    <p>
+                        {{(prestamo.fecha_devolucion)? prestamo.fecha_devolucion : 'N/A'}}
+                    </p>
+                
+            </div>
+            <div class="row">
+
+                <strong>Tipo de roca: </strong>
+
+                <p>
+                    {{prestamo.tipo_muestra}}
+                </p>
+
+            </div>
+        </div>
+    </mat-card-content>
+    <!-- <mat-card-actions>
+        <button mat-button
+                [routerLink]="['/muestra/',muestra.id_muestra]"
+                color="accent">Ver más</button>
+        <button mat-button
+                [routerLink]="['/muestra/editar/',muestra.id_muestra]"
+                color="warn"
+                *ngIf="verificarRolAdmin()">Editar</button>
+    </mat-card-actions> -->
+</mat-card>

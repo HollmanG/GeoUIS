@@ -4,13 +4,13 @@
 <div>
     <input type="file" (change)="capturarFile($event)">
 </div>
-
-<div *ngIf="previsualizacion">
-    <img [src]="previsualizacion" alt="" width="100px">
+<br>
+<div *ngIf="previsualizacion" style="text-align: center;">
+    <img [src]="previsualizacion" alt="" width="300rem">
 </div>
-
-<div>
+<br>
+<div style="text-align: center;">
     <button mat-button color="accent" (click)="subirArchivo()">Añadir</button>
-    <button mat-button (click)="cerrar()">Regresar</button>
+    <button mat-button (click)="cerrar()" color="warn">Regresar</button>
 
 </div>

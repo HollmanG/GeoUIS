@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <h1>Listado de prestamos</h1>
+        </div>
+    </div>
+    <div fxLayout="column" fxFlex="30">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
+            <button mat-raised-button color="warn" (click)="regresar()">Regresar</button>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div *ngFor="let prestamo of prestamos" fxFlex.lg="15" fxFlex.sm="30" fxFlex.md="20">
+        <app-prestamo-tarjeta [prestamo]="prestamo" *ngIf="VisualizarCard(prestamo)"></app-prestamo-tarjeta>
+    </div>
+
+</div>
