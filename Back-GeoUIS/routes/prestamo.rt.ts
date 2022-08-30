@@ -8,7 +8,11 @@ const router = Router();
 
 router.get('/:id', getDisponible);
 
-router.get('/', getPrestamos);
+router.get('/', [
+    validarJWT,
+    puedePrestar, 
+    validarCampos
+], getPrestamos);
 
 router.post('/', [
     validarJWT,
