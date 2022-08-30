@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PrestamoComponent } from './pages/prestamo/prestamo.component';
 import { ValidarTokenAdminGuard } from '../auth/guards/validar-token-admin.guard';
 import { ValidarTokenUsuarioGuard } from '../auth/guards/validar-token-usuario.guard';
+import { ListarPrestamoComponent } from './pages/listar-prestamo/listar-prestamo.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
     children: [
       {
         path: 'listar', component: ListarComponent
+      },
+      {
+        path: 'prestamos', component: ListarPrestamoComponent,
+        canActivate: [ValidarTokenUsuarioGuard]
       },
       {
         path: 'prestamo/:id', component: PrestamoComponent,
