@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { QueryTypes } from 'sequelize';
 import { Req } from "../helpers/interfaces";
 import Prestamo from '../models/prestamo.mdl';
 
@@ -20,6 +21,33 @@ const disp = async(id_muestra: string): Promise<boolean> => {
     }
 
     return disponible;
+
+}
+
+export const getPrestamos = async (req: Request, res: Response) => {
+
+    try {
+        const query = ` SELECT pr.*, mu.nombre as nombre_muestra, us.nombre as nombre_usuario, us.correo, tp.nombre as tipo_muestra
+                        FROM prestamos pr
+                        JOIN muestras mu ON mu.id_muestra = pr.id_muestra
+                        JOIN usuarios us ON us.id = pr.id_usuario
+                        JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra
+                        order by pr.id_prestamo DESC`;
+
+        const prestamos = await Prestamo.sequelize?.query(query, { type: QueryTypes.SELECT });
+        
+        return res.status(200).json({
+            ok: true,
+            msg: 'getPrestamos',
+            prestamos
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
 
 }
 
