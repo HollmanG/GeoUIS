@@ -29,6 +29,7 @@ export class RegisterComponent {
     .subscribe(ok=>{
       if(ok === true) {
         this.router.navigateByUrl('/inicio'); 
+        window.location.reload();
       } else {
         Swal.fire('Error', ok, 'error')
       }

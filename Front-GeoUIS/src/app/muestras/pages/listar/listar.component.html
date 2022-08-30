@@ -4,7 +4,8 @@
             <h1>Listado de muestras</h1>
         </div>
     </div>
-    <div fxLayout="column" fxFlex="30" fxLayoutGap="20px">
+    
+    <div fxLayout="column" fxFlex="30">
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
             <button mat-raised-button [routerLink]="['/muestra/agregar/']" color="warn" *ngIf="verificarRolAdmin()">
                 <mat-icon>
@@ -12,8 +13,15 @@
                 </mat-icon>
                 Nueva muestra
             </button>
+            <button mat-raised-button [routerLink]="['/muestra/agregar/']" color="primary" *ngIf="verificarRolUsuario()">
+                <mat-icon>
+                    chevron_left
+                </mat-icon>
+                {{( this.usuario.rol == 2 || this.usuario.rol == 4)? 'Prestamos' : 'Mis prestamos'}} 
+            </button>
         </div>
     </div>
+
 </div>
 
 <hr>
