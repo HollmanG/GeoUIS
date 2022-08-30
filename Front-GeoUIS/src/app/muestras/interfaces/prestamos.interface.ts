@@ -23,3 +23,10 @@ export interface PrestamoResponse {
     prestamo: Prestamo;
 
 }
+
+export interface PrestamosResponse {
+    ok: boolean; 
+    msg: string | {}; 
+    prestamos: Prestamo[];
+
+}

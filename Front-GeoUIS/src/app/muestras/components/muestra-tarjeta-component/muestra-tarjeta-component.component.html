@@ -1,6 +1,6 @@
 <mat-card>
     <div style="text-align: center;">
-            <mat-card-title>{{muestra.nombre}}</mat-card-title>
+        <mat-card-title>{{muestra.nombre}}</mat-card-title>
     </div>
     <div style="text-align: center;">
         <img [src]="fotos[0] | imagen" class="ImagenCard">
@@ -9,54 +9,46 @@
     <mat-card-content>
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <strong>Tipo de roca: </strong>
-                </div>
-                <div class="col">
-                    <p>
-                        {{muestra.tipo_muestra}}
-                    </p>
-                </div>
+
+                <strong>Tipo de roca: </strong>
+
+                <p>
+                    {{muestra.tipo_muestra}}
+                </p>
+
             </div>
             <div class="row">
-                <div class="col">
-                    <strong>Mineralogia: </strong>
-                </div>
-                <div class="col">
-                    <p>
-                        {{muestra.mineralogia}}
-                    </p>
-                </div>
+
+                <strong>Mineralogia: </strong>
+
+                <p>
+                    {{muestra.mineralogia}}
+                </p>
+
             </div>
             <div class="row">
-                <div class="col">
-                    <strong>Caracteristicas Fisicas: </strong>
-                </div>
-                <div class="col">
-                    <p>
-                        {{muestra.caracteristicas_fisicas}}
-                    </p>
-                </div>
+
+                <strong>Caracteristicas Fisicas: </strong>
+
+                <p>
+                    {{muestra.caracteristicas_fisicas}}
+                </p>
+
             </div>
             <div class="row">
-                <div class="col">
-                    <strong>Formacion: </strong>
-                </div>
-                <div class="col">
-                    <p>
-                        {{muestra.formacion}}
-                    </p>
-                </div>
+
+                <strong>Formacion: </strong>
+
+                <p>
+                    {{muestra.formacion}}
+                </p>
+
             </div>
         </div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button
-                [routerLink]="['/muestra/',muestra.id_muestra]"
-                color="accent">Ver más</button>
-        <button mat-button
-                [routerLink]="['/muestra/editar/',muestra.id_muestra]"
-                color="warn"
-                *ngIf="verificarRolAdmin()">Editar</button>
+        <button mat-button [routerLink]="['/muestra/',muestra.id_muestra]" color="accent">Ver más</button>
+        <button mat-button [routerLink]="['/muestra/editar/',muestra.id_muestra]" color="warn"
+            *ngIf="verificarRolAdmin()">Editar</button>
     </mat-card-actions>
 </mat-card>

@@ -4,7 +4,8 @@ import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Prestamo, PrestamoDisponibleResponse, PrestamoResponse } from '../interfaces/prestamos.interface';
+import { Prestamo, PrestamoDisponibleResponse, PrestamoResponse, PrestamosResponse } from '../interfaces/prestamos.interface';
+import { getPrestamos } from '../../../../../Back-GeoUIS/controllers/prestamo.ctrl';
 
 
 @Injectable({
@@ -63,4 +64,19 @@ export class PrestamosService {
         })
       )
   }
+
+
+  getPrestamos(): Observable<Prestamo[]> {
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
+
+    return this.http.get<PrestamosResponse>(`${this.baseUrl}/prestamos`, { headers })
+      .pipe(
+        map(resp => {
+          return resp.prestamos
+        })
+      )
+  }
+
+
 }
