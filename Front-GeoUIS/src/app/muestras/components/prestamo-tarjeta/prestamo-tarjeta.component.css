@@ -1,0 +1,10 @@
+mat-card {
+    margin-top: 3vh;
+}
+
+.ImagenCard{
+    padding: 5%;
+    height: 10rem;
+    width: 10rem;
+    margin: 0;
+}
