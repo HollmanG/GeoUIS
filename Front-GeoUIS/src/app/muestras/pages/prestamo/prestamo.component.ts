@@ -8,6 +8,7 @@ import { FotosService } from '../../services/fotos.service';
 import { PrestamosService } from '../../services/prestamos.service';
 import { Prestamo } from '../../interfaces/prestamos.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-prestamo',
@@ -33,7 +34,8 @@ export class PrestamoComponent implements OnInit {
     private fotosService: FotosService,
     private prestamosService: PrestamosService,
     private snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    public datepipe: DatePipe) { }
 
   ngOnInit(): void {
 
@@ -62,6 +64,15 @@ export class PrestamoComponent implements OnInit {
   }
 
   perdirPrestamo(){
+
+    const fechaActual = new Date();
+    const fechaActualString = this.datepipe.transform(Date.now(), 'dd/MM/yyyy');
+ 
+    if(this.prestamo.fecha_prestamo! < fechaActual){
+      this.mostrarSnackBar("Fecha incorrecta, por favor seleccione una fecha posterior o igual al día " + fechaActualString );
+      return
+    }
+
     this.prestamo.id_muestra = this.muestra.id_muestra;
 
     if(this.prestamo.id_muestra == undefined || this.prestamo.fecha_prestamo == undefined){

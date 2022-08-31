@@ -24,7 +24,9 @@ export class FotoTarjetaComponent implements OnInit {
     this.fotosService.borrarFoto(this.Foto.id_foto!)
     .subscribe(resp => {
       this.mostrarSnackBar('Foto Eliminada');
-      window.location.reload();
+      setTimeout(()=>{  
+        window.location.reload();
+      }, 1000);
     })
   }
 
