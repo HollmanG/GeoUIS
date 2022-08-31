@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Fotos } from '../../interfaces/fotos.interface';
 import { Prestamo } from '../../interfaces/prestamos.interface';
@@ -24,7 +26,9 @@ export class PrestamoTarjetaComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private fotosService: FotosService,
-    private prestamoService: PrestamosService) { }
+    private prestamoService: PrestamosService,
+    public datepipe: DatePipe,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -45,6 +49,24 @@ export class PrestamoTarjetaComponent implements OnInit {
     }
     return false
 
+  }
+
+  Devolver(){
+    const fechaActual = this.datepipe.transform(Date.now(), 'yyyy-MM-dd');
+    this.prestamoService.DevolverPrestamo(this.prestamo.id_muestra!, fechaActual!)
+    .subscribe(resp => {
+      this.mostrarSnackBar('Muestra devuelta')
+      setTimeout(()=>{  
+        window.location.reload();
+      }, 2000);
+      
+    })
+  }
+
+  mostrarSnackBar(mensaje: string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 2500
+    })
   }
 
 }

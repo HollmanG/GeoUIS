@@ -57,6 +57,7 @@
     </mat-card-content>
     <mat-card-actions style="text-align: center;">
         <button mat-raised-button *ngIf="prestamoDisponible()"
-                color="primary">Devolver Prestamo</button>
+                color="primary"
+                (click)="Devolver()">Devolver Prestamo</button>
     </mat-card-actions>
 </mat-card>
