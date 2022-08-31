@@ -35,7 +35,7 @@ export class PrestamosService {
       )
   }
 
-  getDisponible(id_muestra: number): Observable<Boolean> {
+  getDisponible(id_muestra: number): Observable<boolean> {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
 
