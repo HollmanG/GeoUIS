@@ -83,8 +83,8 @@ export class AuthService {
             nombre: resp.nombre!,
             rol: resp.rol!
           }
-          if(resp.ok = true){
-            if(this._usuario.rol == 2 || this._usuario.rol == 4){
+          if (resp.ok = true) {
+            if (this._usuario.rol == 2 || this._usuario.rol == 4) {
               return true;
             }
           }
@@ -110,8 +110,8 @@ export class AuthService {
             nombre: resp.nombre!,
             rol: resp.rol!
           }
-          if(resp.ok = true){
-            if(this._usuario.rol != undefined){
+          if (resp.ok = true) {
+            if (this._usuario.rol != undefined) {
               return true;
             }
           }
@@ -123,7 +123,9 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('token');
-    
+
   }
+
+  
 
 }

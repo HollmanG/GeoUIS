@@ -18,6 +18,8 @@ export class MuestraComponent implements OnInit {
 
   fotos: Fotos[] = [];
 
+  fotoCarrusel: Fotos | undefined;
+
   muestra!: Muestra;
 
   municipio: Municipio = {
@@ -38,8 +40,6 @@ export class MuestraComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     this.activatedRoute.params
       .pipe(
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
@@ -54,7 +54,10 @@ export class MuestraComponent implements OnInit {
       .pipe(
         switchMap(({ id }) => this.fotosService.getFotos(id))
       )
-      .subscribe(fotos => this.fotos = fotos);
+      .subscribe(fotos => {
+        this.fotos = fotos;
+        this.fotoCarrusel = fotos.shift();
+      });
 
   }
 

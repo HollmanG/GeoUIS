@@ -55,13 +55,9 @@
             </div>
         </div>
     </mat-card-content>
-    <!-- <mat-card-actions>
-        <button mat-button
-                [routerLink]="['/muestra/',muestra.id_muestra]"
-                color="accent">Ver más</button>
-        <button mat-button
-                [routerLink]="['/muestra/editar/',muestra.id_muestra]"
-                color="warn"
-                *ngIf="verificarRolAdmin()">Editar</button>
-    </mat-card-actions> -->
+    <mat-card-actions style="text-align: center;">
+        <button mat-raised-button *ngIf="prestamoDisponible()"
+                color="primary"
+                (click)="Devolver()">Devolver Prestamo</button>
+    </mat-card-actions>
 </mat-card>

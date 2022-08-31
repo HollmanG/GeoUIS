@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
 
     if(token != null){
       
