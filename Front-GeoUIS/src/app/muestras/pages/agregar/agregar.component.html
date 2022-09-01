@@ -1,6 +1,6 @@
 <h1> {{( muestra.id_muestra)? 'Editar' : 'Nueva'}} Muestra</h1>
 <h1> {{muestra.nombre}} </h1>
-
+<!-- Primer bloque, columna izquierda-->
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.sm="column" fxLayout.xs="column">
     <div fxFlex="50" fxLayout="column" *ngIf="muestra.id_muestra">
         
@@ -28,7 +28,7 @@
             </div>          
         </div>
     </div>
-
+<!-- Segundo bloque, columna derecha -->
     <div fxFlex="50" fxLayout="column">
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
