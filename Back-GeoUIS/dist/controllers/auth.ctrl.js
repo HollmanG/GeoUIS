@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revalidarToken = exports.login = void 0;
+exports.verificarToken = exports.revalidarToken = exports.login = void 0;
 const usuario_mdl_1 = __importDefault(require("../models/usuario.mdl"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const generarJWT_1 = require("../helpers/generarJWT");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { correo, password } = req.body;
     if (!correo) {
@@ -83,4 +84,24 @@ const revalidarToken = (req, res) => __awaiter(void 0, void 0, void 0, function*
     });
 });
 exports.revalidarToken = revalidarToken;
+const verificarToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let bool;
+    const token = req.header('Authorization');
+    if (!token) {
+        return res.status(200).json({
+            ok: false
+        });
+    }
+    try {
+        jsonwebtoken_1.default.verify(token, process.env.SECRETORPRIVATEKEY);
+        bool = true;
+    }
+    catch (error) {
+        bool = false;
+    }
+    return res.status(200).json({
+        ok: bool
+    });
+});
+exports.verificarToken = verificarToken;
 //# sourceMappingURL=auth.ctrl.js.map

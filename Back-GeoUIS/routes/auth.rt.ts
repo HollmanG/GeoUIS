@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { login, revalidarToken } from "../controllers/auth.ctrl";
+import { login, revalidarToken, verificarToken } from "../controllers/auth.ctrl";
 import { validarCampos } from '../middlewares/validarCampos';
 import { validarJWT } from "../middlewares/validarJWT";
 
@@ -14,6 +14,8 @@ router.post('/login', [
 login);
 
 router.get('/renew', validarJWT, revalidarToken);
+
+router.get('/verify', verificarToken);
 
 
 

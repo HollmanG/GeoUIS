@@ -12,5 +12,6 @@ router.post('/login', [
     validarCampos_1.validarCampos
 ], auth_ctrl_1.login);
 router.get('/renew', validarJWT_1.validarJWT, auth_ctrl_1.revalidarToken);
+router.get('/verify', auth_ctrl_1.verificarToken);
 exports.default = router;
 //# sourceMappingURL=auth.rt.js.map

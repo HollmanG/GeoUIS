@@ -3,6 +3,7 @@ import Usuario from '../models/usuario.mdl';
 import bcryptjs from 'bcryptjs';
 import { generarJWT } from "../helpers/generarJWT";
 import { Req } from '../helpers/interfaces';
+import jwt from "jsonwebtoken";
 
 export const login = async(req: Request, res: Response) => {
 
@@ -82,6 +83,31 @@ export const revalidarToken = async(req: Req, res: Response) => {
         nombre: usuario?.nombre,
         correo: usuario?.correo,
         token
+    })
+
+}
+
+export const verificarToken = async(req: Req, res: Response) => {
+
+    let bool;
+
+    const token = req.header('Authorization');
+
+    if(!token) {
+        return res.status(200).json({
+            ok: false
+        })
+    }
+
+    try {
+        jwt.verify(token, process.env.SECRETORPRIVATEKEY!);
+        bool = true;
+    } catch (error) {
+        bool = false;
+    }
+    
+    return res.status(200).json({
+        ok: bool
     })
 
 }
