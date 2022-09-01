@@ -25,7 +25,7 @@ Localizacion.init({
         allowNull: false
     },
     punto: {
-        type: DataTypes.GEOMETRY('POINT', 9377),
+        type: DataTypes.GEOMETRY,
         allowNull: true
     },
     localizacion_geografica: {
