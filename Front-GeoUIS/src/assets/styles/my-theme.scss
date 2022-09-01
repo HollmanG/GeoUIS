@@ -5,9 +5,9 @@
 
 // GAMA COLORES
 $my-primary-color: (
-  100 : #81c784,
-  500 : #4caf50,
-  700 : #388e3c,
+  100 : #43a047,
+  500 : #2e7d32,
+  700 : #1b5e20,
   contrast: (
     100 : #000000,
     500 : #ffffff,
@@ -16,9 +16,9 @@ $my-primary-color: (
 );
 
 $my-accent-color: (
-  100 : #aed581,
-  500 : #8bc34a,
-  700 : #689f38,
+  100 : #ffffff,
+  500 : #ffffff,
+  700 : #ffffff,
   contrast: (
     100 : #000000,
     500 : #ffffff,
@@ -28,8 +28,8 @@ $my-accent-color: (
 
 $my-warn-color: (
   100 : #ef9a9a,
-  500 : #f44336,
-  700 : #d32f2f,
+  500 : #e96562,
+  700 : #e44e4c,
   contrast: (
     100 : #000000,
     500 : #000000,
