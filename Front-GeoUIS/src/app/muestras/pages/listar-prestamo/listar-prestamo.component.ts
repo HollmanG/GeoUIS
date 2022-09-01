@@ -23,8 +23,13 @@ export class ListarPrestamoComponent implements OnInit {
 
   ngOnInit(): void { 
 
-    this.prestamoService.getPrestamos()
+    if(this.usuario.rol == 2 || this.usuario.rol ==4){
+      this.prestamoService.getPrestamos()
     .subscribe(prestamos => this.prestamos = prestamos);
+    } else{
+      this.prestamoService.getPrestamo(this.usuario.id)
+    .subscribe(prestamos => this.prestamos = prestamos);
+    }
 
   }
 
