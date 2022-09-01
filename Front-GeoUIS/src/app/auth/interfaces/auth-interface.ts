@@ -17,3 +17,7 @@ export interface Usuario {
     rol: number;
 }
 
+export interface AuthResponseValidar{
+    ok: boolean;
+}
+
