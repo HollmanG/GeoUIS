@@ -12,6 +12,7 @@ router.get('/', [
     validar_roles_1.puedePrestar,
     validarCampos_1.validarCampos
 ], prestamo_ctrl_1.getPrestamos);
+router.get('/usuario/:id', prestamo_ctrl_1.getPrestamo);
 router.post('/', [
     validarJWT_1.validarJWT,
     validar_roles_1.puedePrestar,

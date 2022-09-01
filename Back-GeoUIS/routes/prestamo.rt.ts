@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { puedePrestar, esAdmin } from '../middlewares/validar-roles';
 import { validarCampos } from '../middlewares/validarCampos';
-import { postPrestamo, putPrestamo, getDisponible, getPrestamos } from '../controllers/prestamo.ctrl';
+import { postPrestamo, putPrestamo, getDisponible, getPrestamos, getPrestamo } from '../controllers/prestamo.ctrl';
 import { validarJWT } from '../middlewares/validarJWT';
 
 const router = Router();
@@ -13,6 +13,8 @@ router.get('/', [
     puedePrestar, 
     validarCampos
 ], getPrestamos);
+
+router.get('/usuario/:id', getPrestamo);
 
 router.post('/', [
     validarJWT,

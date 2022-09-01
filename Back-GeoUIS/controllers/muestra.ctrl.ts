@@ -17,14 +17,17 @@ export const getMuestras = async (req: Request, res: Response) => {
         const query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
                      JOIN ubicaciones ub ON ub.id_ubicacion = mu.id_ubicacion
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
-                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``}order by mu.nombre`;
+                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``} order by mu.nombre`;
 
         const muestras = await Muestra.sequelize?.query(query, { type: QueryTypes.SELECT });
+        
         if(muestras) {
             muestras.forEach((muestra: any) => {
                 if(muestra.punto){ 
                     muestra.lng = muestra.punto.coordinates[0];
                     muestra.lat = muestra.punto.coordinates[1];
+                    muestra.alt = muestra.punto.coordinates[2];
+                    muestra.m = muestra.punto.coordinates[3];
                 }
                 delete muestra.punto;
             })
@@ -88,7 +91,7 @@ export const crearMuestra = async (req: Req, res: Response) => {
 
     const { nombre, id_tipo_muestra, codigo, caracteristicas_fisicas,
         fecha_recoleccion, fecha_ingreso, id_ubicacion, edad,
-        mineralogia, formacion, lat, lng, localizacion_geografica,
+        mineralogia, formacion, lat, lng, alt, m, localizacion_geografica,
         localizacion_geologica, id_municipio } = req.body;
 
     //Verficamos los parámetros obligatorios
@@ -117,25 +120,19 @@ export const crearMuestra = async (req: Req, res: Response) => {
     try {
 
         let punto;
-        //TODO: Validar si es correcto el punto
-        if (lng && lat) {
-            punto = {
-                type: 'Point',
-                coordinates: [lng, lat],
-                crs: { type: 'name', properties: { name: 'EPSG:9377' } }
-            };
-        }
-
-
+        
         //Se crea la localización
-        const localizacion: Localizacion = Localizacion.build({
-            id_municipio,
-            punto: punto ? punto : undefined,
-            localizacion_geografica: localizacion_geografica ? localizacion_geografica : null,
-            localizacion_geologica: localizacion_geologica ? localizacion_geologica : null
-        });
+        const query = `insert into localizaciones (punto, localizacion_geografica, localizacion_geologica, id_municipio) 
+        values(
+            ST_GeomFromText('POINT ZM(${lng} ${lat} ${alt} ${m})'), 
+            ${localizacion_geografica ? `'${localizacion_geografica}'`: null},
+            ${localizacion_geologica ? `'${localizacion_geologica}'`: null},
+            '${id_municipio}') 
+            returning *`;
 
-        await localizacion.save();
+        const as: any = await Muestra.sequelize?.query(query, { type: QueryTypes.INSERT });
+        const localizacion = as[0][0];
+        
         //Se crea la muestra
         const muestra: Muestra = Muestra.build({
             nombre, id_tipo_muestra, codigo,

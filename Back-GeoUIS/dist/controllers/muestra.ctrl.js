@@ -27,13 +27,15 @@ const getMuestras = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
                      JOIN ubicaciones ub ON ub.id_ubicacion = mu.id_ubicacion
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
-                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``}order by mu.nombre`;
+                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``} order by mu.nombre`;
         const muestras = yield ((_a = muestra_mdl_1.default.sequelize) === null || _a === void 0 ? void 0 : _a.query(query, { type: sequelize_1.QueryTypes.SELECT }));
         if (muestras) {
             muestras.forEach((muestra) => {
                 if (muestra.punto) {
                     muestra.lng = muestra.punto.coordinates[0];
                     muestra.lat = muestra.punto.coordinates[1];
+                    muestra.alt = muestra.punto.coordinates[2];
+                    muestra.m = muestra.punto.coordinates[3];
                 }
                 delete muestra.punto;
             });
@@ -88,7 +90,8 @@ const getMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getMuestra = getMuestra;
 const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombre, id_tipo_muestra, codigo, caracteristicas_fisicas, fecha_recoleccion, fecha_ingreso, id_ubicacion, edad, mineralogia, formacion, lat, lng, localizacion_geografica, localizacion_geologica, id_municipio } = req.body;
+    var _c;
+    const { nombre, id_tipo_muestra, codigo, caracteristicas_fisicas, fecha_recoleccion, fecha_ingreso, id_ubicacion, edad, mineralogia, formacion, lat, lng, alt, m, localizacion_geografica, localizacion_geologica, id_municipio } = req.body;
     //Verficamos los parámetros obligatorios
     if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio) {
         return res.status(400).json({
@@ -111,22 +114,16 @@ const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     try {
         let punto;
-        //TODO: Validar si es correcto el punto
-        if (lng && lat) {
-            punto = {
-                type: 'Point',
-                coordinates: [lng, lat],
-                crs: { type: 'name', properties: { name: 'EPSG:9377' } }
-            };
-        }
         //Se crea la localización
-        const localizacion = localizacion_mdl_1.default.build({
-            id_municipio,
-            punto: punto ? punto : undefined,
-            localizacion_geografica: localizacion_geografica ? localizacion_geografica : null,
-            localizacion_geologica: localizacion_geologica ? localizacion_geologica : null
-        });
-        yield localizacion.save();
+        const query = `insert into localizaciones (punto, localizacion_geografica, localizacion_geologica, id_municipio) 
+        values(
+            ST_GeomFromText('POINT ZM(${lng} ${lat} ${alt} ${m})'), 
+            ${localizacion_geografica ? `'${localizacion_geografica}'` : null},
+            ${localizacion_geologica ? `'${localizacion_geologica}'` : null},
+            '${id_municipio}') 
+            returning *`;
+        const as = yield ((_c = muestra_mdl_1.default.sequelize) === null || _c === void 0 ? void 0 : _c.query(query, { type: sequelize_1.QueryTypes.INSERT }));
+        const localizacion = as[0][0];
         //Se crea la muestra
         const muestra = muestra_mdl_1.default.build({
             nombre, id_tipo_muestra, codigo,
@@ -252,7 +249,7 @@ const getFotos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getFotos = getFotos;
 const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c, _d;
+    var _d, _e;
     const { id_muestra } = req.body;
     if (!id_muestra) {
         return res.status(400).json({
@@ -261,7 +258,7 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
     //Verificamos que se envió la foto
-    if (!((_c = req.files) === null || _c === void 0 ? void 0 : _c.foto)) {
+    if (!((_d = req.files) === null || _d === void 0 ? void 0 : _d.foto)) {
         return res.status(400).json({
             ok: false,
             msg: 'Debe enviar al menos 1 foto'
@@ -287,7 +284,7 @@ const agregarFoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const fotosCreadas = [];
         for (const foto of fotos) {
-            const fotoID = yield ((_d = foto_mdl_1.default.sequelize) === null || _d === void 0 ? void 0 : _d.query("SELECT nextval('fotos_id_fotos_seq'::regclass)", { type: sequelize_1.QueryTypes.SELECT }));
+            const fotoID = yield ((_e = foto_mdl_1.default.sequelize) === null || _e === void 0 ? void 0 : _e.query("SELECT nextval('fotos_id_fotos_seq'::regclass)", { type: sequelize_1.QueryTypes.SELECT }));
             const id_foto = Object.values(fotoID[0])[0];
             const nombreCortado = foto.name.split('.');
             const extension = nombreCortado[nombreCortado.length - 1];
