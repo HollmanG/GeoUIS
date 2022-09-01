@@ -7,7 +7,7 @@
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout="colum" fxLayoutGap="20px" fxFlex="60">
                 <div fxLayout="row">
-                    <button mat-raised-button color="accent" (click)="agregar()">
+                    <button mat-raised-button color="primary" (click)="agregar()">
                         <mat-icon>add</mat-icon>
                         Añadir imagenes
                     </button>
@@ -24,7 +24,7 @@
         </div>
         <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px" style="margin-top: 2%;" *ngIf="muestra.id_muestra">
             <div *ngFor="let foto of fotos" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="35">
-                <app-foto-tarjeta [Foto]="foto" ></app-foto-tarjeta>
+                <app-foto-tarjeta [Foto]="foto"></app-foto-tarjeta>
             </div>          
         </div>
     </div>

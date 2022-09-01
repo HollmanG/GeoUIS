@@ -2,3 +2,8 @@ img {
     width: 100%;
     border-radius: 5px;
 }
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}

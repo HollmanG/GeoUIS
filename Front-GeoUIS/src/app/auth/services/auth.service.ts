@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { AuthResponse, Usuario } from '../interfaces/auth-interface';
+import { AuthResponse, AuthResponseValidar, Usuario } from '../interfaces/auth-interface';
 import { catchError, map, of, tap, Observable } from 'rxjs';
 
 @Injectable({
@@ -126,6 +126,17 @@ export class AuthService {
 
   }
 
-  
+  validarToken(): Observable<boolean> {
+    const url = `${this.baseURL}/auth/verify`;
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
+
+    return this.http.get<AuthResponseValidar>(url, { headers })
+      .pipe(
+        map(resp => {
+          return resp.ok
+        })
+      )
+  }
 
 }

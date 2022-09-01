@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +8,10 @@ import { AuthService } from './auth/services/auth.service';
 export class AppComponent implements OnInit {
   title = 'Front-GeoUIS';
 
-  get usuario() {
-    return this.authService.usuario
-  }
-
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
 
-    if (token != null) {
-
-    }
   }
 
 }

@@ -4,7 +4,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Prestamo, PrestamoDisponibleResponse, PrestamoResponse, PrestamosResponse } from '../interfaces/prestamos.interface';
+import { Prestamo, PrestamoDisponibleResponse, PrestamoResponse, PrestamosResponse, PrestamosUsuarioResponse } from '../interfaces/prestamos.interface';
 import { getPrestamos } from '../../../../../Back-GeoUIS/controllers/prestamo.ctrl';
 
 
@@ -78,5 +78,16 @@ export class PrestamosService {
       )
   }
 
+  getPrestamo(id_usuario: number): Observable<Prestamo[]> {
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '')
+
+    return this.http.get<PrestamosUsuarioResponse>(`${this.baseUrl}/prestamos/usuario/${id_usuario}`)
+      .pipe(
+        map(resp => {
+          return resp.prestamo
+        })
+      )
+  }
 
 }

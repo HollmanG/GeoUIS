@@ -16,23 +16,29 @@ export class HeaderComponent implements OnInit {
     return this.authService.usuario
   }
 
-  constructor( private router: Router,
+  constructor(private router: Router,
     private authService: AuthService) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
 
-    if(token != null){
-      
-      this.authService.validarTokenUsuario()
-        .subscribe();
+    if (token != null) {
+      this.authService.validarToken()
+        .subscribe(resp => {
+          if (resp) {
+            this.authService.validarTokenUsuario()
+              .subscribe();
+          } else {
+            this.authService.logOut();
+          }
+        })
     }
   }
 
   setMuestra(muestra: Muestra) {
     this.muestra = muestra
     console.log(muestra);
-    
+
   }
 
   logOut() {
