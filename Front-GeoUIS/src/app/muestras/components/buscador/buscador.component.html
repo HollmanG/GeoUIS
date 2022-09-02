@@ -1,5 +1,6 @@
-<mat-form-field class="example-full-width" appearance="legacy" color="accent">
-  <input type="text" placeholder="Buscar muestra" matInput [(ngModel)]="termino" [matAutocomplete]="auto"
+<mat-form-field class="example-full-width text-white" appearance="legacy" color="accent">
+  <mat-label id="placeholder" class="text-white">Buscar muestra</mat-label>
+  <input type="text" class="text-white" matInput [(ngModel)]="termino" [matAutocomplete]="auto"
     (input)="buscando()">
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="opcionSeleccionada($event)">
     <mat-option *ngFor="let muestra of muestras" [value]="muestra">

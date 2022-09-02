@@ -1,8 +1,7 @@
 .carousel-item{
-    height: 30rem;
+
 } 
 .carousel-item img{
-    height: 30rem;
     object-fit: fill;
 }
 
@@ -10,6 +9,10 @@
     padding: 5rem;
     padding-top: 0%;
     padding-bottom: 2rem;
+    width: auto; 
+    height: auto; 
+    margin-left: auto; 
+    margin-right: auto;
 }
 
 .textMain{
