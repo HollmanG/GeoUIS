@@ -20,3 +20,10 @@ mat-autocomplete-panel {
     height: fit-content;
 }
 
+:host ::ng-deep .mat-form-field-underline {
+    background-color: white !important; 
+}  
+
+:host ::ng-deep .mat-form-field-ripple {
+    background-color: white !important;
+}
