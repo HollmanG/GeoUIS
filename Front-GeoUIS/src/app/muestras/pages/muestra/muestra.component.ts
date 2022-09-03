@@ -45,7 +45,6 @@ export class MuestraComponent implements OnInit {
         switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
       )
       .subscribe(muestra => {
-        console.log(muestra.x);
         
         this.muestra = muestra;
         this.filtrosService.getMunicipio(muestra.id_municipio!)
