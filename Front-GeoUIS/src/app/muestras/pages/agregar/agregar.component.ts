@@ -42,7 +42,6 @@ export class AgregarComponent implements OnInit {
   }
 
   muestra: Muestra = {
-    caracteristicas_fisicas: "",
     codigo: "",
     id_tipo_muestra: 0,
     nombre: "",
@@ -107,7 +106,7 @@ export class AgregarComponent implements OnInit {
       this.muestra.codigo == undefined || this.muestra.composicion == undefined || this.muestra.formacion == undefined ||
       this.muestra.fecha_ingreso == undefined || this.muestra.fecha_recoleccion == undefined || this.muestra.id_ubicacion == undefined ||
       this.muestra.id_municipio == undefined || this.muestra.localizacion_geografica == undefined || this.muestra.localizacion_geologica == undefined
-      || this.muestra.x == undefined || this.muestra.y == undefined || this.muestra.caracteristicas_fisicas == undefined) {
+      || this.muestra.x == undefined || this.muestra.y == undefined || this.muestra.textura == undefined) {
       return;
     }
 

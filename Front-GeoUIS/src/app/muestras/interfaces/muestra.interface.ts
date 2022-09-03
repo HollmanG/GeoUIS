@@ -4,7 +4,6 @@ export interface Muestra {
     nombre:                     string;
     id_tipo_muestra:            number;
     codigo:                     string;
-    caracteristicas_fisicas?:    string;
     fecha_recoleccion?:         Date;
     fecha_ingreso?:             Date;
     id_ubicacion:              number;
