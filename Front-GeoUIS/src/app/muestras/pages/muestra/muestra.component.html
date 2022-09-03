@@ -38,21 +38,9 @@
             <mat-list>
                 <mat-list-item>
                     <strong>
-                        Tipo de roca: &nbsp;
+                        Tipo de muestra: &nbsp;
                     </strong>
                     {{muestra.tipo_muestra}}
-                </mat-list-item>
-                <mat-list-item>
-                    <strong>
-                        Mineralogia: &nbsp;
-                    </strong>
-                    {{muestra.mineralogia}}
-                </mat-list-item>
-                <mat-list-item>
-                    <strong>
-                        Caracteristicas fisicas: &nbsp;
-                    </strong>
-                    {{muestra.caracteristicas_fisicas}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
@@ -62,9 +50,69 @@
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
+                        Composición: &nbsp;
+                    </strong>
+                    {{muestra.composicion}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Clasificación: &nbsp;
+                    </strong>
+                    {{muestra.clasificacion}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Textura: &nbsp;
+                    </strong>
+                    {{muestra.textura}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Color: &nbsp;
+                    </strong>
+                    {{muestra.color}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Tamaño: &nbsp;
+                    </strong>
+                    {{muestra.size}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
                         Edad: &nbsp;
                     </strong>
                     {{muestra.edad}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Sección delgada: &nbsp;
+                    </strong>
+                    {{( muestra.seccion_delgada)? 'SI' : 'NO'}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Recolector: &nbsp;
+                    </strong>
+                    {{muestra.recolector}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Asignatura: &nbsp;
+                    </strong>
+                    {{muestra.asignatura}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Estructura: &nbsp;
+                    </strong>
+                    {{muestra.estructura}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Docente: &nbsp;
+                    </strong>
+                    {{muestra.docente}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
@@ -110,15 +158,21 @@
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
-                        Longitud:&nbsp;
+                        Coordenada X:&nbsp;
                     </strong>
-                    {{muestra.lng }}
+                    {{muestra.x}}
                 </mat-list-item>
                 <mat-list-item>
                     <strong>
-                        Latitud:&nbsp;
+                        Coordenada Y:&nbsp;
                     </strong>
-                    {{muestra.lat}}
+                    {{muestra.y}}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>
+                        Coordenada Z: &nbsp;
+                    </strong>
+                    {{muestra.z}}
                 </mat-list-item>
             </mat-list>
             <br>

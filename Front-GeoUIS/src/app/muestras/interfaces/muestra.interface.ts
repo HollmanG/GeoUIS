@@ -1,23 +1,33 @@
 export interface Muestra {
     id_muestra?:                number;
+    textura?:                   string;
     nombre:                     string;
     id_tipo_muestra:            number;
     codigo:                     string;
-    caracteristicas_fisicas?:    string;
     fecha_recoleccion?:         Date;
     fecha_ingreso?:             Date;
-    id_ubicacion?:              number;
-    id_localizacion?:           number;
+    id_ubicacion:              number;
+    id_localizacion:           number;
     edad?:                      number;
-    mineralogia?:               string;
+    composicion?:               string;
     formacion?:                 string;
+    recolector?:                string;
+    color?:                     string;
+    clasificacion?:             string;
+    seccion_delgada:           boolean;
+    docente?:                   string;
+    asignatura?:                string;
+    estructura?:                string;
+    descripcion_seccion_delgada?:   string;
+    size?:                      string;
     ubicacion?:                 string;
     localizacion_geografica?:   string;
     localizacion_geologica?:    string;
     id_municipio?:              string;
     tipo_muestra?:              string;
-    lng?:                       number;
-    lat?:                       number;
+    x?:                       number;
+    y?:                       number;
+    z?:                       number;
 
 }
 

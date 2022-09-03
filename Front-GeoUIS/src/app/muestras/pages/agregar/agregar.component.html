@@ -63,8 +63,8 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
-                <mat-label>Mineralogia</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.mineralogia" required>
+                <mat-label>Composición</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.composicion" required>
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
@@ -72,6 +72,54 @@
                 <input matInput type="text" [(ngModel)]="muestra.formacion" required>
             </mat-form-field>
 
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Clasificación:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.clasificacion" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Sección delgada:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.seccion_delgada" required>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Textura:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.textura" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Color:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.color" required>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Recolector:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.recolector" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Docente:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.docente" required>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Asignatura:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.asignatura" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Estructura:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.estructura" required>
+            </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
@@ -134,20 +182,27 @@
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
-                <mat-label>Longitud</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.lng" required>
+                <mat-label>Coordenada X:</mat-label>
+                <input matInput type="number" [(ngModel)]="muestra.x" required>
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
-                <mat-label>Latitud</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.lat" required>
+                <mat-label>Coordenada Y:</mat-label>
+                <input matInput type="number" [(ngModel)]="muestra.y" required>
             </mat-form-field>
         </div>
 
-        <mat-form-field fxFlex="100" aria-required="true">
-            <mat-label>Caracteristicas fisicas </mat-label>
-            <input matInput type="text" required [(ngModel)]="muestra.caracteristicas_fisicas">
-        </mat-form-field>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Coordenada Z:</mat-label>
+                <input matInput type="number" [(ngModel)]="muestra.z" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
+                <mat-label>Tamaño:</mat-label>
+                <input matInput type="text" [(ngModel)]="muestra.size" required>
+            </mat-form-field>
+        </div>
 
         <br>
 

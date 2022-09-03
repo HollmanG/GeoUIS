@@ -64,9 +64,9 @@ export class MapaComponent implements OnInit {
 
     muestras.forEach((muestra: Muestra) => {
 
-      if (muestra.lng && muestra.lat) {
+      if (muestra.x && muestra.y) {
         const markerFeature = new Feature({
-          geometry: new Point([muestra.lng, muestra.lat]),
+          geometry: new Point([muestra.x, muestra.y]),
           name: muestra.nombre,
           codigo: muestra.codigo,
           id: muestra.id_muestra
@@ -75,7 +75,7 @@ export class MapaComponent implements OnInit {
         markerFeatures.push(markerFeature);
         positions.push({
           name: `${muestra.nombre} ${muestra.codigo}`,
-          pos: [muestra.lng, muestra.lat],
+          pos: [muestra.x, muestra.y],
           zoom: 11
         })
       }

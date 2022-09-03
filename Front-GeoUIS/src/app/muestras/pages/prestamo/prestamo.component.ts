@@ -20,7 +20,10 @@ export class PrestamoComponent implements OnInit {
   muestra: Muestra = {
     nombre: "",
     codigo: "",
-    id_tipo_muestra: 0
+    id_tipo_muestra: 0,
+    id_localizacion: 0,
+    id_ubicacion: 0,
+    seccion_delgada: false
   }
 
   prestamo: Prestamo = {};
