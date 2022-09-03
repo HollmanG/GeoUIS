@@ -61,8 +61,8 @@ export const getMuestra = async (req: Request, res: Response) => {
 
         const muestra = await Muestra.sequelize?.query(query, { replacements: { id }, type: QueryTypes.SELECT });
 
-        if(muestras) {
-            muestras.forEach((muestra: any) => {
+        if(muestra) {
+            muestra.forEach((muestra: any) => {
                 if(muestra.punto){ 
                     muestra.x = muestra.punto.coordinates[0];
                     muestra.y = muestra.punto.coordinates[1];

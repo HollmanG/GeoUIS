@@ -67,8 +67,9 @@ const getMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         if (muestra) {
             muestra.forEach((muestra) => {
                 if (muestra.punto) {
-                    muestra.lng = muestra.punto.coordinates[0];
-                    muestra.lat = muestra.punto.coordinates[1];
+                    muestra.x = muestra.punto.coordinates[0];
+                    muestra.y = muestra.punto.coordinates[1];
+                    muestra.z = muestra.punto.coordinates[2];
                 }
                 delete muestra.punto;
             });
