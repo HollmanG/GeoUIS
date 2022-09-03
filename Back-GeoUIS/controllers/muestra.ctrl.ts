@@ -24,10 +24,9 @@ export const getMuestras = async (req: Request, res: Response) => {
         if(muestras) {
             muestras.forEach((muestra: any) => {
                 if(muestra.punto){ 
-                    muestra.lng = muestra.punto.coordinates[0];
-                    muestra.lat = muestra.punto.coordinates[1];
-                    muestra.alt = muestra.punto.coordinates[2];
-                    muestra.m = muestra.punto.coordinates[3];
+                    muestra.x = muestra.punto.coordinates[0];
+                    muestra.y = muestra.punto.coordinates[1];
+                    muestra.z = muestra.punto.coordinates[2];
                 }
                 delete muestra.punto;
             })
@@ -89,16 +88,17 @@ export const getMuestra = async (req: Request, res: Response) => {
 
 export const crearMuestra = async (req: Req, res: Response) => {
 
-    const { nombre, id_tipo_muestra, codigo, caracteristicas_fisicas,
-        fecha_recoleccion, fecha_ingreso, id_ubicacion, edad,
-        mineralogia, formacion, lat, lng, alt, m, localizacion_geografica,
-        localizacion_geologica, id_municipio } = req.body;
+    const { textura, fecha_recoleccion, fecha_ingreso, id_ubicacion, size,
+        nombre, id_tipo_muestra, edad, composicion, codigo, 
+        formacion, recolector, color, clasificacion, seccion_delgada, 
+        docente, asignatura, estructura, descripcion_seccion_delgada,
+        x, y, z, localizacion_geografica, localizacion_geologica, id_municipio } = req.body; //En esta línea lo refente a localización
 
     //Verficamos los parámetros obligatorios
-    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio) {
+    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio || !seccion_delgada) {
         return res.status(400).json({
             ok: false,
-            msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, id_municipio  y codigo son obligatorios'
+            msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, id_municipio, seccion_delgada y codigo son obligatorios'
         });
     }
 
@@ -120,30 +120,43 @@ export const crearMuestra = async (req: Req, res: Response) => {
     try {
 
         let punto;
-        
-        //Se crea la localización
-        const query = `insert into localizaciones (punto, localizacion_geografica, localizacion_geologica, id_municipio) 
-        values(
-            ST_GeomFromText('POINT ZM(${lng} ${lat} ${alt} ${m})'), 
-            ${localizacion_geografica ? `'${localizacion_geografica}'`: null},
-            ${localizacion_geologica ? `'${localizacion_geologica}'`: null},
-            '${id_municipio}') 
-            returning *`;
+        if (x && y && z) {
+            punto = {
+                type: 'Point',
+                coordinates: [x, y, z]
+            };
+        }
 
-        const as: any = await Muestra.sequelize?.query(query, { type: QueryTypes.INSERT });
-        const localizacion = as[0][0];
+        //Se crea la localización
+        const localizacion: Localizacion = Localizacion.build({
+            id_municipio,
+            punto: punto ? punto : undefined,
+            localizacion_geografica: localizacion_geografica ? localizacion_geografica : null,
+            localizacion_geologica: localizacion_geologica ? localizacion_geologica : null
+        });
+
+        await localizacion.save();
         
         //Se crea la muestra
         const muestra: Muestra = Muestra.build({
             nombre, id_tipo_muestra, codigo,
-            caracteristicas_fisicas: caracteristicas_fisicas ? caracteristicas_fisicas : null,
+            textura: textura ? textura : null,
             fecha_recoleccion: fecha_recoleccion ? fecha_recoleccion : null,
             fecha_ingreso: fecha_ingreso ? fecha_ingreso : null,
             id_ubicacion: id_ubicacion,
             id_localizacion: localizacion.id_localizacion,
+            seccion_delgada, 
             edad: edad ? edad : null,
-            mineralogia: mineralogia ? mineralogia : null,
-            formacion: formacion ? formacion : null
+            composicion: composicion ? composicion : null,
+            formacion: formacion ? formacion : null,
+            recolector: recolector ? recolector : null, 
+            color: color ? color : null,
+            clasificacion: clasificacion ? clasificacion : null,
+            docente: docente ? docente : null,
+            asignatura: asignatura ? asignatura : null,
+            estructura: estructura ? estructura : null,
+            descripcion_seccion_delgada: descripcion_seccion_delgada ? descripcion_seccion_delgada : null,
+            size: size ? size : null
         });
 
         await muestra.save();
@@ -170,7 +183,6 @@ export const editarMuestra = async (req: Req, res: Response) => {
     const { id } = req.params;
 
     const body = req.body;
-    console.log(body);
 
     //Verificamos las fechas
     if (body.fecha_recoleccion && !regexFecha.test(body.fecha_recoleccion)) {
@@ -201,12 +213,10 @@ export const editarMuestra = async (req: Req, res: Response) => {
         await muestra.update(body);
 
         let punto;
-        //TODO: Validar si es correcto el punto
-        if (body.lng && body.lat) {
+        if (body.x && body.y && body.z) {
             punto = {
                 type: 'Point',
-                coordinates: [body.lng, body.lat],
-                crs: { type: 'name', properties: { name: 'EPSG:4326' } }
+                coordinates: [body.x, body.y, body.z]
             };
         }
         body.punto = punto;
@@ -377,13 +387,6 @@ export const eliminarFoto = async (req: Req, res: Response) => {
     const { id } = req.params;
 
     try {
-
-        // if(!id) {
-        //     return res.status(400).json({
-        //         ok: false,
-        //         msg: 'El id de la foto es obligatorio'
-        //     });
-        // }
 
         const fotoExiste = await Foto.findByPk(id);
 
