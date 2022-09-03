@@ -64,8 +64,8 @@ const getMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                      JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra
                      where mu.id_muestra = :id`;
         const muestra = yield ((_b = muestra_mdl_1.default.sequelize) === null || _b === void 0 ? void 0 : _b.query(query, { replacements: { id }, type: sequelize_1.QueryTypes.SELECT }));
-        if (muestras) {
-            muestras.forEach((muestra) => {
+        if (muestra) {
+            muestra.forEach((muestra) => {
                 if (muestra.punto) {
                     muestra.x = muestra.punto.coordinates[0];
                     muestra.y = muestra.punto.coordinates[1];
