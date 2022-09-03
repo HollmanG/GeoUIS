@@ -3,7 +3,7 @@ import db from "../db/connection";
 
 export interface MuestraInterface {
     id_muestra?: number,
-    caracteristicas_fisicas?: string,
+    textura?: string,
     fecha_recoleccion?: Date,
     fecha_ingreso?: Date,
     id_ubicacion?: number,
@@ -11,14 +11,23 @@ export interface MuestraInterface {
     id_localizacion?: number,
     id_tipo_muestra?: number,
     edad?: number,
-    mineralogia?: string,
+    composicion?: string,
     codigo?: string,
-    formacion?: string
+    formacion?: string,
+    recolector?: string,
+    color?: string,
+    clasificacion?: string,
+    seccion_delgada?: boolean,
+    docente?: string,
+    asignatura?: string,
+    estructura?: string,
+    descripcion_seccion_delgada?: string,
+    size?: string
 }
 
 class Muestra extends Model<MuestraInterface> implements MuestraInterface {
     id_muestra?: number;
-    caracteristicas_fisicas?: string;
+    textura?: string;
     fecha_recoleccion?: Date;
     fecha_ingreso?: Date;
     id_ubicacion?: number;
@@ -26,9 +35,18 @@ class Muestra extends Model<MuestraInterface> implements MuestraInterface {
     id_localizacion?: number;
     id_tipo_muestra?: number;
     edad?: number;
-    mineralogia?: string;
+    composicion?: string;
     codigo?: string;
     formacion?: string;
+    recolector?: string;
+    color?: string;
+    clasificacion?: string;
+    seccion_delgada?: boolean;
+    docente?: string;
+    asignatura?: string;
+    estructura?: string;
+    descripcion_seccion_delgada?: string;
+    size?: string;
 }
 
 Muestra.init({
@@ -38,7 +56,7 @@ Muestra.init({
         autoIncrement: true,
         allowNull: false
     },
-    caracteristicas_fisicas : {
+    textura : {
         type: DataTypes.STRING,
         allowNull: true
     }, 
@@ -70,7 +88,7 @@ Muestra.init({
         type: DataTypes.NUMBER,
         allowNull: true
     }, 
-    mineralogia : {
+    composicion : {
         type: DataTypes.STRING,
         allowNull: true
     }, 
@@ -81,7 +99,43 @@ Muestra.init({
     formacion : {
         type: DataTypes.STRING,
         allowNull: true
-    },    
+    },
+    recolector: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    color: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    clasificacion: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    seccion_delgada: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true
+    },
+    docente: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    asignatura: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    estructura: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    descripcion_seccion_delgada: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    size: {
+        type: DataTypes.STRING,
+        allowNull: true
+    }
 }, {
     timestamps: false,
     sequelize: db,

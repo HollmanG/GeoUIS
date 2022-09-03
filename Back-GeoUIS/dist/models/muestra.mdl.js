@@ -14,7 +14,7 @@ Muestra.init({
         autoIncrement: true,
         allowNull: false
     },
-    caracteristicas_fisicas: {
+    textura: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true
     },
@@ -46,7 +46,7 @@ Muestra.init({
         type: sequelize_1.DataTypes.NUMBER,
         allowNull: true
     },
-    mineralogia: {
+    composicion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true
     },
@@ -58,6 +58,42 @@ Muestra.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: true
     },
+    recolector: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    color: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    clasificacion: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    seccion_delgada: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: true
+    },
+    docente: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    asignatura: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    estructura: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    descripcion_seccion_delgada: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    size: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    }
 }, {
     timestamps: false,
     sequelize: connection_1.default,
