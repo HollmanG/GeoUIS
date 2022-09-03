@@ -64,7 +64,7 @@
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Mineralogia</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.mineralogia" required>
+                <input matInput type="text" [(ngModel)]="muestra.composicion" required>
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
@@ -135,12 +135,12 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Longitud</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.lng" required>
+                <input matInput type="number" [(ngModel)]="muestra.x" required>
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Latitud</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.lat" required>
+                <input matInput type="number" [(ngModel)]="muestra.y" required>
             </mat-form-field>
         </div>
 

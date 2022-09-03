@@ -45,7 +45,10 @@ export class AgregarComponent implements OnInit {
     caracteristicas_fisicas: "",
     codigo: "",
     id_tipo_muestra: 0,
-    nombre: ""
+    nombre: "",
+    id_localizacion: 0,
+    id_ubicacion: 0,
+    seccion_delgada: false
   }
 
   constructor(private router: Router,
@@ -101,10 +104,10 @@ export class AgregarComponent implements OnInit {
 
   guardar() {
     if (this.muestra.nombre!.trim().length === 0 || this.muestra.edad == undefined || this.muestra.tipo_muestra == undefined ||
-      this.muestra.codigo == undefined || this.muestra.mineralogia == undefined || this.muestra.formacion == undefined ||
+      this.muestra.codigo == undefined || this.muestra.composicion == undefined || this.muestra.formacion == undefined ||
       this.muestra.fecha_ingreso == undefined || this.muestra.fecha_recoleccion == undefined || this.muestra.id_ubicacion == undefined ||
       this.muestra.id_municipio == undefined || this.muestra.localizacion_geografica == undefined || this.muestra.localizacion_geologica == undefined
-      || this.muestra.lng == undefined || this.muestra.lat == undefined || this.muestra.caracteristicas_fisicas == undefined) {
+      || this.muestra.x == undefined || this.muestra.y == undefined || this.muestra.caracteristicas_fisicas == undefined) {
       return;
     }
 
