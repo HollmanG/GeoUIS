@@ -121,7 +121,7 @@ export const crearMuestra = async (req: Req, res: Response) => {
     try {
 
         let punto;
-        if (x && y && z) {
+        if (x && y) {
             punto = {
                 type: 'Point',
                 coordinates: [x, y, z]
@@ -214,7 +214,7 @@ export const editarMuestra = async (req: Req, res: Response) => {
         await muestra.update(body);
 
         let punto;
-        if (body.x && body.y && body.z) {
+        if (body.x && body.y) {
             punto = {
                 type: 'Point',
                 coordinates: [body.x, body.y, body.z]

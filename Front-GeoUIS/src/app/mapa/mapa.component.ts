@@ -26,6 +26,10 @@ import { MuestrasService } from '../muestras/services/muestras.service';
 import { Muestra } from '../muestras/interfaces/muestra.interface';
 import { firstValueFrom } from 'rxjs';
 
+//proj4
+import proj4 from 'proj4';
+import {register} from 'ol/proj/proj4';
+
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
@@ -43,7 +47,9 @@ export class MapaComponent implements OnInit {
     private muestrasService: MuestrasService) { }
 
   async ngOnInit(): Promise<void> {
-
+    //Proyección para las features
+    proj4.defs("EPSG:3116","+proj=tmerc +lat_0=4.59620041666667 +lon_0=-74.0775079166667 +k=1 +x_0=1000000 +y_0=1000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs");
+    register(proj4);
     //Features
     const muestras: Muestra[] = await firstValueFrom(this.muestrasService.getMuestras())
 
@@ -61,9 +67,8 @@ export class MapaComponent implements OnInit {
         })
       })
     });
-
-    muestras.forEach((muestra: Muestra) => {
-
+    muestras.forEach((muestra: Muestra) => {    
+      
       if (muestra.x && muestra.y) {
         const markerFeature = new Feature({
           geometry: new Point([muestra.x, muestra.y]),
@@ -71,6 +76,7 @@ export class MapaComponent implements OnInit {
           codigo: muestra.codigo,
           id: muestra.id_muestra
         });
+        markerFeature.getGeometry()?.transform('EPSG:3116', 'EPSG:3857');
         markerFeature.setStyle(markerStyles);
         markerFeatures.push(markerFeature);
         positions.push({

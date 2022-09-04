@@ -113,7 +113,7 @@ const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     try {
         let punto;
-        if (x && y && z) {
+        if (x && y) {
             punto = {
                 type: 'Point',
                 coordinates: [x, y, z]
@@ -191,7 +191,7 @@ const editarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         }
         yield muestra.update(body);
         let punto;
-        if (body.x && body.y && body.z) {
+        if (body.x && body.y) {
             punto = {
                 type: 'Point',
                 coordinates: [body.x, body.y, body.z]
