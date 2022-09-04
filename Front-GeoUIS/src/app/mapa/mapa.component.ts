@@ -74,7 +74,8 @@ export class MapaComponent implements OnInit {
           geometry: new Point([muestra.x, muestra.y]),
           name: muestra.nombre,
           codigo: muestra.codigo,
-          id: muestra.id_muestra
+          id: muestra.id_muestra,
+          clasificacion: muestra.clasificacion
         });
         markerFeature.getGeometry()?.transform('EPSG:3116', 'EPSG:3857');
         markerFeature.setStyle(markerStyles);
@@ -221,6 +222,7 @@ export class MapaComponent implements OnInit {
         let coord = geometry.getCoordinates();
         let content = ` <h2 style="margin:0px">Nombre: ${feature.get('name')}</h2>
                         <div>Código: ${feature.get('codigo')}</div>
+                        <div>Clasificación: ${feature.get('clasificacion')}</div>
                         <a class="btn btn-primary btn-sm" href="/muestra/${feature.get('id')}">Ver detalle</a>`;
         content_element!.innerHTML = content;
         overlay.setPosition(coord);
