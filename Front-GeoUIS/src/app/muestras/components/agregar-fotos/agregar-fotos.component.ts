@@ -27,11 +27,11 @@ export class AgregarFotosComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+// close modal
   cerrar(){
     this.dialogRef.close()
   }
-
+// catch file
   capturarFile(event:any):any{
     const archivoCapturado = event.target.files[0];
     this.extraerbase64(archivoCapturado).then((imagen:any) => {
@@ -39,7 +39,7 @@ export class AgregarFotosComponent implements OnInit {
     })
     this.archivos.push(archivoCapturado);
   }
-
+// extract base 64 of image
   extraerbase64 = async ($event: any) => new Promise((resolve, reject) => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);
@@ -64,7 +64,7 @@ export class AgregarFotosComponent implements OnInit {
     }
   })
 
-
+// upload file
   subirArchivo():any {
     try {
 

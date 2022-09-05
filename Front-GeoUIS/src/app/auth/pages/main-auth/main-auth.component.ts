@@ -15,6 +15,7 @@ export class MainAuthComponent implements OnInit {
   constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
+    // Validate to active user
     if (Object.keys(this.usuario).length != 0) {
       this.authService.validarTokenAdmin()
         .subscribe();

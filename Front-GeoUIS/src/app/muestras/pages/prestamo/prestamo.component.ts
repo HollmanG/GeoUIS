@@ -28,7 +28,7 @@ export class PrestamoComponent implements OnInit {
 
   prestamo: Prestamo = {};
 
-  disponible : Boolean = true;
+  disponible: Boolean = true;
 
   fotos: Fotos[] = [];
 
@@ -43,16 +43,16 @@ export class PrestamoComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params
-    .pipe(
-      switchMap(({id})=> this.muestraService.getMuestraPorId(id))
-    )
-    .subscribe(muestra=>this.muestra = muestra)
+      .pipe(
+        switchMap(({ id }) => this.muestraService.getMuestraPorId(id))
+      )
+      .subscribe(muestra => this.muestra = muestra)
 
     this.activatedRoute.params
-    .pipe(
-      switchMap(({id})=> this.prestamosService.getDisponible(id))
-    )
-    .subscribe(disponible=>this.disponible = disponible)
+      .pipe(
+        switchMap(({ id }) => this.prestamosService.getDisponible(id))
+      )
+      .subscribe(disponible => this.disponible = disponible)
 
 
     this.activatedRoute.params
@@ -61,35 +61,35 @@ export class PrestamoComponent implements OnInit {
       )
       .subscribe(fotos => this.fotos = fotos);
   }
-
+  // back page
   regresar() {
-    this.router.navigate(['/muestra/',this.muestra.id_muestra]);
+    this.router.navigate(['/muestra/', this.muestra.id_muestra]);
   }
-
-  perdirPrestamo(){
+  // borrow sample
+  perdirPrestamo() {
 
     const fechaActual = new Date();
     const fechaActualString = this.datepipe.transform(Date.now(), 'dd/MM/yyyy');
- 
-    if(this.prestamo.fecha_prestamo! < fechaActual){
-      this.mostrarSnackBar("Fecha incorrecta, por favor seleccione una fecha posterior o igual al día " + fechaActualString );
+
+    if (this.prestamo.fecha_prestamo! < fechaActual) {
+      this.mostrarSnackBar("Fecha incorrecta, por favor seleccione una fecha posterior o igual al día " + fechaActualString);
       return
     }
 
     this.prestamo.id_muestra = this.muestra.id_muestra;
 
-    if(this.prestamo.id_muestra == undefined || this.prestamo.fecha_prestamo == undefined){
+    if (this.prestamo.id_muestra == undefined || this.prestamo.fecha_prestamo == undefined) {
       return;
     }
 
     this.prestamosService.agregarPrestamo(this.prestamo)
-    .subscribe(prestamo => {
-      this.router.navigate(['/muestra/', prestamo.id_muestra]);
-      this.mostrarSnackBar("Prestamo exitoso, por favor acercarse a " + this.muestra.ubicacion + " para recoger a " + this.muestra.nombre);
-    })
+      .subscribe(prestamo => {
+        this.router.navigate(['/muestra/', prestamo.id_muestra]);
+        this.mostrarSnackBar("Prestamo exitoso, por favor acercarse a " + this.muestra.ubicacion + " para recoger a " + this.muestra.nombre);
+      })
   }
 
-
+  // open snackbar
   mostrarSnackBar(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {
       duration: 5000

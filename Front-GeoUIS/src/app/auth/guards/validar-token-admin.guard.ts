@@ -10,6 +10,7 @@ export class ValidarTokenAdminGuard implements CanActivate, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) { }
 
+  //Validate User Admin
   canActivate(): Observable<boolean> | boolean {
     return this.authService.validarTokenAdmin()
       .pipe(

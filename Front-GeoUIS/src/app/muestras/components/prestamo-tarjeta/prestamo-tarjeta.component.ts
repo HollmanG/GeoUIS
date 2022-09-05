@@ -31,7 +31,7 @@ export class PrestamoTarjetaComponent implements OnInit {
     private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-
+    // upload requests
     this.fotosService.getFotos(this.prestamo.id_muestra!)
       .subscribe(fotos => this.fotos = fotos);
 
@@ -40,29 +40,29 @@ export class PrestamoTarjetaComponent implements OnInit {
         this.disponible = resp;
       })
   }
-
+  // verify loan
   prestamoDisponible() {
-    if (this.prestamo.fecha_devolucion == null ) {
-      if(this.usuario.rol == 2 || this.usuario.rol == 4){
+    if (this.prestamo.fecha_devolucion == null) {
+      if (this.usuario.rol == 2 || this.usuario.rol == 4) {
         return true
       }
     }
     return false
 
   }
-
-  Devolver(){
+  // return rock
+  Devolver() {
     const fechaActual = this.datepipe.transform(Date.now(), 'yyyy-MM-dd');
     this.prestamoService.DevolverPrestamo(this.prestamo.id_muestra!, fechaActual!)
-    .subscribe(resp => {
-      this.mostrarSnackBar('Muestra devuelta')
-      setTimeout(()=>{  
-        window.location.reload();
-      }, 2000);
-      
-    })
-  }
+      .subscribe(resp => {
+        this.mostrarSnackBar('Muestra devuelta')
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
 
+      })
+  }
+  // open snackbar
   mostrarSnackBar(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {
       duration: 2500

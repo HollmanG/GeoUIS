@@ -1,51 +1,54 @@
+<!-- loan card -->
 <mat-card style="background-color: #66b93d48">
     <div style="text-align: center;">
+        <!-- Name -->
         <mat-card-title>{{prestamo.nombre_muestra}}</mat-card-title>
     </div>
+    <!-- Image -->
     <div style="text-align: center;">
         <img [src]="fotos[0] | imagen" class="ImagenCard">
     </div>
-
+    <!-- features -->
     <mat-card-content>
         <div class="container">
             <div class="row">
-                
-                    <strong>Usuario: </strong>
-                
-                    <p>
-                        {{prestamo.nombre_usuario}}
-                    </p>
-                
-            </div>
-            <div class="row">
-                
-                    <strong>Correo: </strong>
-                
-                    <p>
-                        {{prestamo.correo}}
-                    </p>
-                
-            </div>
-            <div class="row">
-                
-                    <strong>Fecha Prestamo: </strong>
-                
-                    <p>
-                        {{prestamo.fecha_prestamo}}
-                    </p>
-                
-            </div>
-            <div class="row">
-                
-                    <strong>Fecha Devolución: </strong>
-                
-                    <p>
-                        {{(prestamo.fecha_devolucion)? prestamo.fecha_devolucion : 'N/A'}}
-                    </p>
-                
-            </div>
-            <div class="row">
+                <!-- User -->
+                <strong>Usuario: </strong>
 
+                <p>
+                    {{prestamo.nombre_usuario}}
+                </p>
+
+            </div>
+            <div class="row">
+                <!-- Email -->
+                <strong>Correo: </strong>
+
+                <p>
+                    {{prestamo.correo}}
+                </p>
+
+            </div>
+            <div class="row">
+                <!-- Load Date -->
+                <strong>Fecha Prestamo: </strong>
+
+                <p>
+                    {{prestamo.fecha_prestamo}}
+                </p>
+
+            </div>
+            <div class="row">
+                <!-- return date -->
+                <strong>Fecha Devolución: </strong>
+
+                <p>
+                    {{(prestamo.fecha_devolucion)? prestamo.fecha_devolucion : 'N/A'}}
+                </p>
+
+            </div>
+            <div class="row">
+                <!-- Type of rock -->
                 <strong>Tipo de roca: </strong>
 
                 <p>
@@ -55,9 +58,9 @@
             </div>
         </div>
     </mat-card-content>
+    <!-- Buttons -->
     <mat-card-actions style="text-align: center;">
-        <button mat-raised-button *ngIf="prestamoDisponible()"
-                color="primary"
-                (click)="Devolver()">Devolver Prestamo</button>
+        <button mat-raised-button *ngIf="prestamoDisponible()" color="primary" (click)="Devolver()">Devolver
+            Prestamo</button>
     </mat-card-actions>
 </mat-card>

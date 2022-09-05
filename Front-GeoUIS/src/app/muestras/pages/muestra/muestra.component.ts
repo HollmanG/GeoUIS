@@ -61,11 +61,11 @@ export class MuestraComponent implements OnInit {
       });
 
   }
-
+// back page
   regresar() {
     this.router.navigate(['/muestra/listar']);
   }
-
+// check rol user
   verificarRolUsuario() {
     if (this.usuario.rol != undefined) {
       return true;

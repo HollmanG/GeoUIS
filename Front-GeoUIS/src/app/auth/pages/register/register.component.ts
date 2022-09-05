@@ -18,23 +18,24 @@ export class RegisterComponent {
   });
 
   constructor(private fb: UntypedFormBuilder,
-              private router: Router,
-              private authService: AuthService) { }
+    private router: Router,
+    private authService: AuthService) { }
 
+  // Register method 
   register() {
     console.log(this.miFormulario.value);
-    const {nombre, correo, password} = this.miFormulario.value;
+    const { nombre, correo, password } = this.miFormulario.value;
 
     this.authService.register(nombre, correo, password)
-    .subscribe(ok=>{
-      if(ok === true) {
-        this.router.navigateByUrl('/inicio'); 
-        window.location.reload();
-      } else {
-        Swal.fire('Error', ok, 'error')
-      }
-    });
-    
+      .subscribe(ok => {
+        if (ok === true) {
+          this.router.navigateByUrl('/inicio');
+          window.location.reload();
+        } else {
+          Swal.fire('Error', ok, 'error')
+        }
+      });
+
   }
 
 }

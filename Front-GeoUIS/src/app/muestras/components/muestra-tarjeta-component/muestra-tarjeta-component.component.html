@@ -1,7 +1,10 @@
+<!-- Card of rocks samples -->
 <mat-card style="background-color: #66b93d48;">
     <div style="text-align: center;">
+        <!-- Name -->
         <mat-card-title>{{muestra.nombre}}</mat-card-title>
     </div>
+    <!-- Image -->
     <div style="text-align: center;">
         <img [src]="fotos[0] | imagen" class="ImagenCard">
     </div>
@@ -9,7 +12,7 @@
     <mat-card-content>
         <div class="container">
             <div class="row">
-
+                <!-- Type -->
                 <strong>Tipo de roca: </strong>
 
                 <p>
@@ -18,8 +21,8 @@
 
             </div>
             <div class="row">
-
-                <strong>Mineralogia: </strong>
+                <!-- composition -->
+                <strong>Composición: </strong>
 
                 <p>
                     {{muestra.composicion}}
@@ -27,16 +30,16 @@
 
             </div>
             <div class="row">
-
-                <strong>Caracteristicas Fisicas: </strong>
+                <!-- classification -->
+                <strong>Clasificación: </strong>
 
                 <p>
-                    {{muestra.textura}}
+                    {{muestra.clasificacion}}
                 </p>
 
             </div>
             <div class="row">
-
+                <!-- Formation -->
                 <strong>Formación: </strong>
 
                 <p>
@@ -46,6 +49,7 @@
             </div>
         </div>
     </mat-card-content>
+    <!-- Buttons -->
     <mat-card-actions style="text-align: center;">
         <button mat-raised-button [routerLink]="['/muestra/',muestra.id_muestra]" color="primary">Ver más</button>
         <button mat-button [routerLink]="['/muestra/editar/',muestra.id_muestra]" color="warn"

@@ -1,11 +1,13 @@
+<!-- load page -->
 <mat-grid-list cols="1" *ngIf="!muestra; else divMuestra">
     <mat-grid-tile>
         <mat-spinner></mat-spinner>
     </mat-grid-tile>
 </mat-grid-list>
-
+<!-- block sample -->
 <ng-template #divMuestra>
     <div fxLayout="row" fxLayoutGap="30px" fxLayout.xs="column">
+        <!-- carousel -->
         <div fxFlex="50" fxLayout="column">
             <h1 style="margin: 0;">{{muestra.nombre}}</h1>
             <hr>
@@ -32,6 +34,7 @@
                 </div>
             </div>
         </div>
+        <!-- features -->
         <div fxFlex="50" fxLayout.xs="column">
             <h1>Detalles</h1>
             <hr>
@@ -176,7 +179,7 @@
                 </mat-list-item>
             </mat-list>
             <br>
-
+            <!-- buttons to borrow -->
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
                 <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
                     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">

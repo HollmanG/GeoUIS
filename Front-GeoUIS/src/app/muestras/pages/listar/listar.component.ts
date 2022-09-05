@@ -26,14 +26,14 @@ export class ListarComponent implements OnInit {
 
 
   }
-
+// check role for admin
   verificarRolAdmin() {
     if (this.usuario.rol == 2 || this.usuario.rol == 4) {
       return true;
     }
     return false;
   }
-
+// check role for user
   verificarRolUsuario() {
     if (this.usuario.rol != undefined) {
       return true;

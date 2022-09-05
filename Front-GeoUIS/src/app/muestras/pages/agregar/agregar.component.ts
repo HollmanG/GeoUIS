@@ -100,21 +100,19 @@ export class AgregarComponent implements OnInit {
 
 
   }
-
+  // save sample
   guardar() {
-    if (this.muestra.nombre!.trim().length === 0 || this.muestra.edad == undefined || this.muestra.tipo_muestra == undefined ||
-      this.muestra.codigo == undefined || this.muestra.composicion == undefined || this.muestra.formacion == undefined ||
-      this.muestra.fecha_ingreso == undefined || this.muestra.fecha_recoleccion == undefined || this.muestra.id_ubicacion == undefined ||
-      this.muestra.id_municipio == undefined || this.muestra.localizacion_geografica == undefined || this.muestra.localizacion_geologica == undefined
-      || this.muestra.x == undefined || this.muestra.y == undefined || this.muestra.textura == undefined) {
+    if (this.muestra.nombre!.trim().length === 0 || this.muestra.tipo_muestra == undefined || this.muestra.codigo == undefined ||
+      this.muestra.id_ubicacion == undefined || this.muestra.seccion_delgada == undefined || this.muestra.id_municipio == undefined
+    ) {
       return;
     }
 
     if (this.muestra.id_muestra) {
-      //actualizar
+      //update
       this.muestraService.actualizarMuestra(this.muestra).subscribe(muestra => this.mostrarSnackBar('Registro actualizado'))
     } else {
-      //crear
+      //create
       this.muestraService.agregarMuestra(this.muestra).subscribe(muestra => {
         this.router.navigate(['/muestras/editar/', muestra.id_muestra]);
         this.mostrarSnackBar('Registro Creado');
@@ -123,7 +121,7 @@ export class AgregarComponent implements OnInit {
     }
 
   }
-
+  // delete sample
   borrar() {
 
     const dialog = this.dialog.open(ConfirmarComponent, {
@@ -142,32 +140,32 @@ export class AgregarComponent implements OnInit {
       }
     )
   }
-
+  // open modal images
   agregar() {
     const dialog = this.dialog.open(AgregarFotosComponent, {
-      
+
       data: this.muestra
     })
   }
 
-
+  // open snackbar
   mostrarSnackBar(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {
       duration: 2500
     })
   }
-
+  // back page
   regresar() {
     this.router.navigate(['/muestra/listar']);
   }
-
-  Devolver(){
+  // return load
+  Devolver() {
     const fechaActual = this.datepipe.transform(Date.now(), 'yyyy-MM-dd');
     this.prestamosService.DevolverPrestamo(this.muestra.id_muestra!, fechaActual!)
-    .subscribe(resp => {
-      this.router.navigate(['/muestra/listar']);
-      this.mostrarSnackBar('Muestra devuelta')
-    })
+      .subscribe(resp => {
+        this.router.navigate(['/muestra/listar']);
+        this.mostrarSnackBar('Muestra devuelta')
+      })
   }
 
 }

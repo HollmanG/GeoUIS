@@ -18,6 +18,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+
+  // Register Service
   register(nombre: string, correo: string, password: string) {
 
     const url = `${this.baseURL}/usuarios`;
@@ -43,6 +45,7 @@ export class AuthService {
       )
   }
 
+  // Login Service
   login(correo: string, password: string) {
 
     const url = `${this.baseURL}/auth/login`;
@@ -67,6 +70,7 @@ export class AuthService {
 
   }
 
+  // service that validates user "admin"
   validarTokenAdmin(): Observable<boolean> {
     const url = `${this.baseURL}/auth/renew`;
     const headers = new HttpHeaders()
@@ -93,6 +97,8 @@ export class AuthService {
         catchError(err => of(false))
       )
   }
+
+  //service that validates user
 
   validarTokenUsuario(): Observable<boolean> {
     const url = `${this.baseURL}/auth/renew`;
@@ -121,11 +127,13 @@ export class AuthService {
       )
   }
 
+  // LogOut Method
   logOut() {
     localStorage.removeItem('token');
 
   }
 
+  // service that validates active user
   validarToken(): Observable<boolean> {
     const url = `${this.baseURL}/auth/verify`;
     const headers = new HttpHeaders()

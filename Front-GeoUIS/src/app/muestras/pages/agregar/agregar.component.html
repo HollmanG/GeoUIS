@@ -1,9 +1,10 @@
+<!-- Principal text -->
 <h1> {{( muestra.id_muestra)? 'Editar' : 'Nueva'}} Muestra</h1>
-<h1> {{muestra.nombre}} </h1>
-<!-- Primer bloque, columna izquierda-->
+<h1> {{( muestra.id_muestra)? muestra.nombre : ''}} </h1>
+<!-- First block, left-->
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.sm="column" fxLayout.xs="column">
     <div fxFlex="50" fxLayout="column" *ngIf="muestra.id_muestra">
-        
+        <!-- Add images -->
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout="colum" fxLayoutGap="20px" fxFlex="60">
                 <div fxLayout="row">
@@ -13,6 +14,7 @@
                     </button>
                 </div>
             </div>
+            <!-- Return load -->
             <div fxLayout="column" fxFlex="40" *ngIf="!disponible">
                 <div fxLayout="row" fxLayoutGap="30px" style="justify-content: flex-end">
                     <button mat-raised-button color="primary" (click)="Devolver()">
@@ -22,15 +24,16 @@
                 </div>
             </div >
         </div>
+        <!-- image card -->
         <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px" style="margin-top: 2%;" *ngIf="muestra.id_muestra">
             <div *ngFor="let foto of fotos" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="35">
                 <app-foto-tarjeta [Foto]="foto"></app-foto-tarjeta>
             </div>          
         </div>
     </div>
-<!-- Segundo bloque, columna derecha -->
+<!-- Second block, right -->
     <div fxFlex="50" fxLayout="column">
-
+        <!-- features rock sample -->
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Nombre</mat-label>
@@ -39,14 +42,14 @@
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Edad</mat-label>
-                <input matInput type="number" required [(ngModel)]="muestra.edad">
+                <input matInput type="number" [(ngModel)]="muestra.edad">
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Tipo de roca</mat-label>
-                <mat-select [(ngModel)]="muestra.id_tipo_muestra" placeholder="Tipo de muestra" required>
+                <mat-select [(ngModel)]="muestra.id_tipo_muestra" placeholder="Tipo de roca" required>
 
                     <mat-option>Ninguno</mat-option>
                     <mat-option *ngFor="let tipo of tiposMuestra" [value]="tipo.id_tipo_muestra">
@@ -64,12 +67,12 @@
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Composición</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.composicion" required>
+                <input matInput type="text" [(ngModel)]="muestra.composicion">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Formacion</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.formacion" required>
+                <input matInput type="text" [(ngModel)]="muestra.formacion">
             </mat-form-field>
 
         </div>
@@ -77,48 +80,51 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Clasificación:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.clasificacion" required>
+                <input matInput type="text" [(ngModel)]="muestra.clasificacion">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Sección delgada:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.seccion_delgada" required>
+                <mat-select [(ngModel)]="muestra.seccion_delgada" placeholder="Sección delgada" required>
+                    <mat-option  [value]="true">Sí</mat-option>
+                    <mat-option  [value]="false">No</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Textura:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.textura" required>
+                <input matInput type="text" [(ngModel)]="muestra.textura" >
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Color:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.color" required>
+                <input matInput type="text" [(ngModel)]="muestra.color" >
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Recolector:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.recolector" required>
+                <input matInput type="text" [(ngModel)]="muestra.recolector" >
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Docente:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.docente" required>
+                <input matInput type="text" [(ngModel)]="muestra.docente" >
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Asignatura:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.asignatura" required>
+                <input matInput type="text" [(ngModel)]="muestra.asignatura" >
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Estructura:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.estructura" required>
+                <input matInput type="text" [(ngModel)]="muestra.estructura" >
             </mat-form-field>
         </div>
 
@@ -126,7 +132,7 @@
 
             <mat-form-field fxFlex="100" aria-required="true">
                 <mat-label>Fecha de recolección</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="muestra.fecha_recoleccion" required>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="muestra.fecha_recoleccion" >
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -134,7 +140,7 @@
 
             <mat-form-field fxFlex="100" aria-required="true">
                 <mat-label>Fecha de ingreso</mat-label>
-                <input matInput [matDatepicker]="picker2" [(ngModel)]="muestra.fecha_ingreso" required>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="muestra.fecha_ingreso" >
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -148,7 +154,7 @@
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Ubicación</mat-label>
 
-                <mat-select [(ngModel)]="muestra.id_ubicacion" placeholder="Ubicacion" required>
+                <mat-select [(ngModel)]="muestra.id_ubicacion" placeholder="Ubicación" required>
 
                     <mat-option>Ninguno</mat-option>
                     <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id_ubicacion">
@@ -171,36 +177,36 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Localización geografica</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.localizacion_geografica" required>
+                <input matInput type="text" [(ngModel)]="muestra.localizacion_geografica">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Localización geologica</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.localizacion_geologica" required>
+                <input matInput type="text" [(ngModel)]="muestra.localizacion_geologica">
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Coordenada X:</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.x" required>
+                <input matInput type="number" [(ngModel)]="muestra.x">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Coordenada Y:</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.y" required>
+                <input matInput type="number" [(ngModel)]="muestra.y">
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Coordenada Z:</mat-label>
-                <input matInput type="number" [(ngModel)]="muestra.z" required>
+                <input matInput type="number" [(ngModel)]="muestra.z">
             </mat-form-field>
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Tamaño:</mat-label>
-                <input matInput type="text" [(ngModel)]="muestra.size" required>
+                <input matInput type="text" [(ngModel)]="muestra.size">
             </mat-form-field>
         </div>
 

@@ -34,13 +34,12 @@ export class HeaderComponent implements OnInit {
         })
     }
   }
-
+  // sample selected
   setMuestra(muestra: Muestra) {
     this.muestra = muestra
-    console.log(muestra);
 
   }
-
+  // log out
   logOut() {
     this.authService.logOut();
   }

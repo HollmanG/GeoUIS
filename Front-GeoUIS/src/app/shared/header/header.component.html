@@ -1,12 +1,16 @@
+<!-- NavBar -->
 <nav class="navbar navbar-dark navbar-expand-sm navposition" style="background-color: #4d922a;"> 
     <div class="container-fluid">
+      <!-- logo and name app -->
       <a href="#"><img src="assets/logo.png" width="40rem" height="40rem"></a>
       <a class="navbar-brand" href="#">GeoUIS</a>
+      <!-- searcher -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <app-buscador (muestraOut)="setMuestra($event)" class="ms-auto"></app-buscador>
+        <!-- options -->
         <ul class="navbar-nav me-3 mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="/inicio">Inicio</a>

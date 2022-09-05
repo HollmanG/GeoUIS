@@ -1,3 +1,4 @@
+// loan interface
 export interface Prestamo {
     id_prestamo?:       number;
     fecha_prestamo?:     Date;
@@ -9,14 +10,14 @@ export interface Prestamo {
     correo?:            string;
     tipo_muestra?:       string;
 }
-
+// loan interface avaliable response 
 export interface PrestamoDisponibleResponse {
     ok: boolean; 
     msg: string | {}; 
     disponible: boolean;
 
 }
-
+// loan interface response
 export interface PrestamoResponse {
     ok: boolean; 
     msg: string | {}; 

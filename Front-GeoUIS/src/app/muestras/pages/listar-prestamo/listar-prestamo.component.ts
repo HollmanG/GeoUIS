@@ -32,11 +32,11 @@ export class ListarPrestamoComponent implements OnInit {
     }
 
   }
-
+// back
   regresar() {
     this.router.navigate(['/muestra/listar']);
   }
-
+// visualize card
   VisualizarCard(prestamo: Prestamo){
     if(this.usuario.rol == 2 || this.usuario.rol ==4){
       return true;

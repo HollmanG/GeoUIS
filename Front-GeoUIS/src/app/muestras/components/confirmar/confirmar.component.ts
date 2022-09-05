@@ -14,11 +14,11 @@ export class ConfirmarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+// Delete rock
   borrar(){
     this.dialogRef.close(true)
   }
-
+// Close modal
   cerrar(){
     this.dialogRef.close()
   }

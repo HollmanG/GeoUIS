@@ -16,7 +16,7 @@ export class PrestamosService {
   private baseUrl: string = environment.baseURL;
 
   constructor(private http: HttpClient) { }
-
+  // service add loan
   agregarPrestamo(prestamo: Prestamo): Observable<Prestamo> {
     //Token actual
     const headers = new HttpHeaders()
@@ -34,7 +34,7 @@ export class PrestamosService {
         })
       )
   }
-
+  // service get loan availability
   getDisponible(id_muestra: number): Observable<boolean> {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
@@ -47,7 +47,7 @@ export class PrestamosService {
       )
   }
 
-
+  // service return loan
   DevolverPrestamo(id_muestra: number, fechaActual: string): Observable<Prestamo> {
     //Token actual
     const headers = new HttpHeaders()
@@ -65,7 +65,7 @@ export class PrestamosService {
       )
   }
 
-
+  // service get loans
   getPrestamos(): Observable<Prestamo[]> {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
@@ -77,7 +77,7 @@ export class PrestamosService {
         })
       )
   }
-
+  // service get loan
   getPrestamo(id_usuario: number): Observable<Prestamo[]> {
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '')
