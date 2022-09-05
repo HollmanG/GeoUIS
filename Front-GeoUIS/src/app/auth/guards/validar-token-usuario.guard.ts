@@ -9,7 +9,8 @@ import { AuthService } from '../services/auth.service';
 export class ValidarTokenUsuarioGuard implements CanActivate, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) { }
-
+  
+  //Validate user
   canActivate(): Observable<boolean> | boolean {
     return this.authService.validarTokenUsuario()
       .pipe(

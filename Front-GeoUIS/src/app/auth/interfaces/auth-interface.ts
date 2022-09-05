@@ -1,5 +1,5 @@
 
-
+// Interface response auth
 export interface AuthResponse {
     ok: boolean; 
     msg: string | {}; 
@@ -10,6 +10,7 @@ export interface AuthResponse {
     rol?:number;
 }
 
+// Interface user
 export interface Usuario {
     id: number;
     correo: string;
@@ -17,6 +18,7 @@ export interface Usuario {
     rol: number;
 }
 
+// Interface response auth validar
 export interface AuthResponseValidar{
     ok: boolean;
 }

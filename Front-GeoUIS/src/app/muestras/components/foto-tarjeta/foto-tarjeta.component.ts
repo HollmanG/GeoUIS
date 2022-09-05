@@ -19,7 +19,7 @@ export class FotoTarjetaComponent implements OnInit {
 
   ngOnInit(): void { 
   }
-
+// Delete image
   EliminarFoto(){
     this.fotosService.borrarFoto(this.Foto.id_foto!)
     .subscribe(resp => {
@@ -29,7 +29,7 @@ export class FotoTarjetaComponent implements OnInit {
       }, 1000);
     })
   }
-
+// open snackbar
   mostrarSnackBar(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {
       duration: 2500

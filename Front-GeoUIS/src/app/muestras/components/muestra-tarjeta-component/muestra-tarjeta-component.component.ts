@@ -21,15 +21,15 @@ export class MuestraTarjetaComponentComponent implements OnInit {
   }
 
   constructor(private authService: AuthService,
-              private fotosService: FotosService) { }
+    private fotosService: FotosService) { }
 
   ngOnInit(): void {
-
+    // Get images of rock sample
     this.fotosService.getFotos(this.muestra.id_muestra!)
-    .subscribe(fotos => this.fotos = fotos);
-    
-  }
+      .subscribe(fotos => this.fotos = fotos);
 
+  }
+  // Verify Rol
   verificarRolAdmin() {
     if (this.usuario.rol == 2 || this.usuario.rol == 4) {
       return true;
@@ -37,6 +37,6 @@ export class MuestraTarjetaComponentComponent implements OnInit {
     return false;
   }
 
-  
+
 
 }

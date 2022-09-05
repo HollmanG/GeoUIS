@@ -10,6 +10,7 @@ export class ValidarUsuarioLoginGuard implements CanActivate, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) { }
 
+  //Validate user login
   canActivate(): Observable<boolean> | boolean {
     if(localStorage.getItem('token') == undefined){
         return true;

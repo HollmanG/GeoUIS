@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
+  //Form Login
   miFormulario: UntypedFormGroup = this.fb.group({
     correo: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -21,10 +22,8 @@ export class LoginComponent {
               private router: Router,
               private authService: AuthService) { }
 
+  //Login Method 
   login() {
-
-    // this.authService.validarToken()
-    // .subscribe( resp => console.log (resp))
     const {correo, password} = this.miFormulario.value;
 
     this.authService.login(correo, password)

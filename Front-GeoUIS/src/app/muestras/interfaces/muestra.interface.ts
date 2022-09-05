@@ -1,3 +1,4 @@
+// interface structure sample
 export interface Muestra {
     id_muestra?:                number;
     textura?:                   string;
@@ -31,6 +32,7 @@ export interface Muestra {
 
 }
 
+// interface structure point
 export interface Punto {
     crs:{
         type:   string;
@@ -42,7 +44,7 @@ export interface Punto {
     coordinates: number[];
 
 }
-
+// interface response sample
 export interface MuestrasResponse {
     ok: boolean; 
     msg: string | {}; 

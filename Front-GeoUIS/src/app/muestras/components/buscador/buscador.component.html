@@ -1,20 +1,21 @@
+<!-- search samples -->
 <mat-form-field class="example-full-width text-white" appearance="legacy" color="accent">
   <mat-label id="placeholder" class="text-white">Buscar muestra</mat-label>
   <input type="text" class="text-white" matInput [(ngModel)]="termino" [matAutocomplete]="auto"
     (input)="buscando()">
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="opcionSeleccionada($event)">
     <mat-option *ngFor="let muestra of muestras" [value]="muestra">
-      
+        <!-- rock characteristics -->
         <div flexLayout="column">
           <div class="letra"><strong>{{muestra.nombre}}</strong></div>
           <div class="letra">Formación: {{muestra.formacion}}</div>
-          <div class="letra">Mineralogia: {{muestra.composicion}}</div>
+          <div class="letra">Composición {{muestra.composicion}}</div>
           <div class="letra">&nbsp;</div>
         
 
       </div>
     </mat-option>
-
+    <!-- Not found rock or rocks -->
     <mat-option value="" *ngIf="muestras.length===0 && termino.trim().length>0">
       No se encontró nada con el término {{ termino }}
     </mat-option>

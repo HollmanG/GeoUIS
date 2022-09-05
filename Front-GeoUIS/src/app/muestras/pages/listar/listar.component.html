@@ -1,10 +1,11 @@
+<!-- sample list -->
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
     <div fxLayout="column" fxLayoutGap="20px" fxFlex="70">
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <h1>Listado de muestras</h1>
         </div>
     </div>
-    
+    <!-- buttons -->
     <div fxLayout="column" fxFlex="30">
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" style="justify-content: flex-end">
             <button mat-raised-button [routerLink]="['/muestra/agregar/']" color="warn" *ngIf="verificarRolAdmin()">
@@ -13,11 +14,12 @@
                 </mat-icon>
                 Nueva muestra
             </button>
-            <button mat-raised-button [routerLink]="['/muestra/prestamos/']" color="primary" *ngIf="verificarRolUsuario()">
+            <button mat-raised-button [routerLink]="['/muestra/prestamos/']" color="primary"
+                *ngIf="verificarRolUsuario()">
                 <mat-icon>
                     chevron_left
                 </mat-icon>
-                {{( this.usuario.rol == 2 || this.usuario.rol == 4)? 'Prestamos' : 'Mis prestamos'}} 
+                {{( this.usuario.rol == 2 || this.usuario.rol == 4)? 'Prestamos' : 'Mis prestamos'}}
             </button>
         </div>
     </div>
@@ -25,6 +27,7 @@
 </div>
 
 <hr>
+<!-- muestra card -->
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
     <div *ngFor="let muestra of muestras" fxFlex.lg="15" fxFlex.sm="30" fxFlex.md="20">
         <app-muestra-tarjeta-component [muestra]="muestra"></app-muestra-tarjeta-component>
