@@ -125,7 +125,7 @@ export class AgregarComponent implements OnInit {
   borrar() {
 
     const dialog = this.dialog.open(ConfirmarComponent, {
-      width: '250px',
+      width: '300px',
       data: this.muestra
     })
 
