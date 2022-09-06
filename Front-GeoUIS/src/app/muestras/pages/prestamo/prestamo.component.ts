@@ -70,9 +70,13 @@ export class PrestamoComponent implements OnInit {
 
     const fechaActual = new Date();
     const fechaActualString = this.datepipe.transform(Date.now(), 'dd/MM/yyyy');
+    var fechaPuesta: Date = new Date(this.prestamo.fecha_prestamo!)
+    fechaPuesta.setDate(fechaPuesta.getDate() + 1)
+    console.log(fechaActual);
+    console.log(fechaPuesta);
 
-    if (this.prestamo.fecha_prestamo! < fechaActual) {
-      this.mostrarSnackBar("Fecha incorrecta, por favor seleccione una fecha posterior o igual al día " + fechaActualString);
+    if (fechaPuesta < fechaActual) {
+      this.mostrarSnackBar("Fecha incorrecta, por favor seleccione una fecha posterior día " + fechaActualString);
       return
     }
 

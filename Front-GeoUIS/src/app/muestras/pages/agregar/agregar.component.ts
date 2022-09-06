@@ -102,7 +102,7 @@ export class AgregarComponent implements OnInit {
   }
   // save sample
   guardar() {
-    if (this.muestra.nombre!.trim().length === 0 || this.muestra.tipo_muestra == undefined || this.muestra.codigo == undefined ||
+    if (this.muestra.nombre!.trim().length === 0 || this.muestra.id_tipo_muestra == undefined || this.muestra.codigo == undefined ||
       this.muestra.id_ubicacion == undefined || this.muestra.seccion_delgada == undefined || this.muestra.id_municipio == undefined
     ) {
       return;
@@ -125,7 +125,7 @@ export class AgregarComponent implements OnInit {
   borrar() {
 
     const dialog = this.dialog.open(ConfirmarComponent, {
-      width: '250px',
+      width: '300px',
       data: this.muestra
     })
 
