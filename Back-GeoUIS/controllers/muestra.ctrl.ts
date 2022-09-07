@@ -7,6 +7,7 @@ import { QueryTypes } from 'sequelize';
 import Localizacion from '../models/localizacion.mdl';
 import path from "path";
 import { existsSync, mkdirSync } from "fs";
+import Prestamo from "../models/prestamo.mdl";
 
 const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 
@@ -257,6 +258,7 @@ export const eliminarMuestra = async (req: Req, res: Response) => {
             });
         }
         await Foto.destroy({ where: { id_muestra: id } });
+        await Prestamo.destroy({ where: { id_muestra: id } })
         await Muestra.destroy({ where: { id_muestra: id } });
         await Localizacion.destroy({ where: { id_localizacion: muestraExiste.id_localizacion } });
 

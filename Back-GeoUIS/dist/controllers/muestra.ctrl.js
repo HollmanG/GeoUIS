@@ -19,6 +19,7 @@ const sequelize_1 = require("sequelize");
 const localizacion_mdl_1 = __importDefault(require("../models/localizacion.mdl"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = require("fs");
+const prestamo_mdl_1 = __importDefault(require("../models/prestamo.mdl"));
 const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 const getMuestras = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -227,6 +228,7 @@ const eliminarMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function
             });
         }
         yield foto_mdl_1.default.destroy({ where: { id_muestra: id } });
+        yield prestamo_mdl_1.default.destroy({ where: { id_muestra: id } });
         yield muestra_mdl_1.default.destroy({ where: { id_muestra: id } });
         yield localizacion_mdl_1.default.destroy({ where: { id_localizacion: muestraExiste.id_localizacion } });
         return res.status(200).json({

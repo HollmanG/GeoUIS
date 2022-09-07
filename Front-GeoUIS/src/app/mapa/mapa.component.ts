@@ -82,7 +82,7 @@ export class MapaComponent implements OnInit {
         markerFeatures.push(markerFeature);
         positions.push({
           name: `${muestra.nombre} ${muestra.codigo}`,
-          pos: [muestra.x, muestra.y],
+          pos: transform([muestra.x, muestra.y],'EPSG:3116', 'EPSG:3857'),
           zoom: 11
         })
       }
