@@ -89,7 +89,7 @@
         <hr>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" *ngIf="disponible">
             <mat-form-field fxFlex="100" aria-required="true">
-                <mat-label>Fecha de solicitud prestamo</mat-label>
+                <mat-label>Fecha de préstamo</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="prestamo.fecha_prestamo" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -105,7 +105,7 @@
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" *ngIf="disponible">
                     <button mat-raised-button color="primary" (click)="perdirPrestamo()">
                         <mat-icon>archive</mat-icon>
-                        {{( disponible)? 'Solicitar prestamo' : 'Reservar prestamo'}}
+                        {{( disponible)? 'Solicitar préstamo' : 'Reservar prestamo'}}
                     </button>
         
                     

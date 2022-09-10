@@ -94,7 +94,7 @@ export class MapaComponent implements OnInit {
     });
 
     const features = new VectorLayer({
-      title: 'Features',
+      title: 'Muestras',
       visible: false,
       source: vectorSource,
     } as BaseLayerOptions);

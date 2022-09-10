@@ -24,11 +24,12 @@ const regexFecha = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/;
 const getMuestras = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { q, limit } = req.query;
+    const texto = q;
     try {
         const query = `SELECT mu.*, tp.nombre as tipo_muestra, ub.descripcion as ubicacion, lo.punto, lo.localizacion_geografica, lo.localizacion_geologica, lo.id_municipio FROM muestras mu
                      JOIN ubicaciones ub ON ub.id_ubicacion = mu.id_ubicacion
                      JOIN localizaciones lo ON lo.id_localizacion = mu.id_localizacion
-                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where mu.nombre like '%${q}%'` : ``} order by mu.nombre`;
+                     JOIN tipos_muestra tp ON tp.id_tipo_muestra = mu.id_tipo_muestra ${q ? `where UPPER(mu.nombre) like '%${texto.toUpperCase()}%'` : ``} order by mu.nombre`;
         const muestras = yield ((_a = muestra_mdl_1.default.sequelize) === null || _a === void 0 ? void 0 : _a.query(query, { type: sequelize_1.QueryTypes.SELECT }));
         if (muestras) {
             muestras.forEach((muestra) => {
@@ -93,7 +94,7 @@ exports.getMuestra = getMuestra;
 const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { textura, fecha_recoleccion, fecha_ingreso, id_ubicacion, size, nombre, id_tipo_muestra, edad, composicion, codigo, formacion, recolector, color, clasificacion, seccion_delgada, docente, asignatura, estructura, descripcion_seccion_delgada, x, y, z, localizacion_geografica, localizacion_geologica, id_municipio } = req.body; //En esta línea lo refente a localización
     //Verficamos los parámetros obligatorios
-    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio || !seccion_delgada) {
+    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio || seccion_delgada === null || seccion_delgada === undefined) {
         return res.status(400).json({
             ok: false,
             msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, id_municipio, seccion_delgada y codigo son obligatorios'

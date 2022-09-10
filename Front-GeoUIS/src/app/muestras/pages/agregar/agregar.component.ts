@@ -105,16 +105,17 @@ export class AgregarComponent implements OnInit {
     if (this.muestra.nombre!.trim().length === 0 || this.muestra.id_tipo_muestra == undefined || this.muestra.codigo == undefined ||
       this.muestra.id_ubicacion == undefined || this.muestra.seccion_delgada == undefined || this.muestra.id_municipio == undefined
     ) {
+      this.mostrarSnackBar('Hay campos requeridos sin diligenciar.');
       return;
     }
-
+    
     if (this.muestra.id_muestra) {
       //update
       this.muestraService.actualizarMuestra(this.muestra).subscribe(muestra => this.mostrarSnackBar('Registro actualizado'))
     } else {
       //create
       this.muestraService.agregarMuestra(this.muestra).subscribe(muestra => {
-        this.router.navigate(['/muestras/editar/', muestra.id_muestra]);
+        this.router.navigate(['/muestra/editar/', muestra.id_muestra]);
         this.mostrarSnackBar('Registro Creado');
       })
 
