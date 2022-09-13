@@ -17,7 +17,7 @@
 <hr>
 <!-- Load Card -->
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
-    <div *ngFor="let prestamo of prestamos" fxFlex.lg="15" fxFlex.sm="30" fxFlex.md="20">
+    <div *ngFor="let prestamo of prestamos" fxFlex.lg="17" fxFlex.sm="30" fxFlex.md="20">
         <app-prestamo-tarjeta [prestamo]="prestamo" *ngIf="VisualizarCard(prestamo)"></app-prestamo-tarjeta>
     </div>
 

@@ -260,7 +260,7 @@ export class MapaComponent implements OnInit {
     search.on('select', (e: any) => {
       this.map!.getView().animate({
         center: e.search.pos,
-        zoom: 6,
+        zoom: 10,
         easing: olEasing.easeOut
       })
     });
