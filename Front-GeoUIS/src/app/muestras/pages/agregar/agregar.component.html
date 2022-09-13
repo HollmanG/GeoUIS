@@ -165,7 +165,7 @@
 
             <mat-form-field fxFlex="100" fxLayout.xs="column" aria-required="true">
                 <mat-label>Municipio</mat-label>
-                <mat-select [(value)]="muestra.id_municipio" [(ngModel)]="muestra.id_municipio" placeholder="Municipio" required>
+                <mat-select [(value)]="muestra.id_municipio" [(ngModel)]="muestra.id_municipio" placeholder="Municipio">
 
                     <mat-option>Ninguno</mat-option>
                     <mat-option *ngFor="let municipio of municipios" value="{{municipio.id_municipio}}">
