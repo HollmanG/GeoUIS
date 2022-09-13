@@ -103,11 +103,13 @@ export class AgregarComponent implements OnInit {
   // save sample
   guardar() {
     if (this.muestra.nombre!.trim().length === 0 || this.muestra.id_tipo_muestra == undefined || this.muestra.codigo == undefined ||
-      this.muestra.id_ubicacion == undefined || this.muestra.seccion_delgada == undefined
+      !this.muestra.id_ubicacion || this.muestra.seccion_delgada == undefined
     ) {
       this.mostrarSnackBar('Hay campos requeridos sin diligenciar.');
       return;
     }
+    console.log(this.muestra.id_ubicacion);
+    
     
     if (this.muestra.id_muestra) {
       //update

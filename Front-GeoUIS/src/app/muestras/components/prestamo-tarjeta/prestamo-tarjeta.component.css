@@ -2,6 +2,12 @@ mat-card {
     margin-top: 3vh;
 }
 
+.noDesbordar {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: initial;
+}
+
 .ImagenCard{
     padding: 5%;
     height: 10rem;
