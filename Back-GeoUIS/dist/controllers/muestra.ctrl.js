@@ -94,10 +94,10 @@ exports.getMuestra = getMuestra;
 const crearMuestra = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { textura, fecha_recoleccion, fecha_ingreso, id_ubicacion, size, nombre, id_tipo_muestra, edad, composicion, codigo, formacion, recolector, color, clasificacion, seccion_delgada, docente, asignatura, estructura, descripcion_seccion_delgada, x, y, z, localizacion_geografica, localizacion_geologica, id_municipio } = req.body; //En esta línea lo refente a localización
     //Verficamos los parámetros obligatorios
-    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio || seccion_delgada === null || seccion_delgada === undefined) {
+    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || seccion_delgada === null || seccion_delgada === undefined) {
         return res.status(400).json({
             ok: false,
-            msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, id_municipio, seccion_delgada y codigo son obligatorios'
+            msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, seccion_delgada y codigo son obligatorios'
         });
     }
     //Verificamos las fechas

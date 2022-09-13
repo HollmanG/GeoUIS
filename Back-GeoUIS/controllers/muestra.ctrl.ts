@@ -99,10 +99,10 @@ export const crearMuestra = async (req: Req, res: Response) => {
         x, y, z, localizacion_geografica, localizacion_geologica, id_municipio } = req.body; //En esta línea lo refente a localización
 
     //Verficamos los parámetros obligatorios
-    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || !id_municipio || seccion_delgada === null || seccion_delgada === undefined) {
+    if (!nombre || !id_tipo_muestra || !id_ubicacion || !codigo || seccion_delgada === null || seccion_delgada === undefined) {
         return res.status(400).json({
             ok: false,
-            msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, id_municipio, seccion_delgada y codigo son obligatorios'
+            msg: 'Los parámetros nombre, id_tipo_muestra, id_ubicacion, seccion_delgada y codigo son obligatorios'
         });
     }
 

@@ -28,7 +28,7 @@ Localizacion.init({
     },
     id_municipio: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
 }, {
     timestamps: false,
