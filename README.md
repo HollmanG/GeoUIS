@@ -1,6 +1,8 @@
 <h1 align="center">GeoUIS</h1>
 
-<h3 align="center">Sistema de información para gestionar las colecciones de muestras geológicas de la Escuela de Geología.</h3>
+<h2 align="center">Sistema de información para gestionar las colecciones de muestras geológicas de la Escuela de Geología.</h2>
+
+<h3 align="center">Autores: Hollman Esteban González Suárez y Jorge Andrés Burgos Fuentes</h3>
 
 <h4>Enlace a la base de datos:</h4>
 <p>https://drive.google.com/drive/folders/11aRmusWsoD-zkdNMGcalcLoX4Hv74nSO?usp=sharing</p>
