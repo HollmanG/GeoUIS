@@ -13,18 +13,18 @@
 <h4>Instalación de la aplicación:</h4>
 <ol>
   <li>Clone el repositorio</li>
-  <li>Moverse a la carpeta Back-GeoUIS</li>
+  <li>Moverse a la carpeta Back-GeoUIS.</li>
   <li>Ejecutar el comando 'npm install' para instalar los módulos de Node.</li>
-  <li>Moverse a la carpeta Front-GeoUIS</li>
+  <li>Moverse a la carpeta Front-GeoUIS.</li>
   <li>Ejecutar el comando 'npm install' para instalar los módulos de Node.</li>
 </ol>
 
 <h4>Ejecución de la aplicación:</h4>
 <ol>
-  <li>Moverse a la carpeta Back-GeoUIS</li>
+  <li>Moverse a la carpeta Back-GeoUIS.</li>
   <li>Ejecutar el comando 'tsc --watch' para compilar los cambios en typescript a tiempo real.</li>
   <li>Ejecutar el comando 'nodemon dist/app.js' para levantar el servidor.</li>
-  <li>Moverse a la carpeta Front-GeoUIS</li>
+  <li>Moverse a la carpeta Front-GeoUIS.</li>
   <li>Ejecutar el comando 'ng serve -o' para levantar el frontend.</li>
 </ol>
 
