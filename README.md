@@ -28,4 +28,7 @@
   <li>Ejecutar el comando 'ng serve -o' para levantar el frontend.</li>
 </ol>
 
+<h4>Enlace la documentación de Postman:</h4>
+<p>https://documenter.getpostman.com/view/14841043/2s8YekRExY</p>
+
 
