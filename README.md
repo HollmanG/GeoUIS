@@ -4,11 +4,11 @@
 
 <h4>Enlace a la base de datos:</h4>
 <p>https://drive.google.com/drive/folders/11aRmusWsoD-zkdNMGcalcLoX4Hv74nSO?usp=sharing</p>
-<ul>
+<ol>
   <li>Debe crear una base de datos en pgAdmin.</li>
-  <li>Debe restaurar el backup que está en el Drive.</li>
+  <li>Debe restaurar el backup que está en el Drive en esta base de datos.</li>
   <li>Realizar la conexión en el archivo del backend db/connection.ts</li>
-</ul>
+</ol>
 
 <h4>Instalación de la aplicación:</h4>
 <ol>
